@@ -6,6 +6,8 @@ export const metadata: Metadata = {
   description: "Advanced affiliate tracking and team management",
 };
 
+import { AuthProvider } from "@/context/AuthContext";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -17,7 +19,9 @@ export default function RootLayout({
         <div className="bg-blob-1"></div>
         <div className="bg-blob-2"></div>
         <div className="bg-blob-3"></div>
-        {children}
+        <AuthProvider>
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );
