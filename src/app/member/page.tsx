@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import api from "@/lib/api";
+import RevenueChart from "@/components/RevenueChart";
 
 export default function MemberDashboard() {
   const [stats, setStats] = useState({
@@ -9,6 +10,7 @@ export default function MemberDashboard() {
     successful_conversions: 0,
     pending_balance: 0,
     cleared_balance: 0,
+    chart_data: []
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -65,6 +67,10 @@ export default function MemberDashboard() {
         </div>
 
       </div>
+
+      {!loading && stats.chart_data && (
+        <RevenueChart data={stats.chart_data} dataKey="conversions" color="var(--success)" title="Conversion Trend (Last 7 Days)" />
+      )}
 
       <div className="glass-panel" style={{ minHeight: "400px" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "24px" }}>

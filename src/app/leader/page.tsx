@@ -2,12 +2,14 @@
 
 import React, { useEffect, useState } from "react";
 import api from "@/lib/api";
+import RevenueChart from "@/components/RevenueChart";
 
 export default function LeaderDashboard() {
   const [stats, setStats] = useState({
     total_group_clicks: 0,
     group_conversion_rate: 0,
     accumulated_leader_cut: 0,
+    chart_data: []
   });
   const [teamMembers, setTeamMembers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -70,8 +72,12 @@ export default function LeaderDashboard() {
 
       </div>
 
+      {!loading && stats.chart_data && (
+        <RevenueChart data={stats.chart_data} dataKey="revenue" color="var(--secondary)" title="Leader Earnings (Last 7 Days)" />
+      )}
+
       <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr", gap: "24px" }}>
-        <div className="glass-panel" style={{ minHeight: "350px" }}>
+        <div className="glass-panel" style={{ minHeight: "300px" }}>
           <h2 style={{ fontSize: "1.25rem", marginBottom: "24px" }}>Team Performance Trends</h2>
           <div style={{ width: "100%", height: "250px", border: "1px dashed var(--glass-border)", borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--text-muted)" }}>
             [ Sparkline Chart ]

@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import api from "@/lib/api";
+import RevenueChart from "@/components/RevenueChart";
 
 export default function AdminDashboard() {
   const [stats, setStats] = useState({
@@ -9,6 +10,7 @@ export default function AdminDashboard() {
     conversion_rate: 0,
     total_revenue: 0,
     pending_payouts: 0,
+    chart_data: []
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -63,6 +65,10 @@ export default function AdminDashboard() {
         </div>
 
       </div>
+
+      {!loading && stats.chart_data && (
+        <RevenueChart data={stats.chart_data} dataKey="revenue" color="var(--primary)" title="Platform Revenue (Last 7 Days)" />
+      )}
 
       <div className="glass-panel" style={{ minHeight: "400px" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "24px" }}>
