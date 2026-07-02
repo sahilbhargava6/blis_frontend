@@ -60,7 +60,7 @@ export default function AdminCampaigns() {
               <tr style={{ color: "var(--text-muted)", borderBottom: "1px solid var(--glass-border)" }}>
                 <th style={{ padding: "12px 16px", fontWeight: "500" }}>Title</th>
                 <th style={{ padding: "12px 16px", fontWeight: "500" }}>Master URL</th>
-                <th style={{ padding: "12px 16px", fontWeight: "500" }}>Payout ($)</th>
+                <th style={{ padding: "12px 16px", fontWeight: "500" }}>Payout (₹)</th>
                 <th style={{ padding: "12px 16px", fontWeight: "500" }}>Member / Leader Split</th>
                 <th style={{ padding: "12px 16px", fontWeight: "500" }}>Status</th>
               </tr>
@@ -117,7 +117,7 @@ export default function AdminCampaigns() {
               </div>
 
               <div>
-                <label style={{ display: "block", marginBottom: "8px", fontWeight: "600", fontSize: "0.9rem" }}>Total CPA Payout ($)</label>
+                <label style={{ display: "block", marginBottom: "8px", fontWeight: "600", fontSize: "0.9rem" }}>Total CPA Payout (₹)</label>
                 <input required type="number" step="0.01" value={newCampaign.total_payout} onChange={e => setNewCampaign({...newCampaign, total_payout: parseFloat(e.target.value)})} style={{ width: "100%", padding: "10px", borderRadius: "8px", border: "1px solid var(--glass-border)", outline: "none", background: "rgba(255,255,255,0.6)" }} />
               </div>
 

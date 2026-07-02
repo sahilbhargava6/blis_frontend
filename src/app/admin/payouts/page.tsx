@@ -63,7 +63,7 @@ export default function AdminPayouts() {
                     <td style={{ padding: "16px", color: "var(--text-strong)" }}>{new Date(payout.created_at).toLocaleDateString()}</td>
                     <td style={{ padding: "16px", fontWeight: "600", color: "var(--text-strong)" }}>{payout.user?.name || `User ID: ${payout.user_id}`}</td>
                     <td style={{ padding: "16px", color: "var(--text-muted)", textTransform: "capitalize" }}>{payout.user?.role || 'Unknown'}</td>
-                    <td style={{ padding: "16px", color: "var(--success)", fontWeight: "600" }}>${parseFloat(payout.amount).toFixed(2)}</td>
+                    <td style={{ padding: "16px", color: "var(--success)", fontWeight: "600" }}>₹{parseFloat(payout.amount).toFixed(2)}</td>
                     <td style={{ padding: "16px" }}>
                       <span style={{ 
                         background: payout.status === 'paid' || payout.status === 'approved' ? "rgba(16, 185, 129, 0.15)" : "rgba(245, 158, 11, 0.15)", 

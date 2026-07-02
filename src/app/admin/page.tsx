@@ -52,13 +52,13 @@ export default function AdminDashboard() {
 
         <div className="glass-card">
           <div className="stat-label">Platform Revenue</div>
-          <div className="stat-value">{loading ? "..." : `$${stats.total_revenue.toLocaleString()}`}</div>
+          <div className="stat-value">{loading ? "..." : `₹${stats.total_revenue.toLocaleString()}`}</div>
           <p style={{ color: "var(--success)", fontSize: "0.9rem", fontWeight: "500" }}>Generated</p>
         </div>
 
         <div className="glass-card">
           <div className="stat-label">Pending Payouts</div>
-          <div className="stat-value">{loading ? "..." : `$${stats.pending_payouts.toLocaleString()}`}</div>
+          <div className="stat-value">{loading ? "..." : `₹${stats.pending_payouts.toLocaleString()}`}</div>
           <p style={{ color: "var(--warning)", fontSize: "0.9rem", fontWeight: "500" }}>Awaiting Approval</p>
         </div>
 

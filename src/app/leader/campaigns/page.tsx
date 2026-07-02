@@ -49,14 +49,14 @@ export default function LeaderCampaigns() {
                 campaigns.map((camp: any) => (
                   <tr key={camp.id} style={{ borderBottom: "1px solid rgba(0,0,0,0.05)" }}>
                     <td style={{ padding: "16px", fontWeight: "600", color: "var(--text-strong)" }}>{camp.title}</td>
-                    <td style={{ padding: "16px", color: "var(--text-muted)", fontWeight: "500" }}>${parseFloat(camp.total_payout).toFixed(2)} / sale</td>
+                    <td style={{ padding: "16px", color: "var(--text-muted)", fontWeight: "500" }}>₹{parseFloat(camp.total_payout).toFixed(2)} / sale</td>
                     <td style={{ padding: "16px" }}>
                       <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                         <div style={{ background: "rgba(16, 185, 129, 0.15)", color: "var(--success)", padding: "4px 10px", borderRadius: "8px", fontSize: "0.9rem", fontWeight: "700" }}>
                           {parseFloat(camp.split_leader_percent)}%
                         </div>
                         <span style={{ color: "var(--success)", fontSize: "0.85rem", fontWeight: "600" }}>
-                          (${((camp.total_payout * camp.split_leader_percent) / 100).toFixed(2)})
+                          (₹{((camp.total_payout * camp.split_leader_percent) / 100).toFixed(2)})
                         </span>
                       </div>
                     </td>
@@ -66,7 +66,7 @@ export default function LeaderCampaigns() {
                           {parseFloat(camp.split_member_percent)}%
                         </div>
                         <span style={{ color: "var(--text-muted)", fontSize: "0.85rem" }}>
-                          (${((camp.total_payout * camp.split_member_percent) / 100).toFixed(2)})
+                          (₹{((camp.total_payout * camp.split_member_percent) / 100).toFixed(2)})
                         </span>
                       </div>
                     </td>

@@ -36,7 +36,7 @@ export default function MemberWallet() {
 
     try {
       // await api.post('/member/withdraw', { amount: stats.cleared_balance });
-      alert(`Withdrawal request for $${stats.cleared_balance} submitted successfully. (Backend hookup pending)`);
+      alert(`Withdrawal request for ₹${stats.cleared_balance} submitted successfully. (Backend hookup pending)`);
       fetchWalletData();
     } catch (err) {
       alert("Failed to request withdrawal.");
@@ -59,7 +59,7 @@ export default function MemberWallet() {
             <div className="stat-value" style={{ color: "var(--text-strong)", fontSize: "2.5rem" }}>
               ${loading ? "..." : parseFloat(stats.cleared_balance as any).toFixed(2)}
             </div>
-            <p style={{ color: "var(--text-muted)", fontSize: "0.9rem", marginTop: "8px" }}>Minimum withdrawal is $50.00</p>
+            <p style={{ color: "var(--text-muted)", fontSize: "0.9rem", marginTop: "8px" }}>Minimum withdrawal is ₹50.00</p>
           </div>
           <button 
             className="btn-primary" 

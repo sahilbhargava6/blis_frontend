@@ -123,7 +123,7 @@ export default function MemberLinks() {
                 >
                   <option value="" disabled>Choose an active campaign...</option>
                   {campaigns.map((c: any) => (
-                    <option key={c.id} value={c.id}>{c.title} (Payout: ${c.total_payout})</option>
+                    <option key={c.id} value={c.id}>{c.title} (Payout: ₹{c.total_payout})</option>
                   ))}
                 </select>
               </div>

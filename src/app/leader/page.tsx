@@ -56,7 +56,7 @@ export default function LeaderDashboard() {
 
         <div className="glass-card">
           <div className="stat-label">My Earnings Cut</div>
-          <div className="stat-value">{loading ? "..." : `$${stats.accumulated_leader_cut.toLocaleString()}`}</div>
+          <div className="stat-value">{loading ? "..." : `₹${stats.accumulated_leader_cut.toLocaleString()}`}</div>
           <p style={{ color: "var(--success)", fontSize: "0.9rem", fontWeight: "500" }}>Available</p>
         </div>
 

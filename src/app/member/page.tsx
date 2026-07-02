@@ -53,14 +53,14 @@ export default function MemberDashboard() {
         <div className="glass-card" style={{ borderColor: "var(--success)", background: "linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.05) 100%)" }}>
           <div className="stat-label" style={{ color: "var(--success)" }}>Cleared Balance</div>
           <div className="stat-value" style={{ color: "var(--text-strong)" }}>
-            {loading ? "..." : `$${stats.cleared_balance.toLocaleString()}`}
+            {loading ? "..." : `₹${stats.cleared_balance.toLocaleString()}`}
           </div>
           <button className="btn-primary" style={{ marginTop: "16px", width: "100%", background: "var(--success)" }}>Withdraw Now</button>
         </div>
 
         <div className="glass-card">
           <div className="stat-label">Pending Balance</div>
-          <div className="stat-value">{loading ? "..." : `$${stats.pending_balance.toLocaleString()}`}</div>
+          <div className="stat-value">{loading ? "..." : `₹${stats.pending_balance.toLocaleString()}`}</div>
           <p style={{ color: "var(--text-muted)", fontSize: "0.9rem" }}>Awaiting network approval</p>
         </div>
 
