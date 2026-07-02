@@ -12,20 +12,21 @@ export default function MemberLinks() {
   const [selectedCampaign, setSelectedCampaign] = useState("");
   const [customLabel, setCustomLabel] = useState("");
 
+  const [postbackUrl, setPostbackUrl] = useState("");
+  const [savingPostback, setSavingPostback] = useState(false);
+
   const fetchLinksData = async () => {
     try {
-      // Mock endpoints or real endpoints for members
-      // The member controller in laravel likely needs endpoints for index links and generating one
-      // If they don't exist yet, we'll gracefully handle it.
       const res = await api.get('/member/links').catch(() => ({ data: { data: [] } }));
       setLinks(res.data.data || []);
       
-      // Fetch available campaigns for the dropdown
       const camps = await api.get('/admin/campaigns').catch(() => ({ data: { data: [
         { id: 1, title: 'Summer Promo 2026', total_payout: 50.0 }
       ] } }));
       setCampaigns(camps.data.data || []);
 
+      const postbackRes = await api.get('/member/postback').catch(() => ({ data: { data: { postback_url: "" } } }));
+      setPostbackUrl(postbackRes.data.data.postback_url || "");
     } catch (err) {
       console.error("Failed to fetch links data.");
     } finally {
@@ -51,6 +52,19 @@ export default function MemberLinks() {
     }
   };
 
+  const handleSavePostback = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSavingPostback(true);
+    try {
+      await api.post('/member/postback', { postback_url: postbackUrl || null });
+      alert("S2S Postback URL updated successfully!");
+    } catch (err) {
+      alert("Failed to update Postback URL. Make sure it is a valid absolute URL.");
+    } finally {
+      setSavingPostback(false);
+    }
+  };
+
   const copyToClipboard = (hash: string) => {
     const url = `https://track.blis.com/${hash}`;
     navigator.clipboard.writeText(url);
@@ -67,7 +81,7 @@ export default function MemberLinks() {
         <button className="btn-primary" onClick={() => setShowGenerateModal(true)}>+ Generate Link</button>
       </div>
 
-      <div className="glass-panel" style={{ minHeight: "400px" }}>
+      <div className="glass-panel" style={{ minHeight: "350px", marginBottom: "40px" }}>
         <div className="table-responsive">
           <table style={{ width: "100%", borderCollapse: "collapse", textAlign: "left" }}>
             <thead>
@@ -105,6 +119,47 @@ export default function MemberLinks() {
             </tbody>
           </table>
         </div>
+      </div>
+
+      {/* S2S Postback Settings Card */}
+      <div className="glass-panel" style={{ maxWidth: "800px" }}>
+        <h2 style={{ fontSize: "1.25rem", marginBottom: "12px" }}>📡 Server-to-Server (S2S) Postback Setup</h2>
+        <p style={{ color: "var(--text-muted)", fontSize: "0.85rem", lineHeight: 1.4, marginBottom: "20px" }}>
+          Configure a global webhook callback to automatically notify your external tracking systems (like Voluum, Keitaro, or AdsBridge) when you secure an approved conversion.
+        </p>
+
+        <form onSubmit={handleSavePostback} style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+          <div>
+            <label style={{ display: "block", marginBottom: "8px", fontWeight: "600", fontSize: "0.9rem" }}>Global Postback URL</label>
+            <input 
+              type="url" 
+              value={postbackUrl} 
+              onChange={e => setPostbackUrl(e.target.value)} 
+              className="input-field"
+              placeholder="https://yourtracker.com/postback?cid={click_id}&payout={payout}" 
+            />
+          </div>
+
+          <div style={{ background: "rgba(0,0,0,0.02)", padding: "16px", borderRadius: "8px", border: "1px solid var(--glass-border)" }}>
+            <h3 style={{ fontSize: "0.85rem", fontWeight: "700", margin: "0 0 10px 0", color: "var(--text-strong)" }}>💡 Available Macro Replacements</h3>
+            <ul style={{ paddingLeft: "20px", margin: 0, fontSize: "0.8rem", color: "var(--text-muted)", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px" }}>
+              <li><code>{`{click_id}`}</code> - Unique Click Database ID</li>
+              <li><code>{`{sub_id}`}</code> - Original Click UUID sent to brand</li>
+              <li><code>{`{payout}`}</code> - Your exact commission payout (₹)</li>
+              <li><code>{`{campaign_id}`}</code> - Campaign Master ID</li>
+              <li><code>{`{status}`}</code> - Conversion Status (approved)</li>
+            </ul>
+          </div>
+
+          <button 
+            type="submit" 
+            disabled={savingPostback}
+            className="btn-primary" 
+            style={{ alignSelf: "flex-start", padding: "10px 20px" }}
+          >
+            {savingPostback ? "Saving..." : "Save Postback Settings"}
+          </button>
+        </form>
       </div>
 
       {showGenerateModal && (

@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import api from "@/lib/api";
 import RevenueChart from "@/components/RevenueChart";
+import LeaderboardWidget from "@/components/LeaderboardWidget";
 
 export default function MemberDashboard() {
   const [stats, setStats] = useState({
@@ -72,32 +73,36 @@ export default function MemberDashboard() {
         <RevenueChart data={stats.chart_data} dataKey="conversions" color="var(--success)" title="Conversion Trend (Last 7 Days)" />
       )}
 
-      <div className="glass-panel" style={{ minHeight: "400px" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "24px" }}>
-          <h2 style={{ fontSize: "1.25rem" }}>Recent Conversions</h2>
-          <button className="btn-primary" style={{ background: "var(--glass-border)", color: "var(--text-strong)" }}>View All</button>
+      <div style={{ display: "grid", gridTemplateColumns: "2fr 1.2fr", gap: "24px", marginTop: "40px", alignItems: "start" }}>
+        <div className="glass-panel" style={{ minHeight: "400px" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "24px" }}>
+            <h2 style={{ fontSize: "1.25rem", margin: 0 }}>Recent Conversions</h2>
+            <button className="btn-primary" style={{ background: "var(--glass-border)", color: "var(--text-strong)" }}>View All</button>
+          </div>
+          
+          <div className="table-responsive">
+            <table style={{ width: "100%", borderCollapse: "collapse", textAlign: "left" }}>
+              <thead>
+                <tr style={{ color: "var(--text-muted)", borderBottom: "1px solid var(--glass-border)" }}>
+                  <th style={{ padding: "12px 16px", fontWeight: "500" }}>Date</th>
+                  <th style={{ padding: "12px 16px", fontWeight: "500" }}>Campaign</th>
+                  <th style={{ padding: "12px 16px", fontWeight: "500" }}>Link Label</th>
+                  <th style={{ padding: "12px 16px", fontWeight: "500" }}>Commission</th>
+                  <th style={{ padding: "12px 16px", fontWeight: "500" }}>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td colSpan={5} style={{ padding: "24px", textAlign: "center", color: "var(--text-muted)" }}>
+                    No recent conversions found.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-        
-        <div className="table-responsive">
-          <table style={{ width: "100%", borderCollapse: "collapse", textAlign: "left" }}>
-            <thead>
-              <tr style={{ color: "var(--text-muted)", borderBottom: "1px solid var(--glass-border)" }}>
-                <th style={{ padding: "12px 16px", fontWeight: "500" }}>Date</th>
-                <th style={{ padding: "12px 16px", fontWeight: "500" }}>Campaign</th>
-                <th style={{ padding: "12px 16px", fontWeight: "500" }}>Link Label</th>
-                <th style={{ padding: "12px 16px", fontWeight: "500" }}>Commission</th>
-                <th style={{ padding: "12px 16px", fontWeight: "500" }}>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td colSpan={5} style={{ padding: "24px", textAlign: "center", color: "var(--text-muted)" }}>
-                  No recent conversions found.
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+
+        <LeaderboardWidget />
       </div>
     </div>
   );

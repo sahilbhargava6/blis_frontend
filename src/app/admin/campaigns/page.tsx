@@ -21,7 +21,7 @@ export default function AdminCampaigns() {
     try {
       // Assuming AdminController has an index endpoint or we just mock if not
       const res = await api.get('/admin/campaigns');
-      setCampaigns(res.data.data);
+      setCampaigns(res.data.data.data || res.data.data || []);
     } catch (err) {
       console.error("Failed to fetch campaigns");
     } finally {

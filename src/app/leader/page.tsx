@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import api from "@/lib/api";
 import RevenueChart from "@/components/RevenueChart";
+import LeaderboardWidget from "@/components/LeaderboardWidget";
 
 export default function LeaderDashboard() {
   const [stats, setStats] = useState({
@@ -76,23 +77,18 @@ export default function LeaderDashboard() {
         <RevenueChart data={stats.chart_data} dataKey="revenue" color="var(--secondary)" title="Leader Earnings (Last 7 Days)" />
       )}
 
-      <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr", gap: "24px" }}>
-        <div className="glass-panel" style={{ minHeight: "300px" }}>
-          <h2 style={{ fontSize: "1.25rem", marginBottom: "24px" }}>Team Performance Trends</h2>
-          <div style={{ width: "100%", height: "250px", border: "1px dashed var(--glass-border)", borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--text-muted)" }}>
-            [ Sparkline Chart ]
-          </div>
-        </div>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "24px", marginTop: "40px" }}>
+        <LeaderboardWidget />
         
         <div className="glass-panel">
-          <h2 style={{ fontSize: "1.25rem", marginBottom: "24px" }}>Top Members</h2>
+          <h2 style={{ fontSize: "1.25rem", marginBottom: "24px" }}>My Active Affiliates</h2>
           <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "16px" }}>
             {teamMembers.length > 0 ? (
               teamMembers.slice(0, 5).map((member: any) => (
                 <li key={member.id} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingBottom: "16px", borderBottom: "1px solid rgba(0,0,0,0.05)" }}>
                   <div>
                     <div style={{ fontWeight: "600", color: "var(--text-strong)" }}>{member.name}</div>
-                    <div style={{ fontSize: "0.85rem", color: "var(--text-muted)" }}>Active Affiliate</div>
+                    <div style={{ fontSize: "0.85rem", color: "var(--text-muted)" }}>Active Member</div>
                   </div>
                 </li>
               ))
