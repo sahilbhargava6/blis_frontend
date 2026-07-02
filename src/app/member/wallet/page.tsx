@@ -124,7 +124,7 @@ export default function MemberWallet() {
                   <tr key={payout.id} style={{ borderBottom: "1px solid rgba(0,0,0,0.05)" }}>
                     <td style={{ padding: "16px", color: "var(--text-strong)" }}>{new Date(payout.created_at).toLocaleDateString()}</td>
                     <td style={{ padding: "16px", color: "var(--text-muted)", fontFamily: "monospace" }}>{payout.reference_id || `TRX-${payout.id}`}</td>
-                    <td style={{ padding: "16px", color: "var(--text-strong)", fontWeight: "600" }}>₹{parseFloat(payout.amount).toFixed(2)}</td>/td>
+                    <td style={{ padding: "16px", color: "var(--text-strong)", fontWeight: "600" }}>₹{parseFloat(payout.amount).toFixed(2)}</td>
                     <td style={{ padding: "16px" }}>
                       <span style={{ 
                         background: payout.status === 'paid' ? "rgba(16, 185, 129, 0.15)" : "rgba(245, 158, 11, 0.15)", 
