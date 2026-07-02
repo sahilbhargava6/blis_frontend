@@ -14,6 +14,8 @@ export default function AdminCampaigns() {
     split_member_percent: 70,
     split_leader_percent: 30,
   });
+  const [selectedCampaign, setSelectedCampaign] = useState<any>(null);
+  const [showAssetModal, setShowAssetModal] = useState(false);
 
   const fetchCampaigns = async () => {
     try {
@@ -63,17 +65,18 @@ export default function AdminCampaigns() {
                 <th style={{ padding: "12px 16px", fontWeight: "500" }}>Payout (₹)</th>
                 <th style={{ padding: "12px 16px", fontWeight: "500" }}>Member / Leader Split</th>
                 <th style={{ padding: "12px 16px", fontWeight: "500" }}>Status</th>
+                <th style={{ padding: "12px 16px", fontWeight: "500", textAlign: "right" }}>Actions</th>
               </tr>
             </thead>
             <tbody>
               {loading ? (
-                <tr><td colSpan={5} style={{ padding: "24px", textAlign: "center" }}>Loading...</td></tr>
+                <tr><td colSpan={6} style={{ padding: "24px", textAlign: "center" }}>Loading...</td></tr>
               ) : campaigns.length > 0 ? (
                 campaigns.map((camp: any) => (
                   <tr key={camp.id} style={{ borderBottom: "1px solid rgba(0,0,0,0.05)" }}>
                     <td style={{ padding: "16px", fontWeight: "600", color: "var(--text-strong)" }}>{camp.title}</td>
                     <td style={{ padding: "16px", color: "var(--text-muted)" }}>{camp.master_url}</td>
-                    <td style={{ padding: "16px", color: "var(--success)", fontWeight: "600" }}>${parseFloat(camp.total_payout).toFixed(2)}</td>
+                    <td style={{ padding: "16px", color: "var(--success)", fontWeight: "600" }}>₹{parseFloat(camp.total_payout).toFixed(2)}</td>
                     <td style={{ padding: "16px" }}>
                       <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                         <div style={{ background: "rgba(99, 102, 241, 0.1)", color: "var(--primary)", padding: "4px 8px", borderRadius: "4px", fontSize: "0.85rem", fontWeight: "600" }}>
@@ -90,10 +93,22 @@ export default function AdminCampaigns() {
                         {camp.is_active ? 'Active' : 'Paused'}
                       </span>
                     </td>
+                    <td style={{ padding: "16px", textAlign: "right" }}>
+                      <button 
+                        onClick={() => {
+                          setSelectedCampaign(camp);
+                          setShowAssetModal(true);
+                        }}
+                        className="btn-primary" 
+                        style={{ padding: "6px 12px", fontSize: "0.8rem", background: "transparent", border: "1px solid var(--glass-border)", color: "var(--text-strong)" }}
+                      >
+                        📁 Assets ({camp.assets?.length || 0})
+                      </button>
+                    </td>
                   </tr>
                 ))
               ) : (
-                <tr><td colSpan={5} style={{ padding: "24px", textAlign: "center", color: "var(--text-muted)" }}>No campaigns found.</td></tr>
+                <tr><td colSpan={6} style={{ padding: "24px", textAlign: "center", color: "var(--text-muted)" }}>No campaigns found.</td></tr>
               )}
             </tbody>
           </table>
@@ -140,6 +155,104 @@ export default function AdminCampaigns() {
           </div>
         </div>
       )}
+
+      {showAssetModal && selectedCampaign && (
+        <CampaignAssetModal 
+          campaign={selectedCampaign} 
+          onClose={() => {
+            setShowAssetModal(false);
+            setSelectedCampaign(null);
+            fetchCampaigns();
+          }} 
+        />
+      )}
+    </div>
+  );
+}
+
+function CampaignAssetModal({ campaign, onClose }: { campaign: any; onClose: () => void }) {
+  const [assets, setAssets] = useState(campaign.assets || []);
+  const [form, setForm] = useState({ name: "", type: "link", content: "", description: "" });
+  const [loading, setLoading] = useState(false);
+
+  const handleAdd = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const res = await api.post(`/admin/campaigns/${campaign.id}/assets`, form);
+      setAssets([...assets, res.data.data]);
+      setForm({ name: "", type: "link", content: "", description: "" });
+    } catch (err) {
+      alert("Failed to add asset.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleDelete = async (id: number) => {
+    try {
+      await api.delete(`/admin/campaigns/${campaign.id}/assets/${id}`);
+      setAssets(assets.filter((a: any) => a.id !== id));
+    } catch (err) {
+      alert("Failed to delete asset.");
+    }
+  };
+
+  return (
+    <div style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0, background: "rgba(0,0,0,0.3)", backdropFilter: "blur(4px)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1000 }}>
+      <div className="glass-panel" style={{ width: "100%", maxWidth: "700px", background: "rgba(255, 255, 255, 0.8)", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px" }}>
+        <div>
+          <h2 style={{ marginBottom: "16px", fontSize: "1.25rem", color: "var(--text-strong)" }}>Manage Assets</h2>
+          <p style={{ color: "var(--text-muted)", fontSize: "0.85rem", marginBottom: "20px" }}>Campaign: <strong>{campaign.title}</strong></p>
+          
+          <form onSubmit={handleAdd} style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+            <div>
+              <label style={{ display: "block", marginBottom: "4px", fontSize: "0.8rem", fontWeight: "600" }}>Asset Name</label>
+              <input required type="text" value={form.name} onChange={e => setForm({...form, name: e.target.value})} className="input-field" style={{ padding: "8px" }} placeholder="e.g. Ad Banner 300x250" />
+            </div>
+            <div>
+              <label style={{ display: "block", marginBottom: "4px", fontSize: "0.8rem", fontWeight: "600" }}>Type</label>
+              <select value={form.type} onChange={e => setForm({...form, type: e.target.value})} className="input-field" style={{ padding: "8px" }}>
+                <option value="link">Banner URL</option>
+                <option value="text">Marketing Ad Copy / Text</option>
+                <option value="banner">Promotional Assets (Other)</option>
+              </select>
+            </div>
+            <div>
+              <label style={{ display: "block", marginBottom: "4px", fontSize: "0.8rem", fontWeight: "600" }}>Content (URL or Text)</label>
+              <textarea required value={form.content} onChange={e => setForm({...form, content: e.target.value})} className="input-field" style={{ padding: "8px" }} rows={3} placeholder="Enter URL or paste raw ad copy text here..." />
+            </div>
+            <div>
+              <label style={{ display: "block", marginBottom: "4px", fontSize: "0.8rem", fontWeight: "600" }}>Short Description</label>
+              <input type="text" value={form.description} onChange={e => setForm({...form, description: e.target.value})} className="input-field" style={{ padding: "8px" }} placeholder="e.g. High CTR banner for sidebar placement" />
+            </div>
+            <button type="submit" disabled={loading} className="btn-primary" style={{ padding: "8px" }}>
+              {loading ? "Adding..." : "Add Asset"}
+            </button>
+          </form>
+        </div>
+
+        <div style={{ display: "flex", flexDirection: "column", maxHeight: "400px" }}>
+          <h3 style={{ fontSize: "1.1rem", marginBottom: "16px", color: "var(--text-strong)" }}>Existing Assets</h3>
+          <div style={{ overflowY: "auto", flex: 1, display: "flex", flexDirection: "column", gap: "12px", paddingRight: "8px" }}>
+            {assets.length > 0 ? (
+              assets.map((asset: any) => (
+                <div key={asset.id} style={{ background: "rgba(0,0,0,0.02)", border: "1px solid var(--glass-border)", padding: "12px", borderRadius: "8px", display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+                  <div style={{ overflow: "hidden" }}>
+                    <div style={{ fontWeight: "600", fontSize: "0.9rem", color: "var(--text-strong)" }}>{asset.name}</div>
+                    <span style={{ fontSize: "0.75rem", background: "rgba(99,102,241,0.1)", color: "var(--primary)", padding: "2px 6px", borderRadius: "4px", textTransform: "capitalize" }}>{asset.type}</span>
+                    <p style={{ fontSize: "0.8rem", color: "var(--text-muted)", margin: "4px 0 0 0", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{asset.content}</p>
+                  </div>
+                  <button onClick={() => handleDelete(asset.id)} style={{ background: "transparent", border: "none", color: "var(--danger)", cursor: "pointer", fontSize: "1rem" }}>&times;</button>
+                </div>
+              ))
+            ) : (
+              <div style={{ textAlign: "center", color: "var(--text-muted)", padding: "40px 0", fontSize: "0.85rem" }}>No marketing assets uploaded yet.</div>
+            )}
+          </div>
+          <button type="button" onClick={onClose} style={{ padding: "10px", marginTop: "16px", border: "1px solid var(--glass-border)", borderRadius: "8px", background: "transparent", cursor: "pointer", fontWeight: "600" }}>Close</button>
+        </div>
+      </div>
     </div>
   );
 }
