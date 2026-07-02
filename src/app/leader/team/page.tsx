@@ -25,16 +25,18 @@ export default function LeaderTeam() {
     fetchTeam();
   }, []);
 
+  const [generatedLink, setGeneratedLink] = useState("");
+  const [inviteError, setInviteError] = useState("");
+
   const handleInvite = async (e: React.FormEvent) => {
     e.preventDefault();
+    setInviteError("");
+    setGeneratedLink("");
     try {
-      // Assuming a leader invite endpoint exists or will exist
-      // await api.post('/leader/invite', { email: inviteEmail });
-      alert(`Invitation logically sent to ${inviteEmail}. (Backend hookup pending)`);
-      setShowInviteModal(false);
-      setInviteEmail("");
-    } catch (err) {
-      alert("Failed to send invite.");
+      const res = await api.post('/leader/team/invite', { email: inviteEmail });
+      setGeneratedLink(res.data.data.invite_link);
+    } catch (err: any) {
+      setInviteError(err.response?.data?.message || "Failed to generate invite.");
     }
   };
 
@@ -136,19 +138,58 @@ export default function LeaderTeam() {
         <div style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0, background: "rgba(0,0,0,0.3)", backdropFilter: "blur(4px)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1000 }}>
           <div className="glass-panel" style={{ width: "100%", maxWidth: "450px", background: "rgba(255, 255, 255, 0.8)" }}>
             <h2 style={{ marginBottom: "24px", fontSize: "1.25rem", color: "var(--text-strong)" }}>Invite Affiliate to Team</h2>
-            <form onSubmit={handleInvite} style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-              
-              <div>
-                <label style={{ display: "block", marginBottom: "8px", fontWeight: "600", fontSize: "0.9rem" }}>Affiliate Email Address</label>
-                <input required type="email" value={inviteEmail} onChange={e => setInviteEmail(e.target.value)} style={{ width: "100%", padding: "10px", borderRadius: "8px", border: "1px solid var(--glass-border)", outline: "none", background: "rgba(255,255,255,0.6)" }} placeholder="affiliate@example.com" />
-                <p style={{ fontSize: "0.8rem", color: "var(--text-muted)", marginTop: "8px" }}>They will receive a secure registration link tied to your Group.</p>
+            
+            {generatedLink ? (
+              <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+                <p style={{ color: "var(--success)", fontWeight: "600", fontSize: "0.95rem" }}>✅ Secure Invitation Generated!</p>
+                <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", lineHeight: 1.4 }}>
+                  Send this unique registration link to your affiliate. Once they sign up, they will automatically join your team.
+                </p>
+                <div style={{ display: "flex", gap: "8px", background: "rgba(0,0,0,0.04)", padding: "10px", borderRadius: "6px", overflowX: "auto" }}>
+                  <code style={{ fontSize: "0.8rem", color: "var(--text-strong)", wordBreak: "break-all" }}>{generatedLink}</code>
+                </div>
+                <div style={{ display: "flex", justifyContent: "flex-end", gap: "12px", marginTop: "16px" }}>
+                  <button 
+                    onClick={() => {
+                      navigator.clipboard.writeText(generatedLink);
+                      alert("Copied to clipboard!");
+                    }}
+                    className="btn-primary" 
+                    style={{ background: "transparent", border: "1px solid var(--glass-border)", color: "var(--text-strong)" }}
+                  >
+                    📋 Copy Link
+                  </button>
+                  <button 
+                    onClick={() => {
+                      setShowInviteModal(false);
+                      setGeneratedLink("");
+                      setInviteEmail("");
+                      fetchTeam();
+                    }}
+                    className="btn-primary"
+                  >
+                    Done
+                  </button>
+                </div>
               </div>
+            ) : (
+              <form onSubmit={handleInvite} style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+                <div>
+                  <label style={{ display: "block", marginBottom: "8px", fontWeight: "600", fontSize: "0.9rem" }}>Affiliate Email Address</label>
+                  <input required type="email" value={inviteEmail} onChange={e => setInviteEmail(e.target.value)} style={{ width: "100%", padding: "10px", borderRadius: "8px", border: "1px solid var(--glass-border)", outline: "none", background: "rgba(255,255,255,0.6)" }} placeholder="affiliate@example.com" />
+                  <p style={{ fontSize: "0.8rem", color: "var(--text-muted)", marginTop: "8px" }}>They will receive a secure registration link tied to your Group.</p>
+                </div>
 
-              <div style={{ display: "flex", justifyContent: "flex-end", gap: "12px", marginTop: "16px" }}>
-                <button type="button" onClick={() => setShowInviteModal(false)} style={{ padding: "10px 16px", background: "transparent", border: "none", cursor: "pointer", color: "var(--text-muted)", fontWeight: "600" }}>Cancel</button>
-                <button type="submit" className="btn-primary">Send Invite</button>
-              </div>
-            </form>
+                {inviteError && (
+                  <p style={{ color: "var(--danger)", fontSize: "0.85rem", fontWeight: "600" }}>⚠️ {inviteError}</p>
+                )}
+
+                <div style={{ display: "flex", justifyContent: "flex-end", gap: "12px", marginTop: "16px" }}>
+                  <button type="button" onClick={() => { setShowInviteModal(false); setInviteError(""); }} style={{ padding: "10px 16px", background: "transparent", border: "none", cursor: "pointer", color: "var(--text-muted)", fontWeight: "600" }}>Cancel</button>
+                  <button type="submit" className="btn-primary">Generate Invite Link</button>
+                </div>
+              </form>
+            )}
           </div>
         </div>
       )}
