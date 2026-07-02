@@ -88,8 +88,8 @@ export default function LeaderTeam() {
             <tbody>
               {loading ? (
                 <tr><td colSpan={5} style={{ padding: "24px", textAlign: "center" }}>Loading team members...</td></tr>
-              ) : members.length > 0 ? (
-                members.map((member: any) => (
+              ) : team.length > 0 ? (
+                team.map((member: any) => (
                   <tr key={member.id} style={{ borderBottom: "1px solid rgba(0,0,0,0.05)" }}>
                     <td style={{ padding: "16px", fontWeight: "600", color: "var(--text-strong)" }}>{member.name}</td>
                     <td style={{ padding: "16px", color: "var(--text-muted)" }}>{member.email}</td>
