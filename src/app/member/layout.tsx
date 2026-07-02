@@ -3,10 +3,12 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { usePathname } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
 
 export default function MemberLayout({ children }: { children: React.ReactNode }) {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const pathname = usePathname();
+  const { logout } = useAuth();
 
   const closeSidebar = () => setSidebarOpen(false);
 
@@ -45,6 +47,12 @@ export default function MemberLayout({ children }: { children: React.ReactNode }
             Wallet & Withdraw
           </Link>
         </nav>
+        
+        <div style={{ marginTop: "auto", paddingTop: "24px", borderTop: "1px solid var(--glass-border)", display: "flex", justifyContent: "center" }}>
+          <button onClick={logout} className="nav-link" style={{ width: "100%", justifyContent: "center", color: "var(--danger)", background: "transparent", cursor: "pointer" }}>
+            Sign Out
+          </button>
+        </div>
       </aside>
       
       <main className="main-content">
