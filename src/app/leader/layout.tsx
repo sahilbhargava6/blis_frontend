@@ -4,6 +4,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
+import AnnouncementBanner from "@/components/AnnouncementBanner";
 
 export default function LeaderLayout({ children }: { children: React.ReactNode }) {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -59,6 +60,7 @@ export default function LeaderLayout({ children }: { children: React.ReactNode }
       </aside>
       
       <main className="main-content">
+        <AnnouncementBanner />
         {children}
       </main>
     </div>

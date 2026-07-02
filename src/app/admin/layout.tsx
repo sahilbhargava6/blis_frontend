@@ -4,6 +4,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
+import AnnouncementBanner from "@/components/AnnouncementBanner";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -41,6 +42,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <Link href="/admin/campaigns" onClick={closeSidebar} className={`nav-link ${pathname === '/admin/campaigns' ? 'active' : ''}`}>
             Campaigns
           </Link>
+          <Link href="/admin/announcements" onClick={closeSidebar} className={`nav-link ${pathname === '/admin/announcements' ? 'active' : ''}`}>
+            Announcements
+          </Link>
           <Link href="/admin/groups" onClick={closeSidebar} className={`nav-link ${pathname === '/admin/groups' ? 'active' : ''}`}>
             Groups & Leaders
           </Link>
@@ -63,6 +67,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       </aside>
       
       <main className="main-content">
+        <AnnouncementBanner />
         {children}
       </main>
     </div>
