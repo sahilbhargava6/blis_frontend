@@ -72,24 +72,26 @@ export default function MemberDashboard() {
           <button className="btn-primary" style={{ background: "var(--glass-border)", color: "var(--text-strong)" }}>View All</button>
         </div>
         
-        <table style={{ width: "100%", borderCollapse: "collapse", textAlign: "left" }}>
-          <thead>
-            <tr style={{ color: "var(--text-muted)", borderBottom: "1px solid var(--glass-border)" }}>
-              <th style={{ padding: "12px 16px", fontWeight: "500" }}>Date</th>
-              <th style={{ padding: "12px 16px", fontWeight: "500" }}>Campaign</th>
-              <th style={{ padding: "12px 16px", fontWeight: "500" }}>Link Label</th>
-              <th style={{ padding: "12px 16px", fontWeight: "500" }}>Commission</th>
-              <th style={{ padding: "12px 16px", fontWeight: "500" }}>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td colSpan={5} style={{ padding: "24px", textAlign: "center", color: "var(--text-muted)" }}>
-                No recent conversions found.
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div className="table-responsive">
+          <table style={{ width: "100%", borderCollapse: "collapse", textAlign: "left" }}>
+            <thead>
+              <tr style={{ color: "var(--text-muted)", borderBottom: "1px solid var(--glass-border)" }}>
+                <th style={{ padding: "12px 16px", fontWeight: "500" }}>Date</th>
+                <th style={{ padding: "12px 16px", fontWeight: "500" }}>Campaign</th>
+                <th style={{ padding: "12px 16px", fontWeight: "500" }}>Link Label</th>
+                <th style={{ padding: "12px 16px", fontWeight: "500" }}>Commission</th>
+                <th style={{ padding: "12px 16px", fontWeight: "500" }}>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colSpan={5} style={{ padding: "24px", textAlign: "center", color: "var(--text-muted)" }}>
+                  No recent conversions found.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

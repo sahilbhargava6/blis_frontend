@@ -67,44 +67,44 @@ export default function MemberLinks() {
         <button className="btn-primary" onClick={() => setShowGenerateModal(true)}>+ Generate Link</button>
       </div>
 
-      <div className="glass-panel" style={{ minHeight: "300px" }}>
-        <table style={{ width: "100%", borderCollapse: "collapse", textAlign: "left" }}>
-          <thead>
-            <tr style={{ color: "var(--text-muted)", borderBottom: "1px solid var(--glass-border)" }}>
-              <th style={{ padding: "12px 16px", fontWeight: "500" }}>Custom Label</th>
-              <th style={{ padding: "12px 16px", fontWeight: "500" }}>Campaign</th>
-              <th style={{ padding: "12px 16px", fontWeight: "500" }}>Tracking URL</th>
-              <th style={{ padding: "12px 16px", fontWeight: "500", textAlign: "right" }}>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {loading ? (
-              <tr><td colSpan={4} style={{ padding: "24px", textAlign: "center" }}>Loading links...</td></tr>
-            ) : links.length > 0 ? (
-              links.map((link: any) => (
-                <tr key={link.id} style={{ borderBottom: "1px solid rgba(0,0,0,0.05)" }}>
-                  <td style={{ padding: "16px", fontWeight: "600", color: "var(--text-strong)" }}>{link.custom_label || 'Default'}</td>
-                  <td style={{ padding: "16px", color: "var(--text-muted)" }}>{link.campaign?.title || 'Unknown Campaign'}</td>
-                  <td style={{ padding: "16px", color: "var(--primary)" }}>https://track.blis.com/{link.unique_hash}</td>
-                  <td style={{ padding: "16px", textAlign: "right" }}>
-                    <button 
-                      onClick={() => copyToClipboard(link.unique_hash)}
-                      style={{ background: "rgba(99, 102, 241, 0.1)", color: "var(--primary)", border: "none", padding: "8px 16px", borderRadius: "8px", cursor: "pointer", fontWeight: "600" }}
-                    >
-                      Copy Link
-                    </button>
-                  </td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan={4} style={{ padding: "24px", textAlign: "center", color: "var(--text-muted)" }}>
-                  No tracking links generated yet. Click above to get started.
-                </td>
+      <div className="glass-panel" style={{ minHeight: "400px" }}>
+        <div className="table-responsive">
+          <table style={{ width: "100%", borderCollapse: "collapse", textAlign: "left" }}>
+            <thead>
+              <tr style={{ color: "var(--text-muted)", borderBottom: "1px solid var(--glass-border)" }}>
+                <th style={{ padding: "12px 16px", fontWeight: "500" }}>Label</th>
+                <th style={{ padding: "12px 16px", fontWeight: "500" }}>Campaign</th>
+                <th style={{ padding: "12px 16px", fontWeight: "500" }}>Tracking Link</th>
+                <th style={{ padding: "12px 16px", fontWeight: "500" }}>Created</th>
               </tr>
-            )}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {loading ? (
+                <tr><td colSpan={4} style={{ padding: "24px", textAlign: "center" }}>Loading links...</td></tr>
+              ) : links.length > 0 ? (
+                links.map((link: any) => (
+                  <tr key={link.id} style={{ borderBottom: "1px solid rgba(0,0,0,0.05)" }}>
+                    <td style={{ padding: "16px", fontWeight: "600", color: "var(--text-strong)" }}>{link.custom_label || 'Default Link'}</td>
+                    <td style={{ padding: "16px", color: "var(--text-muted)" }}>{link.campaign?.title || `Campaign ID: ${link.campaign_id}`}</td>
+                    <td style={{ padding: "16px" }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                        <code style={{ background: "rgba(0,0,0,0.05)", padding: "4px 8px", borderRadius: "6px", fontSize: "0.85rem", color: "var(--primary)" }}>
+                          {process.env.NEXT_PUBLIC_API_URL?.replace('/api/v1', '') || 'http://localhost:8000'}/track/{link.unique_hash}
+                        </code>
+                        <button className="btn-primary" style={{ padding: "4px 12px", fontSize: "0.8rem", borderRadius: "6px" }} onClick={() => navigator.clipboard.writeText(`${process.env.NEXT_PUBLIC_API_URL?.replace('/api/v1', '') || 'http://localhost:8000'}/track/${link.unique_hash}`)}>
+                          Copy
+                        </button>
+                      </div>
+                    </td>
+                    <td style={{ padding: "16px", color: "var(--text-muted)" }}>{link.created_at ? new Date(link.created_at).toLocaleDateString() : 'N/A'}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr><td colSpan={4} style={{ padding: "24px", textAlign: "center", color: "var(--text-muted)" }}>No tracking links generated yet.</td></tr>
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
 
       {showGenerateModal && (

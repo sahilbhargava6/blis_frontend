@@ -73,37 +73,39 @@ export default function LeaderTeam() {
         </div>
       </div>
 
-      <div className="glass-panel" style={{ minHeight: "300px" }}>
-        <table style={{ width: "100%", borderCollapse: "collapse", textAlign: "left" }}>
-          <thead>
-            <tr style={{ color: "var(--text-muted)", borderBottom: "1px solid var(--glass-border)" }}>
-              <th style={{ padding: "12px 16px", fontWeight: "500" }}>Name</th>
-              <th style={{ padding: "12px 16px", fontWeight: "500" }}>Email</th>
-              <th style={{ padding: "12px 16px", fontWeight: "500" }}>Cleared Earnings ($)</th>
-              <th style={{ padding: "12px 16px", fontWeight: "500" }}>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {loading ? (
-              <tr><td colSpan={4} style={{ padding: "24px", textAlign: "center" }}>Loading roster...</td></tr>
-            ) : team.length > 0 ? (
-              team.map((member: any) => (
-                <tr key={member.id} style={{ borderBottom: "1px solid rgba(0,0,0,0.05)" }}>
-                  <td style={{ padding: "16px", fontWeight: "600", color: "var(--text-strong)" }}>{member.name}</td>
-                  <td style={{ padding: "16px", color: "var(--text-muted)" }}>{member.email}</td>
-                  <td style={{ padding: "16px", color: "var(--success)", fontWeight: "600" }}>${parseFloat(member.cleared_balance || 0).toFixed(2)}</td>
-                  <td style={{ padding: "16px" }}>
-                    <span style={{ background: "rgba(16, 185, 129, 0.15)", color: "var(--success)", padding: "4px 12px", borderRadius: "12px", fontSize: "0.85rem", fontWeight: "600" }}>
-                      Active
-                    </span>
-                  </td>
-                </tr>
-              ))
-            ) : (
-              <tr><td colSpan={4} style={{ padding: "24px", textAlign: "center", color: "var(--text-muted)" }}>No members in your team yet.</td></tr>
-            )}
-          </tbody>
-        </table>
+      <div className="glass-panel" style={{ minHeight: "400px" }}>
+        <div className="table-responsive">
+          <table style={{ width: "100%", borderCollapse: "collapse", textAlign: "left" }}>
+            <thead>
+              <tr style={{ color: "var(--text-muted)", borderBottom: "1px solid var(--glass-border)" }}>
+                <th style={{ padding: "12px 16px", fontWeight: "500" }}>Name</th>
+                <th style={{ padding: "12px 16px", fontWeight: "500" }}>Email</th>
+                <th style={{ padding: "12px 16px", fontWeight: "500" }}>Joined</th>
+                <th style={{ padding: "12px 16px", fontWeight: "500" }}>Total Earnings</th>
+                <th style={{ padding: "12px 16px", fontWeight: "500", textAlign: "right" }}>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {loading ? (
+                <tr><td colSpan={5} style={{ padding: "24px", textAlign: "center" }}>Loading team members...</td></tr>
+              ) : members.length > 0 ? (
+                members.map((member: any) => (
+                  <tr key={member.id} style={{ borderBottom: "1px solid rgba(0,0,0,0.05)" }}>
+                    <td style={{ padding: "16px", fontWeight: "600", color: "var(--text-strong)" }}>{member.name}</td>
+                    <td style={{ padding: "16px", color: "var(--text-muted)" }}>{member.email}</td>
+                    <td style={{ padding: "16px", color: "var(--text-muted)" }}>{new Date(member.created_at).toLocaleDateString()}</td>
+                    <td style={{ padding: "16px", color: "var(--success)", fontWeight: "600" }}>${parseFloat(member.cleared_balance).toFixed(2)}</td>
+                    <td style={{ padding: "16px", textAlign: "right" }}>
+                      <span style={{ background: "rgba(16, 185, 129, 0.15)", color: "var(--success)", padding: "4px 12px", borderRadius: "12px", fontSize: "0.85rem", fontWeight: "600" }}>Active</span>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr><td colSpan={5} style={{ padding: "24px", textAlign: "center", color: "var(--text-muted)" }}>No team members found. Send invites to grow your group!</td></tr>
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
 
       {showInviteModal && (

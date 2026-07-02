@@ -54,48 +54,50 @@ export default function AdminCampaigns() {
       </div>
 
       <div className="glass-panel" style={{ minHeight: "400px" }}>
-        <table style={{ width: "100%", borderCollapse: "collapse", textAlign: "left" }}>
-          <thead>
-            <tr style={{ color: "var(--text-muted)", borderBottom: "1px solid var(--glass-border)" }}>
-              <th style={{ padding: "12px 16px", fontWeight: "500" }}>Title</th>
-              <th style={{ padding: "12px 16px", fontWeight: "500" }}>Master URL</th>
-              <th style={{ padding: "12px 16px", fontWeight: "500" }}>Payout ($)</th>
-              <th style={{ padding: "12px 16px", fontWeight: "500" }}>Member / Leader Split</th>
-              <th style={{ padding: "12px 16px", fontWeight: "500" }}>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {loading ? (
-              <tr><td colSpan={5} style={{ padding: "24px", textAlign: "center" }}>Loading...</td></tr>
-            ) : campaigns.length > 0 ? (
-              campaigns.map((camp: any) => (
-                <tr key={camp.id} style={{ borderBottom: "1px solid rgba(0,0,0,0.05)" }}>
-                  <td style={{ padding: "16px", fontWeight: "600", color: "var(--text-strong)" }}>{camp.title}</td>
-                  <td style={{ padding: "16px", color: "var(--text-muted)" }}>{camp.master_url}</td>
-                  <td style={{ padding: "16px", color: "var(--success)", fontWeight: "600" }}>${parseFloat(camp.total_payout).toFixed(2)}</td>
-                  <td style={{ padding: "16px" }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                      <div style={{ background: "rgba(99, 102, 241, 0.1)", color: "var(--primary)", padding: "4px 8px", borderRadius: "4px", fontSize: "0.85rem", fontWeight: "600" }}>
-                        {parseFloat(camp.split_member_percent)}%
+        <div className="table-responsive">
+          <table style={{ width: "100%", borderCollapse: "collapse", textAlign: "left" }}>
+            <thead>
+              <tr style={{ color: "var(--text-muted)", borderBottom: "1px solid var(--glass-border)" }}>
+                <th style={{ padding: "12px 16px", fontWeight: "500" }}>Title</th>
+                <th style={{ padding: "12px 16px", fontWeight: "500" }}>Master URL</th>
+                <th style={{ padding: "12px 16px", fontWeight: "500" }}>Payout ($)</th>
+                <th style={{ padding: "12px 16px", fontWeight: "500" }}>Member / Leader Split</th>
+                <th style={{ padding: "12px 16px", fontWeight: "500" }}>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {loading ? (
+                <tr><td colSpan={5} style={{ padding: "24px", textAlign: "center" }}>Loading...</td></tr>
+              ) : campaigns.length > 0 ? (
+                campaigns.map((camp: any) => (
+                  <tr key={camp.id} style={{ borderBottom: "1px solid rgba(0,0,0,0.05)" }}>
+                    <td style={{ padding: "16px", fontWeight: "600", color: "var(--text-strong)" }}>{camp.title}</td>
+                    <td style={{ padding: "16px", color: "var(--text-muted)" }}>{camp.master_url}</td>
+                    <td style={{ padding: "16px", color: "var(--success)", fontWeight: "600" }}>${parseFloat(camp.total_payout).toFixed(2)}</td>
+                    <td style={{ padding: "16px" }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                        <div style={{ background: "rgba(99, 102, 241, 0.1)", color: "var(--primary)", padding: "4px 8px", borderRadius: "4px", fontSize: "0.85rem", fontWeight: "600" }}>
+                          {parseFloat(camp.split_member_percent)}%
+                        </div>
+                        <span style={{ color: "var(--text-muted)" }}>/</span>
+                        <div style={{ background: "rgba(16, 185, 129, 0.1)", color: "var(--success)", padding: "4px 8px", borderRadius: "4px", fontSize: "0.85rem", fontWeight: "600" }}>
+                          {parseFloat(camp.split_leader_percent)}%
+                        </div>
                       </div>
-                      <span style={{ color: "var(--text-muted)" }}>/</span>
-                      <div style={{ background: "rgba(16, 185, 129, 0.1)", color: "var(--success)", padding: "4px 8px", borderRadius: "4px", fontSize: "0.85rem", fontWeight: "600" }}>
-                        {parseFloat(camp.split_leader_percent)}%
-                      </div>
-                    </div>
-                  </td>
-                  <td style={{ padding: "16px" }}>
-                    <span style={{ background: camp.is_active ? "rgba(16, 185, 129, 0.15)" : "rgba(220, 38, 38, 0.15)", color: camp.is_active ? "var(--success)" : "var(--danger)", padding: "4px 12px", borderRadius: "12px", fontSize: "0.85rem", fontWeight: "600" }}>
-                      {camp.is_active ? 'Active' : 'Paused'}
-                    </span>
-                  </td>
-                </tr>
-              ))
-            ) : (
-              <tr><td colSpan={5} style={{ padding: "24px", textAlign: "center", color: "var(--text-muted)" }}>No campaigns found.</td></tr>
-            )}
-          </tbody>
-        </table>
+                    </td>
+                    <td style={{ padding: "16px" }}>
+                      <span style={{ background: camp.is_active ? "rgba(16, 185, 129, 0.15)" : "rgba(220, 38, 38, 0.15)", color: camp.is_active ? "var(--success)" : "var(--danger)", padding: "4px 12px", borderRadius: "12px", fontSize: "0.85rem", fontWeight: "600" }}>
+                        {camp.is_active ? 'Active' : 'Paused'}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr><td colSpan={5} style={{ padding: "24px", textAlign: "center", color: "var(--text-muted)" }}>No campaigns found.</td></tr>
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
 
       {showModal && (
