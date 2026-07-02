@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import api from "@/lib/api";
+import { exportToCSV } from "@/lib/exportUtils";
 
 export default function MemberWallet() {
   const [payouts, setPayouts] = useState([]);
@@ -43,6 +44,19 @@ export default function MemberWallet() {
     }
   };
 
+  const handleExport = () => {
+    exportToCSV(
+      payouts,
+      {
+        created_at: "Date",
+        id: "Transaction ID",
+        amount: "Amount (INR)",
+        status: "Status"
+      },
+      "Payout_History"
+    );
+  };
+
   return (
     <div>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "32px" }}>
@@ -57,7 +71,7 @@ export default function MemberWallet() {
           <div>
             <div className="stat-label" style={{ color: "var(--success)" }}>Available for Withdrawal</div>
             <div className="stat-value" style={{ color: "var(--text-strong)", fontSize: "2.5rem" }}>
-              ${loading ? "..." : parseFloat(stats.cleared_balance as any).toFixed(2)}
+              ₹{loading ? "..." : parseFloat(stats.cleared_balance as any).toFixed(2)}
             </div>
             <p style={{ color: "var(--text-muted)", fontSize: "0.9rem", marginTop: "8px" }}>Minimum withdrawal is ₹50.00</p>
           </div>
@@ -74,14 +88,24 @@ export default function MemberWallet() {
         <div className="glass-card" style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
           <div className="stat-label">Pending Approval</div>
           <div className="stat-value" style={{ color: "var(--text-muted)", fontSize: "2rem" }}>
-            ${loading ? "..." : parseFloat(stats.pending_balance as any).toFixed(2)}
+            ₹{loading ? "..." : parseFloat(stats.pending_balance as any).toFixed(2)}
           </div>
           <p style={{ color: "var(--text-muted)", fontSize: "0.9rem", marginTop: "8px" }}>These funds will become available once the network verifies the conversions.</p>
         </div>
       </div>
 
       <div className="glass-panel" style={{ minHeight: "300px" }}>
-        <h2 style={{ fontSize: "1.25rem", marginBottom: "24px" }}>Payout History</h2>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "24px" }}>
+          <h2 style={{ fontSize: "1.25rem", margin: 0 }}>Payout History</h2>
+          <button 
+            onClick={handleExport} 
+            disabled={payouts.length === 0} 
+            className="btn-primary" 
+            style={{ padding: "8px 16px", display: "flex", alignItems: "center", gap: "8px", background: "transparent", border: "1px solid var(--glass-border)", color: "var(--text-strong)", fontSize: "0.9rem" }}
+          >
+            📥 Export CSV
+          </button>
+        </div>
         <div className="table-responsive">
           <table style={{ width: "100%", borderCollapse: "collapse", textAlign: "left" }}>
             <thead>
@@ -100,7 +124,7 @@ export default function MemberWallet() {
                   <tr key={payout.id} style={{ borderBottom: "1px solid rgba(0,0,0,0.05)" }}>
                     <td style={{ padding: "16px", color: "var(--text-strong)" }}>{new Date(payout.created_at).toLocaleDateString()}</td>
                     <td style={{ padding: "16px", color: "var(--text-muted)", fontFamily: "monospace" }}>{payout.reference_id || `TRX-${payout.id}`}</td>
-                    <td style={{ padding: "16px", color: "var(--text-strong)", fontWeight: "600" }}>${parseFloat(payout.amount).toFixed(2)}</td>
+                    <td style={{ padding: "16px", color: "var(--text-strong)", fontWeight: "600" }}>₹{parseFloat(payout.amount).toFixed(2)}</td>/td>
                     <td style={{ padding: "16px" }}>
                       <span style={{ 
                         background: payout.status === 'paid' ? "rgba(16, 185, 129, 0.15)" : "rgba(245, 158, 11, 0.15)", 

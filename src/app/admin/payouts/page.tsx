@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import api from "@/lib/api";
+import { exportToCSV } from "@/lib/exportUtils";
 
 export default function AdminPayouts() {
   const [payouts, setPayouts] = useState([]);
@@ -32,13 +33,35 @@ export default function AdminPayouts() {
     }
   };
 
+  const handleExport = () => {
+    exportToCSV(
+      payouts,
+      {
+        created_at: "Date Requested",
+        "user.name": "User Name",
+        "user.role": "Role",
+        amount: "Amount (INR)",
+        status: "Status"
+      },
+      "Payouts_Ledger"
+    );
+  };
+
   return (
     <div>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "32px" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "16px", marginBottom: "32px" }}>
         <div>
           <h1 className="page-title">Payouts Ledger</h1>
           <p className="page-subtitle">Review and approve affiliate withdrawal requests.</p>
         </div>
+        <button 
+          onClick={handleExport} 
+          disabled={payouts.length === 0} 
+          className="btn-primary" 
+          style={{ padding: "10px 20px", display: "flex", alignItems: "center", gap: "8px" }}
+        >
+          📥 Export CSV
+        </button>
       </div>
 
       <div className="glass-panel" style={{ minHeight: "400px" }}>

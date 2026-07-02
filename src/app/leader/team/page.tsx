@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import api from "@/lib/api";
+import { exportToCSV } from "@/lib/exportUtils";
 
 export default function LeaderTeam() {
   const [team, setTeam] = useState([]);
@@ -37,25 +38,48 @@ export default function LeaderTeam() {
     }
   };
 
+  const handleExport = () => {
+    exportToCSV(
+      team,
+      {
+        name: "Name",
+        email: "Email",
+        created_at: "Date Joined",
+        cleared_balance: "Total Earnings (INR)"
+      },
+      "Team_Roster"
+    );
+  };
+
   const memberCap = 20;
   const currentMembers = team.length;
   const progressPercent = (currentMembers / memberCap) * 100;
 
   return (
     <div>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "32px" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "16px", marginBottom: "32px" }}>
         <div>
           <h1 className="page-title">Team Roster</h1>
           <p className="page-subtitle">Manage your allocated {memberCap} affiliates and track their performance.</p>
         </div>
-        <button 
-          className="btn-primary" 
-          onClick={() => setShowInviteModal(true)}
-          disabled={currentMembers >= memberCap}
-          style={{ opacity: currentMembers >= memberCap ? 0.5 : 1 }}
-        >
-          {currentMembers >= memberCap ? 'Team Full' : '+ Invite Member'}
-        </button>
+        <div style={{ display: "flex", gap: "12px" }}>
+          <button 
+            onClick={handleExport} 
+            disabled={team.length === 0} 
+            className="btn-primary" 
+            style={{ padding: "10px 20px", display: "flex", alignItems: "center", gap: "8px", background: "transparent", border: "1px solid var(--glass-border)", color: "var(--text-strong)" }}
+          >
+            📥 Export CSV
+          </button>
+          <button 
+            className="btn-primary" 
+            onClick={() => setShowInviteModal(true)}
+            disabled={currentMembers >= memberCap}
+            style={{ opacity: currentMembers >= memberCap ? 0.5 : 1 }}
+          >
+            {currentMembers >= memberCap ? 'Team Full' : '+ Invite Member'}
+          </button>
+        </div>
       </div>
 
       <div className="glass-panel" style={{ marginBottom: "32px" }}>
@@ -94,7 +118,7 @@ export default function LeaderTeam() {
                     <td style={{ padding: "16px", fontWeight: "600", color: "var(--text-strong)" }}>{member.name}</td>
                     <td style={{ padding: "16px", color: "var(--text-muted)" }}>{member.email}</td>
                     <td style={{ padding: "16px", color: "var(--text-muted)" }}>{new Date(member.created_at).toLocaleDateString()}</td>
-                    <td style={{ padding: "16px", color: "var(--success)", fontWeight: "600" }}>${parseFloat(member.cleared_balance).toFixed(2)}</td>
+                    <td style={{ padding: "16px", color: "var(--success)", fontWeight: "600" }}>₹{parseFloat(member.cleared_balance).toFixed(2)}</td>
                     <td style={{ padding: "16px", textAlign: "right" }}>
                       <span style={{ background: "rgba(16, 185, 129, 0.15)", color: "var(--success)", padding: "4px 12px", borderRadius: "12px", fontSize: "0.85rem", fontWeight: "600" }}>Active</span>
                     </td>
