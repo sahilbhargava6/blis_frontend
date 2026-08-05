@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { ChevronDown, ChevronUp, ArrowRight } from 'lucide-react';
+import Image from 'next/image';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 
 export default function Home() {
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
@@ -72,65 +73,123 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* Hero Left Content */}
-          <div className="lg:col-span-7 space-y-8">
+          <div className="lg:col-span-6 space-y-8 text-left">
             <h1 className="text-4xl md:text-[64px] font-bold text-black font-['Plus_Jakarta_Sans'] leading-[81px]">
-              Turn partners into your best-performing channel
+              Turn partners into your <br />
+              <span className="text-[#F047AB] italic font-extrabold">best-performing</span> channel
             </h1>
             <p className="text-xl md:text-[36px] text-black font-light leading-[42px] font-['Roboto']">
               We recruit, manage, and optimize affiliate programs so every partnership is tracked and every campaign compounds.
             </p>
             
             <div className="space-y-6 pt-4">
-              <Link
-                href="/login"
-                className="inline-flex items-center justify-center h-[66px] px-10 rounded-[30px] bg-[#0E76C0] hover:bg-[#0c66a8] active:scale-95 transition-all text-[#FFFAFF] font-medium text-2xl text-center figma-shadow font-['Plus_Jakarta_Sans']"
-              >
-                Get Started
-              </Link>
-              
-              <div className="block pt-2">
+              <div>
                 <Link
                   href="/login"
-                  className="text-2xl text-black hover:text-[#0E76C0] font-normal underline decoration-1 transition font-['Plus_Jakarta_Sans']"
+                  className="inline-flex items-center justify-center h-[66px] px-10 rounded-[30px] bg-[#0E76C0] hover:bg-[#0c66a8] active:scale-95 transition-all text-[#FFFAFF] font-medium text-2xl text-center figma-shadow font-['Plus_Jakarta_Sans']"
                 >
-                  Already an Affiliate? Access to the Affiliate Portal
+                  Get Started
                 </Link>
+              </div>
+              
+              <div className="block pt-2">
+                <span className="text-2xl text-black font-normal font-['Plus_Jakarta_Sans']">
+                  Already an Affiliate?{' '}
+                  <Link
+                    href="/login"
+                    className="text-[#F047AB] hover:underline font-semibold transition"
+                  >
+                    Access to the Affiliate Portal
+                  </Link>
+                </span>
               </div>
             </div>
           </div>
 
-          {/* Hero Right Visual elements mockup */}
-          <div className="lg:col-span-5 relative flex justify-center">
-            {/* Visual card mockup container */}
-            <div className="relative w-full max-w-md p-6 bg-slate-50 border border-slate-100 rounded-3xl shadow-2xl flex flex-col justify-between aspect-square overflow-hidden">
+          {/* Hero Right Visual elements mockup - Precise Layered Figma Composition */}
+          <div className="lg:col-span-6 flex justify-center w-full">
+            <div className="relative w-full max-w-[640px] aspect-[775/640] overflow-visible">
               
-              {/* Dashboard chart mockup */}
-              <div className="space-y-4">
-                <div className="flex justify-between items-center">
-                  <div className="flex items-center gap-2">
-                    <span className="h-2 w-2 rounded-full bg-emerald-500 animate-ping"></span>
-                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Live Campaign Telemetry</span>
-                  </div>
-                  <span className="text-[10px] bg-blue-50 text-[#0E76C0] px-2 py-0.5 rounded-full font-bold">Gold Tier</span>
-                </div>
-                
-                <h4 className="text-sm font-black text-slate-800">Affiliate Link Tracker</h4>
-                <div className="h-32 w-full flex items-end justify-between gap-1 pt-6 border-b border-slate-200/60">
-                  {[35, 45, 25, 60, 50, 75, 40, 90, 85, 95].map((val, idx) => (
-                    <div key={idx} className="flex-1 rounded-t bg-gradient-to-t from-blue-500/20 to-blue-500" style={{ height: `${val}%` }}></div>
-                  ))}
-                </div>
+              {/* Image 3: ch3.png - left-most layer */}
+              <div 
+                className="absolute"
+                style={{
+                  width: '42.71%',
+                  height: '51.72%',
+                  left: '0%',
+                  top: '22.81%',
+                  zIndex: 3
+                }}
+              >
+                <Image
+                  src="/images/ch3.png"
+                  alt="Telemetry visual"
+                  fill
+                  className="object-contain"
+                  priority
+                />
               </div>
 
-              {/* Floating hotspot earnings card matching mockup */}
-              <div className="absolute bottom-6 right-6 p-5 rounded-2xl bg-white border border-pink-100 shadow-2xl flex flex-col items-center justify-center text-center animate-bounce min-w-[140px] z-10">
-                <span className="text-[9px] font-extrabold text-slate-400 uppercase tracking-wider">your earnings</span>
-                <span className="text-xl font-black text-[#F047AB] mt-1">₹50,000</span>
+              {/* Image 1: ch1.png - background circle/main layer */}
+              <div 
+                className="absolute"
+                style={{
+                  width: '82.58%',
+                  height: '100%',
+                  left: '13.29%',
+                  top: '0%',
+                  zIndex: 1
+                }}
+              >
+                <Image
+                  src="/images/ch1.png"
+                  alt="Character background"
+                  fill
+                  className="object-contain"
+                  priority
+                />
               </div>
 
-              {/* Simple background decorative bubbles matching mockup coordinates */}
-              <div className="absolute top-1/3 left-10 w-24 h-24 bg-pink-400/5 rounded-full blur-xl"></div>
-              <div className="absolute bottom-1/4 left-1/3 w-16 h-16 bg-blue-400/5 rounded-full blur-lg"></div>
+              {/* Image 2: ch2.png - character details overlay */}
+              <div 
+                className="absolute"
+                style={{
+                  width: '69.42%',
+                  height: '84.06%',
+                  left: '26.45%',
+                  top: '15.94%',
+                  zIndex: 2
+                }}
+              >
+                <Image
+                  src="/images/ch2.png"
+                  alt="Character graphic"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
+
+              {/* Image 4: ch4.png - right-most floating info overlay */}
+              <div 
+                className="absolute"
+                style={{
+                  width: '27.87%',
+                  height: '33.75%',
+                  left: '72.13%',
+                  top: '29.69%',
+                  zIndex: 4
+                }}
+              >
+                <Image
+                  src="/images/ch4.png"
+                  alt="Promo bubble"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
+
             </div>
           </div>
 
@@ -313,7 +372,7 @@ export default function Home() {
           <div>
             <h4 className="text-xs font-bold text-black uppercase tracking-widest mb-4 font-['Plus_Jakarta_Sans']">Resources</h4>
             <ul className="space-y-2 text-xs font-medium text-slate-600">
-              <li><Link href="/login" className="hover:text-black">Affiliate Portal</Link></li>
+              <li><Link href="/login" className="hover:text-black">Access the Affiliate Portal</Link></li>
               <li><Link href="#" className="hover:text-black">Campaign Guidelines</Link></li>
               <li><Link href="#" className="hover:text-black">S2S Webhook Integration</Link></li>
             </ul>
