@@ -189,48 +189,13 @@ export default function Home() {
         )}
       </header>
 
-      {/* 2. Hero Section (Wider container format - 1800px width limit, reduced padding) */}
-      <section className="py-16 md:py-24 px-6 md:px-12 max-w-[1800px] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      {/* 2. Hero Section */}
+      <section className="py-12 md:py-24 px-6 md:px-12 max-w-[1800px] mx-auto animate-fadeIn">
+        <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
 
-          {/* Hero Left Content */}
-          <div className="lg:col-span-6 space-y-8 text-left">
-            <h1 className="text-4xl md:text-[64px] font-bold text-black font-['Plus_Jakarta_Sans'] leading-[81px]">
-              Turn partners into your <br />
-              <span className="text-[#F047AB] italic font-extrabold">best-performing</span> channel
-            </h1>
-            <p className="text-xl md:text-[36px] text-black font-light leading-[42px] font-['Roboto']">
-              We recruit, manage, and optimize affiliate programs so every partnership is tracked and every campaign compounds.
-            </p>
-
-            <div className="space-y-6 pt-4">
-              <div>
-                <Link
-                  href="/login"
-                  className="inline-flex items-center justify-center h-[66px] px-10 rounded-[30px] bg-[#0E76C0] hover:bg-[#0c66a8] active:scale-95 transition-all text-[#FFFAFF] font-medium text-2xl text-center figma-shadow font-['Plus_Jakarta_Sans']"
-                >
-                  Get Started
-                </Link>
-              </div>
-
-              <div className="block pt-2">
-                <span className="text-2xl text-black font-normal font-['Plus_Jakarta_Sans']">
-                  Already an Affiliate?{' '}
-                  <Link
-                    href="/login"
-                    className="text-[#F047AB] hover:underline font-semibold transition"
-                  >
-                    Access to the Affiliate Portal
-                  </Link>
-                </span>
-              </div>
-            </div>
-          </div>
-
-          {/* Hero Right Visual Carousel (Box removed, transparent, size increased) */}
-          <div className="lg:col-span-6 flex justify-center w-full relative">
-            <div className="relative w-full max-w-[720px] aspect-[4/3] flex items-center justify-center overflow-visible">
-
+          {/* Hero Carousel - Order on top on mobile, second on desktop */}
+          <div className="w-full lg:col-span-6 flex justify-center relative order-1 lg:order-2">
+            <div className="relative w-full max-w-[640px] aspect-[4/3] flex items-center justify-center overflow-visible">
               {/* Fade carousel items */}
               {heroImages.map((src, idx) => (
                 <div
@@ -247,7 +212,40 @@ export default function Home() {
                   />
                 </div>
               ))}
+            </div>
+          </div>
 
+          {/* Hero Left Content - Order second on mobile, first on desktop */}
+          <div className="w-full lg:col-span-6 space-y-6 text-left order-2 lg:order-1 mt-4 lg:mt-0">
+            <h1 className="text-4xl md:text-[64px] font-bold text-black font-['Plus_Jakarta_Sans'] leading-tight md:leading-[81px]">
+              Turn partners into your <br className="hidden md:inline" />
+              <span className="text-[#F047AB] italic font-extrabold">best-performing</span> channel
+            </h1>
+            <p className="text-lg md:text-[36px] text-slate-800 font-light leading-snug md:leading-[42px] font-['Roboto']">
+              We recruit, manage, and optimize affiliate programs so every partnership is tracked and every campaign compounds.
+            </p>
+
+            <div className="space-y-4 pt-2">
+              <div>
+                <Link
+                  href="/login"
+                  className="inline-flex items-center justify-center h-[60px] md:h-[66px] px-8 md:px-10 rounded-[30px] bg-[#0E76C0] hover:bg-[#0c66a8] active:scale-95 transition-all text-[#FFFAFF] font-medium text-lg md:text-2xl text-center figma-shadow font-['Plus_Jakarta_Sans']"
+                >
+                  Get Started
+                </Link>
+              </div>
+
+              <div className="block pt-2">
+                <span className="text-lg md:text-2xl text-slate-700 font-normal font-['Plus_Jakarta_Sans']">
+                  Already an Affiliate?{' '}
+                  <Link
+                    href="/login"
+                    className="text-[#F047AB] hover:underline font-semibold transition"
+                  >
+                    Access the Affiliate Portal
+                  </Link>
+                </span>
+              </div>
             </div>
           </div>
 
