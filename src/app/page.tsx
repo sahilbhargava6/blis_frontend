@@ -3,13 +3,14 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Menu, X } from 'lucide-react';
 
 export default function Home() {
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   const [activeTestimonial, setActiveTestimonial] = useState(9);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const heroImages = [
     '/images/ch1.png',
@@ -126,8 +127,66 @@ export default function Home() {
             >
               Get Started
             </Link>
+            
+            {/* Mobile Menu Toggle Button */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden p-2 text-slate-600 hover:text-[#0E76C0] transition-colors"
+            >
+              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
           </div>
         </div>
+
+        {/* Mobile menu panel overlay */}
+        {mobileMenuOpen && (
+          <div className="md:hidden border-t border-slate-100 bg-white py-4 px-6 space-y-4 shadow-lg animate-fadeIn font-['Plus_Jakarta_Sans']">
+            <Link 
+              href="/" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="block py-2 text-base font-bold text-slate-800 hover:text-[#0E76C0] transition-colors"
+            >
+              Home
+            </Link>
+            <a 
+              href="#about" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="block py-2 text-base font-bold text-slate-600 hover:text-[#0E76C0] transition-colors"
+            >
+              About Us
+            </a>
+            <a 
+              href="#contact" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="block py-2 text-base font-bold text-slate-600 hover:text-[#0E76C0] transition-colors"
+            >
+              Contact
+            </a>
+            <a 
+              href="#campaigns" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="block py-2 text-base font-bold text-slate-600 hover:text-[#0E76C0] transition-colors"
+            >
+              Campaigns
+            </a>
+            <div className="pt-4 border-t border-slate-100 flex flex-col gap-3">
+              <Link
+                href="/login"
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full text-center py-2.5 rounded-full border border-slate-200 text-slate-700 text-sm font-bold"
+              >
+                Affiliate Portal
+              </Link>
+              <Link
+                href="/login"
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full text-center py-2.5 rounded-full bg-[#0E76C0] text-white text-sm font-bold shadow-sm shadow-[#0E76C0]/20"
+              >
+                Get Started
+              </Link>
+            </div>
+          </div>
+        )}
       </header>
 
       {/* 2. Hero Section (Wider container format - 1800px width limit, reduced padding) */}
