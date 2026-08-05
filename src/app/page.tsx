@@ -378,8 +378,8 @@ export default function Home() {
           </h2>
         </div>
 
-        {/* Stacked Layout Wrapper — Figma: W:400 H:500, radius:30, fill #F0F3F9 20%, glass + drop-shadow */}
-        <div className="relative w-full max-w-5xl mx-auto h-[550px] mt-8 overflow-hidden select-none">
+        {/* Desktop Stacked Layout Wrapper — Figma: W:400 H:500, radius:30, fill #F0F3F9 20%, glass + drop-shadow */}
+        <div className="hidden md:block relative w-full max-w-5xl mx-auto h-[550px] mt-8 overflow-hidden select-none">
           {testimonials.map((testimonial, idx) => {
             const isActive = idx === activeTestimonial;
 
@@ -437,6 +437,31 @@ export default function Home() {
               </div>
             );
           })}
+        </div>
+
+        {/* Mobile Horizontal Carousel — clean grid scroll */}
+        <div className="md:hidden flex overflow-x-auto gap-4 py-4 px-2 scrollbar-hide snap-x snap-mandatory">
+          {testimonials.map((testimonial, idx) => (
+            <div
+              key={idx}
+              className="flex-shrink-0 w-[280px] bg-slate-50 border border-slate-100 rounded-3xl p-6 snap-start shadow-sm flex flex-col justify-between h-[360px] font-['Roboto']"
+            >
+              <div className="space-y-3">
+                <span className="text-5xl leading-none text-[#F047AB] font-serif block h-6">&ldquo;</span>
+                <p className="text-sm font-medium text-slate-700 leading-relaxed">
+                  {testimonial.comment}
+                </p>
+              </div>
+              <div className="pt-4 border-t border-slate-100">
+                <h4 className="text-sm font-bold text-slate-800 font-['Plus_Jakarta_Sans'] uppercase tracking-wider">
+                  {testimonial.name}
+                </h4>
+                <p className="text-[10px] text-[#0E76C0] font-extrabold uppercase tracking-wider mt-0.5">
+                  {testimonial.type}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
 
       </section>
