@@ -46,44 +46,44 @@ export default function MemberStorefront() {
     <div className="space-y-8 max-w-5xl">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-extrabold tracking-tight text-white">O2O storefront catalog</h1>
-        <p className="text-slate-400 mt-1 text-sm">Configure your local digital catalog storefront and list active products.</p>
+        <h1 className="text-2xl font-bold tracking-tight text-slate-800 font-['Plus_Jakarta_Sans']">O2O Storefront Catalog</h1>
+        <p className="text-slate-500 mt-1 text-sm font-semibold font-['Roboto']">Configure your local digital catalog storefront and list active products.</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         
         {/* Storefront configurations settings form */}
-        <div className="glass-panel p-6 rounded-2xl lg:col-span-1 space-y-6">
-          <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider flex items-center gap-2">
-            <ShoppingBag className="h-4 w-4 text-emerald-400" />
+        <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm lg:col-span-1 space-y-6">
+          <h3 className="text-sm font-bold text-slate-700 uppercase tracking-wider flex items-center gap-2 font-['Plus_Jakarta_Sans']">
+            <ShoppingBag className="h-4 w-4 text-[#0E76C0]" />
             Store Settings
           </h3>
           <form className="space-y-4">
             <div>
-              <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Store Name</label>
+              <label className="block text-xs font-bold text-slate-650 uppercase tracking-wider mb-2 font-['Plus_Jakarta_Sans']">Store Name</label>
               <input
                 type="text"
-                className="w-full px-4 py-3 rounded-xl glass-input text-sm"
+                className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-205 text-sm text-slate-850 focus:border-[#0E76C0] outline-none transition-all font-['Roboto']"
                 value={storeName}
                 onChange={(e) => setStoreName(e.target.value)}
               />
             </div>
             <div>
-              <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Short Description</label>
+              <label className="block text-xs font-bold text-slate-650 uppercase tracking-wider mb-2 font-['Plus_Jakarta_Sans']">Short Description</label>
               <textarea
-                className="w-full px-4 py-3 rounded-xl glass-input text-sm min-h-[80px]"
+                className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-205 text-sm text-slate-850 focus:border-[#0E76C0] outline-none transition-all font-['Roboto'] min-h-[80px]"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               />
             </div>
 
             {/* Slug URL auto preview */}
-            <div className="p-3.5 rounded-xl bg-slate-950/60 border border-white/5 space-y-2">
-              <span className="text-[9px] font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
-                <Globe className="h-3.5 w-3.5 text-sky-400" />
+            <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-100 space-y-2">
+              <span className="text-[9px] font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1.5 font-['Plus_Jakarta_Sans']">
+                <Globe className="h-3.5 w-3.5 text-[#0E76C0]" />
                 Live URL Preview
               </span>
-              <p className="text-xs font-mono text-sky-400 break-all select-all">
+              <p className="text-xs font-mono text-[#0E76C0] break-all select-all font-semibold">
                 http://blis.platform/store/{slugPreview}
               </p>
             </div>
@@ -91,32 +91,32 @@ export default function MemberStorefront() {
         </div>
 
         {/* Product listing & uploader dropzone */}
-        <div className="glass-panel p-6 rounded-2xl lg:col-span-2 space-y-8">
+        <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm lg:col-span-2 space-y-8">
           
           {/* Uploader Form */}
           <div className="space-y-4">
-            <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider">Upload Product Item</h3>
+            <h3 className="text-sm font-bold text-slate-700 uppercase tracking-wider font-['Plus_Jakarta_Sans']">Upload Product Item</h3>
             <form onSubmit={handleAddProduct} className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-4">
                 <div>
-                  <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Product Name</label>
+                  <label className="block text-xs font-bold text-slate-650 uppercase tracking-wider mb-2 font-['Plus_Jakarta_Sans']">Product Name</label>
                   <input
                     type="text"
                     required
                     placeholder="e.g. Red Tomatoes"
-                    className="w-full px-4 py-3 rounded-xl glass-input text-sm"
+                    className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-205 text-sm text-slate-850 focus:border-[#0E76C0] outline-none transition-all font-['Roboto']"
                     value={newProductName}
                     onChange={(e) => setNewProductName(e.target.value)}
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Price (USD)</label>
+                  <label className="block text-xs font-bold text-slate-650 uppercase tracking-wider mb-2 font-['Plus_Jakarta_Sans']">Price (USD)</label>
                   <input
                     type="number"
                     step="0.01"
                     required
                     placeholder="e.g. 4.50"
-                    className="w-full px-4 py-3 rounded-xl glass-input text-sm"
+                    className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-205 text-sm text-slate-850 focus:border-[#0E76C0] outline-none transition-all font-['Roboto']"
                     value={newProductPrice}
                     onChange={(e) => setNewProductPrice(e.target.value)}
                   />
@@ -124,16 +124,16 @@ export default function MemberStorefront() {
               </div>
 
               {/* Mock dragzone drop uploader box */}
-              <div className="border-2 border-dashed border-white/10 hover:border-emerald-500/25 rounded-2xl flex flex-col items-center justify-center p-6 text-center transition cursor-pointer">
-                <UploadCloud className="h-8 w-8 text-slate-400 mb-2" />
-                <p className="text-xs font-bold text-slate-300">Drag & Drop Image</p>
-                <p className="text-[10px] text-slate-500 mt-1">PNG, JPG up to 2MB</p>
+              <div className="border-2 border-dashed border-slate-200 hover:border-[#0E76C0]/35 rounded-2xl flex flex-col items-center justify-center p-6 text-center transition cursor-pointer bg-slate-50/50 hover:bg-slate-50">
+                <UploadCloud className="h-8 w-8 text-slate-400 mb-2 animate-pulse" />
+                <p className="text-xs font-bold text-slate-700 font-['Plus_Jakarta_Sans']">Drag & Drop Image</p>
+                <p className="text-[10px] text-slate-500 mt-1 font-semibold font-['Roboto']">PNG, JPG up to 2MB</p>
               </div>
 
               <div className="md:col-span-2 pt-2">
                 <button
                   type="submit"
-                  className="w-full py-3 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-sm cursor-pointer shadow-lg shadow-emerald-500/20 active:scale-95 transition-all"
+                  className="w-full py-3 px-4 rounded-xl bg-[#0E76C0] hover:bg-[#0c66a8] text-white font-bold text-sm cursor-pointer shadow-md shadow-[#0E76C0]/20 active:scale-95 transition-all font-['Plus_Jakarta_Sans']"
                 >
                   Upload & List Product
                 </button>
@@ -142,25 +142,25 @@ export default function MemberStorefront() {
           </div>
 
           {/* Product Grid Toggles */}
-          <div className="space-y-4 pt-6 border-t border-white/5">
-            <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider">Catalog Inventory</h3>
+          <div className="space-y-4 pt-6 border-t border-slate-100">
+            <h3 className="text-sm font-bold text-slate-700 uppercase tracking-wider font-['Plus_Jakarta_Sans']">Catalog Inventory</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {products.map((p) => (
-                <div key={p.id} className="flex items-center justify-between p-4 rounded-xl bg-slate-900/60 border border-white/5">
+                <div key={p.id} className="flex items-center justify-between p-4 rounded-xl bg-slate-50 border border-slate-100 hover:bg-slate-100/50 transition-colors">
                   <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/10">
+                    <div className="p-2 rounded-lg bg-[#0E76C0]/10 text-[#0E76C0] border border-[#0E76C0]/10">
                       <Tag className="h-4 w-4" />
                     </div>
                     <div>
-                      <p className="text-xs font-bold text-white">{p.name}</p>
-                      <p className="text-xs font-extrabold text-emerald-400 mt-0.5">{p.price}</p>
+                      <p className="text-xs font-bold text-slate-800 font-['Plus_Jakarta_Sans']">{p.name}</p>
+                      <p className="text-xs font-extrabold text-green-600 mt-0.5 font-['Plus_Jakarta_Sans']">{p.price}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
                     <button
                       onClick={() => handleToggleProduct(p.id)}
                       className={`w-11 h-5.5 rounded-full transition-all duration-300 relative border cursor-pointer ${
-                        p.active ? 'bg-emerald-500 border-emerald-400' : 'bg-slate-800 border-slate-700'
+                        p.active ? 'bg-green-500 border-green-400' : 'bg-slate-200 border-slate-300'
                       }`}
                     >
                       <span className={`w-3.5 h-3.5 rounded-full bg-white absolute top-0.5 transition-all ${
@@ -169,7 +169,7 @@ export default function MemberStorefront() {
                     </button>
                     <button
                       onClick={() => handleRemoveProduct(p.id)}
-                      className="p-1 rounded hover:bg-rose-500/15 text-slate-500 hover:text-rose-400 transition cursor-pointer"
+                      className="p-1 rounded hover:bg-red-50 text-slate-400 hover:text-red-500 transition cursor-pointer"
                     >
                       <Trash2 className="h-4 w-4" />
                     </button>

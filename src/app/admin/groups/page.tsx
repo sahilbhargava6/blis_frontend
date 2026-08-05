@@ -15,76 +15,76 @@ export default function AdminGroups() {
       {/* Page Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-extrabold tracking-tight text-white">Group Oversight</h1>
-          <p className="text-slate-400 mt-1 text-sm">Monitor group capacities, active leaders, and team performance metrics.</p>
+          <h1 className="text-2xl font-bold tracking-tight text-slate-800 font-['Plus_Jakarta_Sans']">Group Oversight</h1>
+          <p className="text-slate-500 mt-1 text-sm font-semibold font-['Roboto']">Monitor group capacities, active leaders, and team performance metrics.</p>
         </div>
 
         {/* Search Bar */}
-        <div className="relative max-w-xs">
+        <div className="relative max-w-xs w-full">
           <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
             <Search className="h-4 w-4" />
           </span>
           <input
             type="text"
             placeholder="Search group or leader..."
-            className="w-full pl-10 pr-4 py-2.5 rounded-xl glass-input text-xs"
+            className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white border border-slate-200 text-slate-800 text-xs focus:border-[#0E76C0] outline-none transition-all font-['Roboto']"
           />
         </div>
       </div>
 
       {/* Grid or Table Card */}
-      <div className="glass-panel rounded-2xl overflow-hidden">
-        <div className="p-6 border-b border-white/5">
-          <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider">Active Teams</h3>
+      <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
+        <div className="p-6 border-b border-slate-100">
+          <h3 className="text-sm font-bold text-slate-700 uppercase tracking-wider font-['Plus_Jakarta_Sans']">Active Teams</h3>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full border-collapse text-left">
             <thead>
-              <tr className="border-b border-white/5 text-[10px] uppercase tracking-wider text-slate-500 font-bold bg-white/2">
-                <th className="py-4 px-6">Group Info</th>
-                <th className="py-4 px-6">Assigned Leader</th>
-                <th className="py-4 px-6">20-Member Capacity Limit</th>
-                <th className="py-4 px-6">Total Clicks</th>
-                <th className="py-4 px-6 text-right">Team Revenue</th>
+              <tr className="border-b border-slate-100 text-[10px] uppercase tracking-wider text-slate-400 font-bold bg-slate-50/50">
+                <th className="py-4 px-6 font-['Plus_Jakarta_Sans']">Group Info</th>
+                <th className="py-4 px-6 font-['Plus_Jakarta_Sans']">Assigned Leader</th>
+                <th className="py-4 px-6 font-['Plus_Jakarta_Sans']">20-Member Capacity Limit</th>
+                <th className="py-4 px-6 font-['Plus_Jakarta_Sans']">Total Clicks</th>
+                <th className="py-4 px-6 text-right font-['Plus_Jakarta_Sans']">Team Revenue</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-white/5 text-sm">
+            <tbody className="divide-y divide-slate-100 text-sm">
               {groups.map((group) => {
                 const isFull = group.membersCount >= 20;
                 const capacityPercentage = (group.membersCount / 20) * 100;
                 
                 return (
-                  <tr key={group.id} className="hover:bg-white/2 transition">
-                    <td className="py-4 px-6 font-bold text-white flex items-center gap-3">
-                      <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/10">
+                  <tr key={group.id} className="hover:bg-slate-50/50 transition">
+                    <td className="py-4 px-6 font-bold text-slate-850 flex items-center gap-3 font-['Plus_Jakarta_Sans']">
+                      <div className="p-2 rounded-lg bg-[#0E76C0]/10 text-[#0E76C0] border border-[#0E76C0]/10">
                         <Users className="h-4 w-4" />
                       </div>
                       {group.name}
                     </td>
-                    <td className="py-4 px-6 text-slate-400 font-semibold flex items-center gap-2">
-                      <UserCheck className="h-4 w-4 text-emerald-400" />
+                    <td className="py-4 px-6 text-slate-600 font-bold flex items-center gap-2 font-['Roboto']">
+                      <UserCheck className="h-4 w-4 text-[#0E76C0]" />
                       {group.leader}
                     </td>
                     <td className="py-4 px-6">
                       <div className="w-full max-w-[150px]">
                         <div className="flex items-center justify-between text-xs font-semibold mb-1">
-                          <span className={`${isFull ? 'text-rose-400 font-bold' : 'text-slate-400'}`}>
+                          <span className={`${isFull ? 'text-red-500 font-extrabold' : 'text-slate-500 font-bold'}`}>
                             {group.membersCount}/20 Members
                           </span>
-                          {isFull && <ShieldAlert className="h-3.5 w-3.5 text-rose-400 animate-bounce" />}
+                          {isFull && <ShieldAlert className="h-3.5 w-3.5 text-red-500 animate-bounce" />}
                         </div>
-                        <div className="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
+                        <div className="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden">
                           <div 
                             className={`h-full rounded-full transition-all duration-500 ${
-                              isFull ? 'bg-rose-500 shadow-md shadow-rose-500/50' : 'bg-emerald-400'
+                              isFull ? 'bg-red-500 shadow-sm shadow-red-500/50' : 'bg-green-500'
                             }`}
                             style={{ width: `${capacityPercentage}%` }}
                           ></div>
                         </div>
                       </div>
                     </td>
-                    <td className="py-4 px-6 text-slate-400 font-semibold">{group.clicks}</td>
-                    <td className="py-4 px-6 text-right font-extrabold text-emerald-400">{group.revenue}</td>
+                    <td className="py-4 px-6 text-slate-600 font-bold font-['Roboto']">{group.clicks}</td>
+                    <td className="py-4 px-6 text-right font-extrabold text-green-600 font-['Plus_Jakarta_Sans']">{group.revenue}</td>
                   </tr>
                 );
               })}

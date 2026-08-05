@@ -49,10 +49,10 @@ export default function LeaderTeam() {
   return (
     <div className="space-y-8">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between flex-wrap gap-4">
         <div>
-          <h1 className="text-3xl font-extrabold tracking-tight text-white">Promoter Roster</h1>
-          <p className="text-slate-400 mt-1 text-sm">Manage group enrollments and oversee member-level link referral metrics.</p>
+          <h1 className="text-2xl font-bold tracking-tight text-slate-800 font-['Plus_Jakarta_Sans']">Promoter Roster</h1>
+          <p className="text-slate-500 mt-1 text-sm font-semibold font-['Roboto']">Manage group enrollments and oversee member-level link referral metrics.</p>
         </div>
         <button
           onClick={() => {
@@ -62,10 +62,10 @@ export default function LeaderTeam() {
               setShowModal(true);
             }
           }}
-          className={`flex items-center gap-2 py-3 px-5 rounded-xl text-white font-bold text-sm cursor-pointer shadow-lg transition-all ${
+          className={`flex items-center gap-2 py-3 px-5 rounded-xl text-white font-bold text-sm cursor-pointer shadow-md transition-all font-['Plus_Jakarta_Sans'] ${
             isFull 
-              ? 'bg-slate-800 text-slate-500 border border-white/5 shadow-none' 
-              : 'bg-amber-500 hover:bg-amber-600 shadow-amber-500/25 active:scale-95'
+              ? 'bg-slate-200 text-slate-400 border border-slate-300 shadow-none cursor-not-allowed' 
+              : 'bg-[#B98776] hover:bg-[#a17262] shadow-[#B98776]/20 active:scale-95'
           }`}
         >
           <Plus className="h-4 w-4" />
@@ -74,18 +74,18 @@ export default function LeaderTeam() {
       </div>
 
       {errorMsg && (
-        <div className="p-4 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 text-sm font-semibold flex items-center gap-2">
+        <div className="p-4 rounded-xl bg-red-50 border border-red-200 text-red-650 text-sm font-bold flex items-center gap-2 font-['Plus_Jakarta_Sans']">
           <AlertTriangle className="h-5 w-5" />
           {errorMsg}
         </div>
       )}
 
       {/* Roster Table */}
-      <div className="glass-panel rounded-2xl overflow-hidden">
-        <div className="p-6 border-b border-white/5 flex justify-between items-center">
-          <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider">Promoters List</h3>
-          <span className={`text-xs font-bold px-3 py-1.5 rounded-lg ${
-            isFull ? 'bg-rose-500/15 text-rose-400 border border-rose-500/20' : 'bg-white/5 text-slate-400'
+      <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
+        <div className="p-6 border-b border-slate-100 flex justify-between items-center flex-wrap gap-3">
+          <h3 className="text-sm font-bold text-slate-700 uppercase tracking-wider font-['Plus_Jakarta_Sans']">Promoters List</h3>
+          <span className={`text-xs font-bold px-3 py-1.5 rounded-lg font-['Plus_Jakarta_Sans'] ${
+            isFull ? 'bg-red-50 text-red-600 border border-red-100' : 'bg-slate-50 text-slate-500 border border-slate-100'
           }`}>
             Capacity: {members.length} / 20 Members
           </span>
@@ -93,32 +93,32 @@ export default function LeaderTeam() {
         <div className="overflow-x-auto">
           <table className="w-full border-collapse text-left">
             <thead>
-              <tr className="border-b border-white/5 text-[10px] uppercase tracking-wider text-slate-500 font-bold bg-white/2">
-                <th className="py-4 px-6">Member Name</th>
-                <th className="py-4 px-6">Phone (WhatsApp)</th>
-                <th className="py-4 px-6">Total Clicks</th>
-                <th className="py-4 px-6">Conversions</th>
-                <th className="py-4 px-6">Member Earnings</th>
-                <th className="py-4 px-6 text-right">Remove</th>
+              <tr className="border-b border-slate-100 text-[10px] uppercase tracking-wider text-slate-400 font-bold bg-slate-50/50">
+                <th className="py-4 px-6 font-['Plus_Jakarta_Sans']">Member Name</th>
+                <th className="py-4 px-6 font-['Plus_Jakarta_Sans']">Phone (WhatsApp)</th>
+                <th className="py-4 px-6 font-['Plus_Jakarta_Sans']">Total Clicks</th>
+                <th className="py-4 px-6 font-['Plus_Jakarta_Sans']">Conversions</th>
+                <th className="py-4 px-6 font-['Plus_Jakarta_Sans']">Member Earnings</th>
+                <th className="py-4 px-6 text-right font-['Plus_Jakarta_Sans']">Remove</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-white/5 text-sm">
+            <tbody className="divide-y divide-slate-100 text-sm">
               {members.map((member) => (
-                <tr key={member.id} className="hover:bg-white/2 transition">
-                  <td className="py-4 px-6 font-bold text-white flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/10">
+                <tr key={member.id} className="hover:bg-slate-50/50 transition">
+                  <td className="py-4 px-6 font-bold text-slate-800 flex items-center gap-3 font-['Plus_Jakarta_Sans']">
+                    <div className="p-2 rounded-lg bg-[#B98776]/10 text-[#B98776] border border-[#B98776]/10">
                       <Users className="h-4 w-4" />
                     </div>
                     {member.name}
                   </td>
-                  <td className="py-4 px-6 text-slate-400 font-semibold">{member.phone}</td>
-                  <td className="py-4 px-6 text-slate-400 font-semibold">{member.clicks}</td>
-                  <td className="py-4 px-6 text-slate-400 font-semibold">{member.conversions}</td>
-                  <td className="py-4 px-6 font-extrabold text-emerald-400">{member.balance}</td>
+                  <td className="py-4 px-6 text-slate-600 font-bold font-['Roboto']">{member.phone}</td>
+                  <td className="py-4 px-6 text-slate-600 font-bold font-['Roboto']">{member.clicks}</td>
+                  <td className="py-4 px-6 text-slate-600 font-bold font-['Roboto']">{member.conversions}</td>
+                  <td className="py-4 px-6 font-extrabold text-green-600 font-['Plus_Jakarta_Sans']">{member.balance}</td>
                   <td className="py-4 px-6 text-right">
                     <button
                       onClick={() => handleRemoveMember(member.id)}
-                      className="p-1.5 rounded-lg border border-white/5 hover:border-rose-500/20 text-slate-500 hover:text-rose-400 hover:bg-rose-500/10 transition cursor-pointer"
+                      className="p-1.5 rounded-lg border border-slate-200 hover:border-red-200 text-slate-400 hover:text-red-500 hover:bg-red-50 transition cursor-pointer"
                     >
                       <UserX className="h-4 w-4" />
                     </button>
@@ -132,28 +132,28 @@ export default function LeaderTeam() {
 
       {/* Add Member Modal */}
       {showModal && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="w-full max-w-md glass-panel rounded-2xl p-8 relative">
-            <h3 className="text-xl font-black text-white mb-6">Add Team Member</h3>
+        <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="w-full max-w-md bg-white rounded-2xl p-8 relative shadow-2xl border border-slate-100">
+            <h3 className="text-xl font-extrabold text-slate-800 mb-6 font-['Plus_Jakarta_Sans']">Add Team Member</h3>
             <form onSubmit={handleAddMember} className="space-y-4">
               <div>
-                <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Member Name</label>
+                <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-2 font-['Plus_Jakarta_Sans']">Member Name</label>
                 <input
                   type="text"
                   required
                   placeholder="e.g. John Doe"
-                  className="w-full px-4 py-3 rounded-xl glass-input text-sm"
+                  className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-850 focus:border-[#B98776] focus:ring-2 focus:ring-[#B98776]/20 outline-none transition-all font-['Roboto']"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                 />
               </div>
               <div>
-                <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Phone Number</label>
+                <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-2 font-['Plus_Jakarta_Sans']">Phone Number</label>
                 <input
                   type="tel"
                   required
                   placeholder="e.g. +91 98765 43210"
-                  className="w-full px-4 py-3 rounded-xl glass-input text-sm"
+                  className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-855 focus:border-[#B98776] focus:ring-2 focus:ring-[#B98776]/20 outline-none transition-all font-['Roboto']"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                 />
@@ -163,13 +163,13 @@ export default function LeaderTeam() {
                 <button
                   type="button"
                   onClick={() => setShowModal(false)}
-                  className="py-2.5 px-5 rounded-lg border border-white/10 hover:bg-white/5 text-slate-400 hover:text-white font-bold text-xs cursor-pointer"
+                  className="py-2.5 px-5 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-500 hover:text-slate-700 font-bold text-xs cursor-pointer transition-all font-['Plus_Jakarta_Sans']"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="py-2.5 px-5 rounded-lg bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs cursor-pointer shadow-lg shadow-amber-500/25"
+                  className="py-2.5 px-5 rounded-xl bg-[#B98776] hover:bg-[#a17262] text-white font-bold text-xs cursor-pointer shadow-md shadow-[#B98776]/20 transition-all font-['Plus_Jakarta_Sans']"
                 >
                   Invite Member
                 </button>
