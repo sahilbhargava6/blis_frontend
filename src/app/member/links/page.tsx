@@ -1,19 +1,28 @@
 'use client';
 
 import { useState } from 'react';
-import { Share2, Copy, Check, MessageCircle, AlertCircle, Sparkles } from 'lucide-react';
+import { Share2, Copy, Check, MessageCircle, AlertCircle, Sparkles, Plus, Key } from 'lucide-react';
 
 export default function MemberLinks() {
   const [selectedCampaign, setSelectedCampaign] = useState('1');
   const [customParams, setCustomParams] = useState('');
+  const [subid1, setSubid1] = useState('');
+  const [subid2, setSubid2] = useState('');
   const [generatedLink, setGeneratedLink] = useState('http://localhost:8000/api/v1/track/click/amazon_electronics_promo_usr_5');
   const [copied, setCopied] = useState(false);
 
   const handleGenerate = (e: React.FormEvent) => {
     e.preventDefault();
     const mockHash = selectedCampaign === '1' ? 'amazon_promo' : selectedCampaign === '2' ? 'hostinger_hosting' : 'canva_pro';
-    const paramsQuery = customParams ? '?source=' + encodeURIComponent(customParams) : '';
-    setGeneratedLink(`http://localhost:8000/api/v1/track/click/${mockHash}_usr_5${paramsQuery}`);
+    
+    // Build parameters mapping
+    const paramsList: string[] = [];
+    if (customParams) paramsList.push(`source=${encodeURIComponent(customParams)}`);
+    if (subid1) paramsList.push(`sub1=${encodeURIComponent(subid1)}`);
+    if (subid2) paramsList.push(`sub2=${encodeURIComponent(subid2)}`);
+    
+    const queryString = paramsList.length > 0 ? '?' + paramsList.join('&') : '';
+    setGeneratedLink(`http://localhost:8000/api/v1/track/click/${mockHash}_usr_5${queryString}`);
     setCopied(false);
   };
 
@@ -45,14 +54,14 @@ export default function MemberLinks() {
       {/* Header */}
       <div>
         <h1 className="text-2xl font-bold tracking-tight text-slate-800 font-['Plus_Jakarta_Sans']">Affiliate Link Generator</h1>
-        <p className="text-slate-500 mt-1 text-sm font-semibold font-['Roboto']">Customize tracking anchors and share links instantly to your social channels.</p>
+        <p className="text-slate-500 mt-1 text-sm font-semibold font-['Roboto']">Customize tracking anchors, specify custom SubIDs, and share links instantly.</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         
         {/* Link Generator settings Card */}
-        <div className="lg:col-span-2 bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
-          <h3 className="text-sm font-bold text-slate-700 uppercase tracking-wider mb-6 flex items-center gap-2 font-['Plus_Jakarta_Sans']">
+        <div className="lg:col-span-2 bg-white p-6 rounded-2xl border border-slate-100 shadow-sm space-y-4">
+          <h3 className="text-sm font-bold text-slate-700 uppercase tracking-wider flex items-center gap-2 font-['Plus_Jakarta_Sans'] mb-4">
             <Sparkles className="h-4 w-4 text-[#0E76C0]" />
             Generator Tool
           </h3>
@@ -71,7 +80,7 @@ export default function MemberLinks() {
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-650 uppercase tracking-wider mb-2 font-['Plus_Jakarta_Sans']">Custom Channel Tag (Optional)</label>
+              <label className="block text-xs font-bold text-slate-650 uppercase tracking-wider mb-2 font-['Plus_Jakarta_Sans']">Custom Channel Tag / Traffic Source</label>
               <input
                 type="text"
                 placeholder="e.g. instagram_bio, whatsapp_group"
@@ -79,12 +88,39 @@ export default function MemberLinks() {
                 value={customParams}
                 onChange={(e) => setCustomParams(e.target.value)}
               />
-              <p className="text-[10px] text-slate-450 mt-1.5 font-['Roboto']">Appends channel tracking parameters for traffic segmentation.</p>
+            </div>
+
+            {/* SubID parameters section */}
+            <div className="border-t border-slate-100 pt-4 space-y-4">
+              <h4 className="text-xs font-bold text-[#B98776] uppercase tracking-wider font-['Plus_Jakarta_Sans']">Advanced SubID Tracking</h4>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-[11px] font-bold text-slate-600 mb-1.5 font-['Plus_Jakarta_Sans']">Sub ID 1 (e.g. Campaign name)</label>
+                  <input
+                    type="text"
+                    placeholder="e.g. blackfriday_promo"
+                    className="w-full px-3 py-2 rounded-xl bg-slate-50 border border-slate-205 text-xs text-slate-800 focus:border-[#0E76C0] outline-none transition-all font-['Roboto']"
+                    value={subid1}
+                    onChange={(e) => setSubid1(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <label className="block text-[11px] font-bold text-slate-600 mb-1.5 font-['Plus_Jakarta_Sans']">Sub ID 2 (e.g. Ad group name)</label>
+                  <input
+                    type="text"
+                    placeholder="e.g. banner_ad"
+                    className="w-full px-3 py-2 rounded-xl bg-slate-50 border border-slate-205 text-xs text-slate-800 focus:border-[#0E76C0] outline-none transition-all font-['Roboto']"
+                    value={subid2}
+                    onChange={(e) => setSubid2(e.target.value)}
+                  />
+                </div>
+              </div>
+              <p className="text-[10px] text-slate-450 font-['Roboto']">Use SubIDs to parse traffic parameters in postbacks and webhooks.</p>
             </div>
 
             <button
               type="submit"
-              className="w-full py-3 px-4 rounded-xl bg-[#0E76C0] hover:bg-[#0c66a8] text-white font-bold text-sm cursor-pointer shadow-md shadow-[#0E76C0]/20 active:scale-95 transition-all font-['Plus_Jakarta_Sans']"
+              className="w-full py-3.5 px-4 rounded-xl bg-[#0E76C0] hover:bg-[#0c66a8] text-white font-bold text-sm cursor-pointer shadow-md shadow-[#0E76C0]/20 active:scale-95 transition-all font-['Plus_Jakarta_Sans']"
             >
               Generate Unique Link
             </button>
@@ -96,7 +132,7 @@ export default function MemberLinks() {
           <div className="space-y-4">
             <h3 className="text-sm font-bold text-slate-700 uppercase tracking-wider font-['Plus_Jakarta_Sans']">Your Tracking Link</h3>
             
-            <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-100 font-mono text-xs text-[#0E76C0] font-semibold break-all select-all">
+            <div className="p-3.5 rounded-xl bg-slate-55 border border-slate-150 font-mono text-[11px] text-[#0E76C0] font-semibold break-all select-all leading-relaxed">
               {generatedLink}
             </div>
 

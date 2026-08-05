@@ -29,14 +29,14 @@ export default function Login() {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      // Default to member dashboard on verify
-      router.push('/member');
+      // Default to member dashboard on verify, passing new_user parameter to trigger Setup Wizard
+      router.push('/member?new_user=true');
     }, 800);
   };
 
   // Direct Bypass for Developers/Users to test specific dashboards
   const handleQuickBypass = (role: 'admin' | 'leader' | 'member') => {
-    router.push(`/${role}`);
+    router.push(`/${role}?new_user=true`);
   };
 
   return (
