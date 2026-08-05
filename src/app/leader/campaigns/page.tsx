@@ -16,7 +16,6 @@ export default function LeaderCampaigns() {
   const handleDistribute = (campId: number) => {
     setDistributed(prev => ({ ...prev, [campId]: true }));
     setTimeout(() => {
-      // Clear notification after 3 seconds
       setDistributed(prev => ({ ...prev, [campId]: false }));
     }, 3000);
   };
@@ -29,8 +28,8 @@ export default function LeaderCampaigns() {
     <div className="space-y-8">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-extrabold tracking-tight text-white">Group Campaigns</h1>
-        <p className="text-slate-400 mt-1 text-sm">Browse campaigns, view details, and instantly distribute tracking codes to your team.</p>
+        <h1 className="text-2xl font-bold tracking-tight text-slate-800 font-['Plus_Jakarta_Sans']">Group Campaigns</h1>
+        <p className="text-slate-400 mt-1 text-sm font-['Roboto']">Browse campaigns, view details, and instantly distribute tracking codes to your team.</p>
       </div>
 
       {/* Campaigns Accordion List */}
@@ -40,19 +39,19 @@ export default function LeaderCampaigns() {
           const isCampDistributed = distributed[camp.id];
 
           return (
-            <div key={camp.id} className="glass-panel rounded-2xl overflow-hidden transition-all duration-300">
+            <div key={camp.id} className="bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm transition-all duration-300">
               {/* Head Accordion click bar */}
               <div
                 onClick={() => toggleAccordion(camp.id)}
-                className="p-6 flex items-center justify-between cursor-pointer hover:bg-white/2 select-none"
+                className="p-6 flex items-center justify-between cursor-pointer hover:bg-slate-50/50 select-none transition-colors"
               >
                 <div className="flex items-center gap-3">
-                  <div className="p-2.5 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20">
+                  <div className="p-2.5 rounded-xl bg-[#B98776]/10 text-[#B98776] border border-[#B98776]/20">
                     <Megaphone className="h-5 w-5" />
                   </div>
                   <div>
-                    <h3 className="text-sm font-bold text-white uppercase tracking-wider">{camp.title}</h3>
-                    <p className="text-xs text-slate-500 mt-1">{camp.type}</p>
+                    <h3 className="text-sm font-bold text-slate-800 uppercase tracking-wider font-['Plus_Jakarta_Sans']">{camp.title}</h3>
+                    <p className="text-xs text-slate-400 mt-1 font-['Roboto']">{camp.type}</p>
                   </div>
                 </div>
                 <div>
@@ -61,13 +60,17 @@ export default function LeaderCampaigns() {
               </div>
 
               {/* Accordion Content */}
-              {isOpen && (
-                <div className="px-6 pb-6 pt-2 border-t border-white/5 bg-slate-900/20 space-y-4 animate-fadeIn">
-                  <p className="text-xs text-slate-400 leading-relaxed max-w-2xl">
+              <div 
+                className={`overflow-hidden transition-all duration-500 ease-in-out ${
+                  isOpen ? 'max-h-[300px] border-t border-slate-100 bg-slate-50/30' : 'max-h-0'
+                }`}
+              >
+                <div className="p-6 space-y-4">
+                  <p className="text-xs text-slate-500 leading-relaxed max-w-2xl font-['Roboto']">
                     {camp.description}
                   </p>
-                  <div className="flex justify-between items-center pt-2">
-                    <span className="text-[10px] text-slate-500 uppercase tracking-wider font-bold">
+                  <div className="flex justify-between items-center pt-2 flex-wrap gap-3">
+                    <span className="text-[10px] text-slate-400 uppercase tracking-wider font-bold font-['Plus_Jakarta_Sans']">
                       Payout ratio: 70% Member | 20% Leader
                     </span>
                     <button
@@ -75,10 +78,10 @@ export default function LeaderCampaigns() {
                         e.stopPropagation();
                         handleDistribute(camp.id);
                       }}
-                      className={`flex items-center gap-2 py-2 px-4 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                      className={`flex items-center gap-2 py-2 px-4 rounded-xl text-xs font-bold transition-all cursor-pointer font-['Plus_Jakarta_Sans'] ${
                         isCampDistributed 
-                          ? 'bg-emerald-500/15 border border-emerald-500/20 text-emerald-400' 
-                          : 'bg-amber-500 hover:bg-amber-600 text-white shadow-lg shadow-amber-500/20 active:scale-95'
+                          ? 'bg-green-50 border border-green-200 text-green-600' 
+                          : 'bg-[#B98776] hover:bg-[#a17262] text-white shadow-md shadow-[#B98776]/20 active:scale-95'
                       }`}
                     >
                       {isCampDistributed ? (
@@ -95,7 +98,7 @@ export default function LeaderCampaigns() {
                     </button>
                   </div>
                 </div>
-              )}
+              </div>
             </div>
           );
         })}

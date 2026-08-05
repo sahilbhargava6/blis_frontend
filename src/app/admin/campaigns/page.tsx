@@ -35,14 +35,14 @@ export default function AdminCampaigns() {
   return (
     <div className="space-y-8">
       {/* Page Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between flex-wrap gap-4">
         <div>
-          <h1 className="text-3xl font-extrabold tracking-tight text-white">Campaign Manager</h1>
-          <p className="text-slate-400 mt-1 text-sm">Create offers, distribute master links, and adjust payouts.</p>
+          <h1 className="text-2xl font-bold tracking-tight text-slate-800 font-['Plus_Jakarta_Sans']">Campaign Manager</h1>
+          <p className="text-slate-400 mt-1 text-sm font-['Roboto']">Create offers, distribute master links, and adjust payouts.</p>
         </div>
         <button
           onClick={() => setShowModal(true)}
-          className="flex items-center gap-2 py-3 px-5 rounded-xl bg-emerald-500 hover:bg-emerald-600 active:scale-95 text-white font-bold text-sm cursor-pointer shadow-lg shadow-emerald-500/25 transition-all"
+          className="flex items-center gap-2 py-3 px-5 rounded-xl bg-[#0E76C0] hover:bg-[#0c66a8] active:scale-95 text-white font-bold text-sm cursor-pointer shadow-md shadow-[#0E76C0]/20 transition-all font-['Plus_Jakarta_Sans']"
         >
           <Plus className="h-4 w-4" />
           Create Campaign
@@ -50,16 +50,16 @@ export default function AdminCampaigns() {
       </div>
 
       {/* Commission Split Controller */}
-      <div className="glass-panel p-6 rounded-2xl">
-        <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider mb-6 flex items-center gap-2">
-          <Sliders className="h-4 w-4 text-emerald-400" />
+      <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+        <h3 className="text-sm font-bold text-slate-700 uppercase tracking-wider mb-6 flex items-center gap-2 font-['Plus_Jakarta_Sans']">
+          <Sliders className="h-4 w-4 text-[#0E76C0]" />
           Global Commission Splits
         </h3>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div>
             <div className="flex justify-between text-sm font-bold mb-2">
-              <span className="text-slate-300">Promoter Member</span>
-              <span className="text-emerald-400">{memberSplit}%</span>
+              <span className="text-slate-600 font-['Plus_Jakarta_Sans']">Promoter Member</span>
+              <span className="text-[#0E76C0]">{memberSplit}%</span>
             </div>
             <input
               type="range"
@@ -67,15 +67,15 @@ export default function AdminCampaigns() {
               max="100"
               value={memberSplit}
               onChange={(e) => handleSplitChange(parseInt(e.target.value), 'member')}
-              className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-emerald-500"
+              className="w-full h-2 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-[#0E76C0]"
             />
-            <p className="text-[10px] text-slate-500 mt-1.5">Direct commission paid to member driving click.</p>
+            <p className="text-[10px] text-slate-400 mt-1.5 font-['Roboto']">Direct commission paid to member driving click.</p>
           </div>
 
           <div>
             <div className="flex justify-between text-sm font-bold mb-2">
-              <span className="text-slate-300">Group Leader</span>
-              <span className="text-amber-400">{leaderSplit}%</span>
+              <span className="text-slate-600 font-['Plus_Jakarta_Sans']">Group Leader</span>
+              <span className="text-[#B98776]">{leaderSplit}%</span>
             </div>
             <input
               type="range"
@@ -83,61 +83,61 @@ export default function AdminCampaigns() {
               max="100"
               value={leaderSplit}
               onChange={(e) => handleSplitChange(parseInt(e.target.value), 'leader')}
-              className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-500"
+              className="w-full h-2 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-[#B98776]"
             />
-            <p className="text-[10px] text-slate-500 mt-1.5">Override commission awarded to group leader.</p>
+            <p className="text-[10px] text-slate-400 mt-1.5 font-['Roboto']">Override commission awarded to group leader.</p>
           </div>
 
-          <div className="flex flex-col justify-center p-4 rounded-xl bg-slate-900/60 border border-white/5">
-            <div className="flex items-center justify-between text-sm font-bold text-slate-300">
-              <span className="flex items-center gap-1.5">
-                <Percent className="h-4 w-4 text-purple-400" />
+          <div className="flex flex-col justify-center p-4 rounded-xl bg-slate-50 border border-slate-100">
+            <div className="flex items-center justify-between text-sm font-bold text-slate-600">
+              <span className="flex items-center gap-1.5 font-['Plus_Jakarta_Sans']">
+                <Percent className="h-4 w-4 text-[#F047AB]" />
                 Platform Share
               </span>
-              <span className="text-purple-400">{platformSplit}%</span>
+              <span className="text-[#F047AB]">{platformSplit}%</span>
             </div>
-            <p className="text-[10px] text-slate-500 mt-1.5">Platform operations and network margin fee.</p>
+            <p className="text-[10px] text-slate-400 mt-1.5 font-['Roboto']">Platform operations and network margin fee.</p>
           </div>
         </div>
       </div>
 
       {/* Campaigns Table */}
-      <div className="glass-panel rounded-2xl overflow-hidden">
-        <div className="p-6 border-b border-white/5">
-          <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider">Active Campaigns</h3>
+      <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
+        <div className="p-6 border-b border-slate-100">
+          <h3 className="text-sm font-bold text-slate-700 uppercase tracking-wider font-['Plus_Jakarta_Sans']">Active Campaigns</h3>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full border-collapse text-left">
             <thead>
-              <tr className="border-b border-white/5 text-[10px] uppercase tracking-wider text-slate-500 font-bold bg-white/2">
-                <th className="py-4 px-6">Campaign Info</th>
-                <th className="py-4 px-6">Conversion Type</th>
-                <th className="py-4 px-6">Master Link</th>
-                <th className="py-4 px-6">Status</th>
-                <th className="py-4 px-6 text-right">Action</th>
+              <tr className="border-b border-slate-100 text-[10px] uppercase tracking-wider text-slate-400 font-bold bg-slate-50/50">
+                <th className="py-4 px-6 font-['Plus_Jakarta_Sans']">Campaign Info</th>
+                <th className="py-4 px-6 font-['Plus_Jakarta_Sans']">Conversion Type</th>
+                <th className="py-4 px-6 font-['Plus_Jakarta_Sans']">Master Link</th>
+                <th className="py-4 px-6 font-['Plus_Jakarta_Sans']">Status</th>
+                <th className="py-4 px-6 text-right font-['Plus_Jakarta_Sans']">Action</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-white/5 text-sm">
+            <tbody className="divide-y divide-slate-100 text-sm">
               {campaigns.map((camp) => (
-                <tr key={camp.id} className="hover:bg-white/2 transition">
-                  <td className="py-4 px-6 font-bold text-white flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/10">
+                <tr key={camp.id} className="hover:bg-slate-50/50 transition">
+                  <td className="py-4 px-6 font-bold text-slate-700 flex items-center gap-3 font-['Plus_Jakarta_Sans']">
+                    <div className="p-2 rounded-lg bg-[#0E76C0]/10 text-[#0E76C0] border border-[#0E76C0]/10">
                       <Megaphone className="h-4 w-4" />
                     </div>
                     {camp.title}
                   </td>
-                  <td className="py-4 px-6 text-slate-400 font-semibold">{camp.type}</td>
+                  <td className="py-4 px-6 text-slate-500 font-semibold font-['Roboto']">{camp.type}</td>
                   <td className="py-4 px-6 text-slate-400 font-mono text-xs max-w-[200px] truncate">
                     {camp.link}
                   </td>
                   <td className="py-4 px-6">
-                    <span className={`px-2.5 py-0.5 rounded-full text-xs font-bold ${
-                      camp.status === 'Active' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-slate-800 text-slate-500'
+                    <span className={`px-2.5 py-1 rounded-full text-xs font-bold font-['Plus_Jakarta_Sans'] ${
+                      camp.status === 'Active' ? 'bg-green-50 text-green-600 border border-green-100' : 'bg-slate-100 text-slate-400'
                     }`}>
                       {camp.status}
                     </span>
                   </td>
-                  <td className="py-4 px-6 text-right font-bold text-emerald-400 hover:text-emerald-300 transition cursor-pointer">
+                  <td className="py-4 px-6 text-right font-bold text-[#0E76C0] hover:text-[#F047AB] transition cursor-pointer font-['Plus_Jakarta_Sans']">
                     Edit
                   </td>
                 </tr>
@@ -149,35 +149,35 @@ export default function AdminCampaigns() {
 
       {/* Creation Modal */}
       {showModal && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="w-full max-w-lg glass-panel rounded-2xl p-8 relative">
-            <h3 className="text-xl font-black text-white mb-6">Create New Campaign</h3>
+        <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="w-full max-w-lg bg-white rounded-2xl p-8 relative shadow-2xl border border-slate-100">
+            <h3 className="text-xl font-extrabold text-slate-800 mb-6 font-['Plus_Jakarta_Sans']">Create New Campaign</h3>
             <form onSubmit={(e) => { e.preventDefault(); setShowModal(false); }} className="space-y-4">
               <div>
-                <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Campaign Title</label>
-                <input type="text" placeholder="e.g. Hostinger Web Hosting" className="w-full px-4 py-3 rounded-xl glass-input text-sm" required />
+                <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-2 font-['Plus_Jakarta_Sans']">Campaign Title</label>
+                <input type="text" placeholder="e.g. Hostinger Web Hosting" className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-800 focus:border-[#0E76C0] focus:ring-2 focus:ring-[#0E76C0]/20 outline-none transition-all font-['Roboto']" required />
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Commission Type</label>
-                  <select className="w-full px-4 py-3 rounded-xl glass-input text-sm">
+                  <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-2 font-['Plus_Jakarta_Sans']">Commission Type</label>
+                  <select className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-800 focus:border-[#0E76C0] outline-none transition-all font-['Roboto']">
                     <option>CPA (Cost Per Acquisition)</option>
                     <option>CPS (Cost Per Sale)</option>
                     <option>Revenue Share</option>
                   </select>
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Total Payout Amount</label>
-                  <input type="number" placeholder="50.00" className="w-full px-4 py-3 rounded-xl glass-input text-sm" required />
+                  <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-2 font-['Plus_Jakarta_Sans']">Total Payout Amount</label>
+                  <input type="number" placeholder="50.00" className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-800 focus:border-[#0E76C0] outline-none transition-all font-['Roboto']" required />
                 </div>
               </div>
               <div>
-                <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Master Affiliate Link</label>
+                <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-2 font-['Plus_Jakarta_Sans']">Master Affiliate Link</label>
                 <div className="relative">
                   <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
                     <LinkIcon className="h-4 w-4" />
                   </span>
-                  <input type="url" placeholder="https://brand.com/affiliate-code" className="w-full pl-10 pr-4 py-3 rounded-xl glass-input text-sm" required />
+                  <input type="url" placeholder="https://brand.com/affiliate-code" className="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-800 focus:border-[#0E76C0] outline-none transition-all font-['Roboto']" required />
                 </div>
               </div>
 
@@ -185,13 +185,13 @@ export default function AdminCampaigns() {
                 <button
                   type="button"
                   onClick={() => setShowModal(false)}
-                  className="py-2.5 px-5 rounded-lg border border-white/10 hover:bg-white/5 text-slate-400 hover:text-white font-bold text-xs cursor-pointer"
+                  className="py-2.5 px-5 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-500 hover:text-slate-700 font-bold text-xs cursor-pointer transition-all font-['Plus_Jakarta_Sans']"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="py-2.5 px-5 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs cursor-pointer shadow-lg shadow-emerald-500/25"
+                  className="py-2.5 px-5 rounded-xl bg-[#0E76C0] hover:bg-[#0c66a8] text-white font-bold text-xs cursor-pointer shadow-md shadow-[#0E76C0]/20 transition-all font-['Plus_Jakarta_Sans']"
                 >
                   Create
                 </button>
