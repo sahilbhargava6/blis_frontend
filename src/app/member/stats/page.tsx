@@ -7,9 +7,9 @@ export default function MemberStats() {
   const [requestSent, setRequestSent] = useState(false);
 
   const transactions = [
-    { id: 101, campaign: 'Amazon Electronics Promo', type: 'CPS Split', amount: '$14.00', status: 'Pending Hold', date: 'Today, 02:44 PM' },
-    { id: 102, campaign: 'Hostinger Cloud Web Hosting', type: 'CPA Split', amount: '$35.00', status: 'Approved', date: 'Yesterday, 11:15 AM' },
-    { id: 103, campaign: 'Canva Pro Annual Subscriptions', type: 'RevShare Split', amount: '$21.00', status: 'Rejected', date: 'Aug 02, 09:12 AM' },
+    { id: 101, campaign: 'Amazon Electronics Promo', type: 'CPS Split', amount: '₹14.05', status: 'Pending Hold', date: 'Today, 02:44 PM' },
+    { id: 102, campaign: 'Hostinger Cloud Web Hosting', type: 'CPA Split', amount: '₹35.00', status: 'Approved', date: 'Yesterday, 11:15 AM' },
+    { id: 103, campaign: 'Canva Pro Annual Subscriptions', type: 'RevShare Split', amount: '₹21.00', status: 'Rejected', date: 'Aug 02, 09:12 AM' },
   ];
 
   const handleWithdrawal = () => {
@@ -30,7 +30,7 @@ export default function MemberStats() {
         <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex flex-col justify-between min-h-[140px] hover:shadow-md transition-all duration-300">
           <div>
             <p className="text-[11px] font-bold text-slate-500 uppercase tracking-wider font-['Plus_Jakarta_Sans']">Available Balance</p>
-            <h3 className="text-3xl font-extrabold text-green-600 mt-2 font-['Plus_Jakarta_Sans']">$420.00</h3>
+            <h3 className="text-3xl font-extrabold text-green-600 mt-2 font-['Plus_Jakarta_Sans']">₹420.00</h3>
           </div>
           <button
             onClick={handleWithdrawal}
@@ -45,7 +45,7 @@ export default function MemberStats() {
         <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm min-h-[140px] flex flex-col justify-between hover:shadow-md transition-all duration-300">
           <div>
             <p className="text-[11px] font-bold text-slate-500 uppercase tracking-wider font-['Plus_Jakarta_Sans']">Staging Held Escrow</p>
-            <h3 className="text-3xl font-extrabold text-[#B98776] mt-2 font-['Plus_Jakarta_Sans']">$210.00</h3>
+            <h3 className="text-3xl font-extrabold text-[#B98776] mt-2 font-['Plus_Jakarta_Sans']">₹210.00</h3>
           </div>
           <p className="text-[10px] text-slate-500 font-semibold font-['Roboto'] mt-2">Held for fraud prevention checks.</p>
         </div>
@@ -53,7 +53,7 @@ export default function MemberStats() {
         <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm min-h-[140px] flex flex-col justify-between hover:shadow-md transition-all duration-300">
           <div>
             <p className="text-[11px] font-bold text-slate-500 uppercase tracking-wider font-['Plus_Jakarta_Sans']">Lifetime Earnings</p>
-            <h3 className="text-3xl font-extrabold text-[#0E76C0] mt-2 font-['Plus_Jakarta_Sans']">$1,890.00</h3>
+            <h3 className="text-3xl font-extrabold text-[#0E76C0] mt-2 font-['Plus_Jakarta_Sans']">₹1,890.00</h3>
           </div>
           <p className="text-[10px] text-slate-500 font-semibold font-['Roboto'] mt-2">Cumulative payouts released.</p>
         </div>

@@ -4,16 +4,16 @@ import { Award, TrendingUp, CreditCard, ChevronRight } from 'lucide-react';
 
 export default function LeaderAnalytics() {
   const leaderboard = [
-    { rank: 1, name: 'Divya Nair', conversions: 50, revenue: '$1,750.00', leaderCut: '$350.00' },
-    { rank: 2, name: 'Aravind K.', conversions: 24, revenue: '$840.00', leaderCut: '$168.00' },
-    { rank: 3, name: 'Ananya Sen', conversions: 18, revenue: '$630.00', leaderCut: '$126.00' },
-    { rank: 4, name: 'Gaurav Das', conversions: 6, revenue: '$210.00', leaderCut: '$42.00' },
+    { rank: 1, name: 'Divya Nair', conversions: 50, revenue: '₹1,750.00', leaderCut: '₹350.00' },
+    { rank: 2, name: 'Aravind K.', conversions: 24, revenue: '₹840.00', leaderCut: '₹168.00' },
+    { rank: 3, name: 'Ananya Sen', conversions: 18, revenue: '₹630.00', leaderCut: '₹126.00' },
+    { rank: 4, name: 'Gaurav Das', conversions: 6, revenue: '₹210.00', leaderCut: '₹42.00' },
   ];
 
   const recentTransactions = [
-    { date: 'Today, 02:44 PM', member: 'Divya Nair', amt: '$70.00', cut: '$14.00', type: 'Amazon Electronics CPS' },
-    { date: 'Yesterday, 11:15 AM', member: 'Aravind K.', amt: '$100.00', cut: '$20.00', type: 'Hostinger Hosting CPA' },
-    { date: 'Aug 03, 08:30 PM', member: 'Ananya Sen', amt: '$50.00', cut: '$10.00', type: 'Hostinger Hosting CPA' },
+    { date: 'Today, 02:44 PM', member: 'Divya Nair', amt: '₹70.00', cut: '₹14.00', type: 'Amazon Electronics CPS' },
+    { date: 'Yesterday, 11:15 AM', member: 'Aravind K.', amt: '₹100.00', cut: '₹20.00', type: 'Hostinger Hosting CPA' },
+    { date: 'Aug 03, 08:30 PM', member: 'Ananya Sen', amt: '₹50.00', cut: '₹10.00', type: 'Hostinger Hosting CPA' },
   ];
 
   return (

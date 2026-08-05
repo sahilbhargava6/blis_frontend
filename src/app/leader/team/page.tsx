@@ -37,7 +37,7 @@ export default function LeaderTeam() {
         phone,
         clicks: 0,
         conversions: 0,
-        balance: '$0.00',
+        balance: '₹0.00',
       }
     ]);
     setName('');

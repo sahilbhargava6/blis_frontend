@@ -9,7 +9,7 @@ export default function LeaderCampaigns() {
 
   const campaigns = [
     { id: 1, title: 'Amazon Electronics Promo', type: 'CPS (10%)', description: 'Promote top electronics products on Amazon. Direct cookies valid for 24 hours. Split is: 70% Member, 20% Leader, 10% Platform.' },
-    { id: 2, title: 'Hostinger Cloud Web Hosting', type: 'CPA ($50.00)', description: 'Earn high commissions for each annual cloud web hosting subscription driven. Cookies valid for 30 days. Real-time conversion tracking.' },
+    { id: 2, title: 'Hostinger Cloud Web Hosting', type: 'CPA (₹4,200.00)', description: 'Earn high commissions for each annual cloud web hosting subscription driven. Cookies valid for 30 days. Real-time conversion tracking.' },
     { id: 3, title: 'Canva Pro Annual Subscriptions', type: 'Revenue Share (30%)', description: 'Awarded to users registering for Canva Pro subscriptions. Recurring split calculated monthly.' },
   ];
 
