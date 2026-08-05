@@ -88,17 +88,46 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white text-slate-900 overflow-x-hidden">
 
-      {/* 1. Header Navigation (100px height with pink shadow bg) */}
-      <header className="h-[100px] figma-pink-bg figma-shadow flex items-center justify-between px-6 md:px-12 max-w-[1800px] mx-auto">
-        <div className="text-4xl font-bold tracking-wider text-black font-['Plus_Jakarta_Sans']">
-          BLIS
+      {/* 1. Elegant Header Navigation */}
+      <header className="sticky top-0 bg-white/80 backdrop-blur-md border-b border-slate-100 z-50 transition-all duration-300">
+        <div className="max-w-[1800px] mx-auto h-20 px-6 md:px-12 flex items-center justify-between">
+          {/* Logo */}
+          <div className="text-3xl font-extrabold tracking-wider font-['Plus_Jakarta_Sans'] bg-gradient-to-r from-[#F047AB] to-[#0E76C0] bg-clip-text text-transparent cursor-pointer">
+            BLIS
+          </div>
+
+          {/* Nav Options */}
+          <nav className="hidden md:flex items-center gap-8 font-['Plus_Jakarta_Sans']">
+            <Link href="/" className="text-sm font-bold text-slate-800 hover:text-[#0E76C0] transition-colors">
+              Home
+            </Link>
+            <a href="#about" className="text-sm font-bold text-slate-600 hover:text-[#0E76C0] transition-colors">
+              About Us
+            </a>
+            <a href="#contact" className="text-sm font-bold text-slate-600 hover:text-[#0E76C0] transition-colors">
+              Contact
+            </a>
+            <a href="#campaigns" className="text-sm font-bold text-slate-600 hover:text-[#0E76C0] transition-colors">
+              Campaigns
+            </a>
+          </nav>
+
+          {/* CTA */}
+          <div className="flex items-center gap-4">
+            <Link
+              href="/login"
+              className="text-xs md:text-sm font-bold text-[#0E76C0] hover:text-[#0c66a8] transition-all font-['Plus_Jakarta_Sans'] hover:underline"
+            >
+              Affiliate Portal
+            </Link>
+            <Link
+              href="/login"
+              className="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-[#0E76C0] hover:bg-[#0c66a8] text-white text-xs font-bold font-['Plus_Jakarta_Sans'] transition-all shadow-sm shadow-[#0E76C0]/20"
+            >
+              Get Started
+            </Link>
+          </div>
         </div>
-        <Link
-          href="/login"
-          className="text-xs md:text-sm font-bold text-slate-700 hover:text-black hover:underline transition-all font-['Plus_Jakarta_Sans']"
-        >
-          Already an Affiliate? <span className="font-extrabold text-[#0E76C0]">Access the Affiliate Portal</span>
-        </Link>
       </header>
 
       {/* 2. Hero Section (Wider container format - 1800px width limit, reduced padding) */}
