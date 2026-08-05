@@ -40,26 +40,26 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4">
-      {/* Glow effects */}
-      <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-emerald-500/10 rounded-full blur-3xl -z-10 animate-pulse"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-amber-500/5 rounded-full blur-3xl -z-10"></div>
+    <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-white relative overflow-hidden">
+      {/* Subtle background accents */}
+      <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-[#F047AB]/10 rounded-full blur-3xl -z-10"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-[#0E76C0]/8 rounded-full blur-3xl -z-10"></div>
 
-      <div className="w-full max-w-md glass-panel rounded-2xl p-8 transition-all duration-300 hover:shadow-emerald-500/5 hover:shadow-2xl">
+      <div className="w-full max-w-md bg-white rounded-[30px] p-8 transition-all duration-300 shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-slate-100 hover:shadow-[0_12px_48px_rgba(240,71,171,0.1)]">
         
         {/* Header */}
         <div className="text-center mb-8">
-          <div className="inline-flex p-3 rounded-full bg-emerald-500/10 text-emerald-400 mb-3 border border-emerald-500/20">
+          <div className="inline-flex p-3 rounded-full bg-[#F047AB]/10 text-[#F047AB] mb-3 border border-[#F047AB]/20">
             <Sparkles className="h-6 w-6" />
           </div>
-          <h1 className="text-3xl font-extrabold tracking-tight text-white">BLIS</h1>
-          <p className="text-sm text-slate-400 mt-2">
+          <h1 className="text-3xl font-extrabold tracking-tight text-black font-['Plus_Jakarta_Sans']">BLIS</h1>
+          <p className="text-sm text-slate-500 mt-2 font-['Roboto']">
             Multi-Tier Affiliate & O2O Platform
           </p>
         </div>
 
         {message && (
-          <div className="mb-6 p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-xs text-center">
+          <div className="mb-6 p-3 rounded-xl bg-[#0E76C0]/10 border border-[#0E76C0]/20 text-[#0E76C0] text-xs text-center font-medium">
             {message}
           </div>
         )}
@@ -68,7 +68,7 @@ export default function Login() {
         {step === 1 && (
           <form onSubmit={handleSendOtp} className="space-y-5">
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
+              <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2 font-['Plus_Jakarta_Sans']">
                 Phone Number
               </label>
               <div className="relative">
@@ -79,7 +79,7 @@ export default function Login() {
                   type="tel"
                   required
                   placeholder="e.g. +91 98765 43210"
-                  className="w-full pl-10 pr-4 py-3 rounded-xl glass-input text-sm"
+                  className="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-black text-sm font-['Roboto'] focus:border-[#F047AB] focus:ring-2 focus:ring-[#F047AB]/20 outline-none transition-all"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                 />
@@ -89,7 +89,7 @@ export default function Login() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-600 active:scale-95 transition-all text-white font-bold text-sm flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-emerald-500/20"
+              className="w-full py-3 px-4 rounded-xl bg-[#0E76C0] hover:bg-[#0c66a8] active:scale-95 transition-all text-white font-bold text-sm flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-[#0E76C0]/20 font-['Plus_Jakarta_Sans']"
             >
               {loading ? 'Sending...' : 'Send OTP via WhatsApp'}
               <ArrowRight className="h-4 w-4" />
@@ -101,7 +101,7 @@ export default function Login() {
         {step === 2 && (
           <form onSubmit={handleVerifyOtp} className="space-y-5">
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
+              <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2 font-['Plus_Jakarta_Sans']">
                 6-Digit Code
               </label>
               <div className="relative">
@@ -113,7 +113,7 @@ export default function Login() {
                   required
                   maxLength={6}
                   placeholder="Enter 6-digit OTP"
-                  className="w-full pl-10 pr-4 py-3 rounded-xl glass-input text-sm tracking-widest text-center font-bold"
+                  className="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-black text-sm tracking-widest text-center font-bold font-['Roboto'] focus:border-[#F047AB] focus:ring-2 focus:ring-[#F047AB]/20 outline-none transition-all"
                   value={otp}
                   onChange={(e) => setOtp(e.target.value)}
                 />
@@ -124,14 +124,14 @@ export default function Login() {
               <button
                 type="button"
                 onClick={() => setStep(1)}
-                className="text-slate-400 hover:text-white transition"
+                className="text-slate-500 hover:text-black transition font-['Roboto']"
               >
                 Change Phone
               </button>
               <button
                 type="button"
                 onClick={handleSendOtp}
-                className="text-emerald-400 hover:text-emerald-300 font-semibold transition"
+                className="text-[#F047AB] hover:text-[#d83d96] font-semibold transition font-['Roboto']"
               >
                 Resend Code
               </button>
@@ -140,7 +140,7 @@ export default function Login() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-600 active:scale-95 transition-all text-white font-bold text-sm flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-emerald-500/20"
+              className="w-full py-3 px-4 rounded-xl bg-[#0E76C0] hover:bg-[#0c66a8] active:scale-95 transition-all text-white font-bold text-sm flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-[#0E76C0]/20 font-['Plus_Jakarta_Sans']"
             >
               {loading ? 'Verifying...' : 'Verify OTP'}
               <Shield className="h-4 w-4" />
@@ -149,27 +149,27 @@ export default function Login() {
         )}
 
         {/* Dev Bypass Section */}
-        <div className="mt-8 pt-6 border-t border-white/5">
-          <p className="text-center text-xs font-medium text-slate-500 mb-4 flex items-center justify-center gap-1.5">
-            <Zap className="h-3.5 w-3.5 text-amber-500" />
+        <div className="mt-8 pt-6 border-t border-slate-100">
+          <p className="text-center text-xs font-medium text-slate-400 mb-4 flex items-center justify-center gap-1.5 font-['Roboto']">
+            <Zap className="h-3.5 w-3.5 text-[#B98776]" />
             Quick Access Testing Panel
           </p>
           <div className="grid grid-cols-3 gap-2">
             <button
               onClick={() => handleQuickBypass('admin')}
-              className="py-2.5 px-2 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 border border-white/5 hover:border-emerald-500/20 text-[11px] font-bold text-slate-300 transition text-center cursor-pointer"
+              className="py-2.5 px-2 rounded-xl bg-slate-50 hover:bg-[#F047AB]/10 border border-slate-200 hover:border-[#F047AB]/30 text-[11px] font-bold text-slate-600 hover:text-[#F047AB] transition-all text-center cursor-pointer font-['Plus_Jakarta_Sans']"
             >
               Admin
             </button>
             <button
               onClick={() => handleQuickBypass('leader')}
-              className="py-2.5 px-2 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 border border-white/5 hover:border-amber-500/20 text-[11px] font-bold text-slate-300 transition text-center cursor-pointer"
+              className="py-2.5 px-2 rounded-xl bg-slate-50 hover:bg-[#B98776]/10 border border-slate-200 hover:border-[#B98776]/30 text-[11px] font-bold text-slate-600 hover:text-[#B98776] transition-all text-center cursor-pointer font-['Plus_Jakarta_Sans']"
             >
               Leader
             </button>
             <button
               onClick={() => handleQuickBypass('member')}
-              className="py-2.5 px-2 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 border border-white/5 hover:border-sky-500/20 text-[11px] font-bold text-slate-300 transition text-center cursor-pointer"
+              className="py-2.5 px-2 rounded-xl bg-slate-50 hover:bg-[#0E76C0]/10 border border-slate-200 hover:border-[#0E76C0]/30 text-[11px] font-bold text-slate-600 hover:text-[#0E76C0] transition-all text-center cursor-pointer font-['Plus_Jakarta_Sans']"
             >
               Member
             </button>
