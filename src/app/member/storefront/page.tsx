@@ -84,7 +84,7 @@ export default function MemberStorefront() {
                 Live URL Preview
               </span>
               <p className="text-xs font-mono text-[#0E76C0] break-all select-all font-semibold">
-                http://blis.platform/store/{slugPreview}
+                https://blisfrontend.vercel.app/store/{slugPreview}
               </p>
             </div>
           </form>

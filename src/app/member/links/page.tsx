@@ -8,7 +8,7 @@ export default function MemberLinks() {
   const [customParams, setCustomParams] = useState('');
   const [subid1, setSubid1] = useState('');
   const [subid2, setSubid2] = useState('');
-  const [generatedLink, setGeneratedLink] = useState('http://localhost:8000/api/v1/track/click/amazon_electronics_promo_usr_5');
+  const [generatedLink, setGeneratedLink] = useState('https://blisplatform.com/api/v1/track/click/amazon_electronics_promo_usr_5');
   const [copied, setCopied] = useState(false);
 
   const handleGenerate = (e: React.FormEvent) => {
@@ -22,7 +22,7 @@ export default function MemberLinks() {
     if (subid2) paramsList.push(`sub2=${encodeURIComponent(subid2)}`);
     
     const queryString = paramsList.length > 0 ? '?' + paramsList.join('&') : '';
-    setGeneratedLink(`http://localhost:8000/api/v1/track/click/${mockHash}_usr_5${queryString}`);
+    setGeneratedLink(`https://blisplatform.com/api/v1/track/click/${mockHash}_usr_5${queryString}`);
     setCopied(false);
   };
 
