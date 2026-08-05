@@ -19,7 +19,7 @@ export default function LeaderOverview() {
       <div className="flex items-center justify-between flex-wrap gap-4">
         <div>
           <h1 className="text-2xl font-bold tracking-tight text-slate-800 font-['Plus_Jakarta_Sans']">Team Dashboard</h1>
-          <p className="text-slate-400 mt-1 text-sm font-['Roboto']">Monitor promoter activities, commission splits, and group capacity limits.</p>
+          <p className="text-slate-500 mt-1 text-sm font-semibold font-['Roboto']">Monitor promoter activities, commission splits, and group capacity limits.</p>
         </div>
         <button
           onClick={() => setShowAdvanced(!showAdvanced)}
@@ -35,7 +35,7 @@ export default function LeaderOverview() {
           <div key={stat.name} className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
             <div className="flex items-start justify-between">
               <div>
-                <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider font-['Plus_Jakarta_Sans']">{stat.name}</p>
+                <p className="text-[11px] font-bold text-slate-500 uppercase tracking-wider font-['Plus_Jakarta_Sans']">{stat.name}</p>
                 <h3 className="text-3xl font-extrabold text-slate-800 mt-2 font-['Plus_Jakarta_Sans']">{stat.value}</h3>
               </div>
               <div className={`p-2.5 rounded-xl ${stat.bg} ${stat.color} border ${stat.border}`}>
@@ -47,7 +47,7 @@ export default function LeaderOverview() {
                 <div className="w-full bg-slate-100 rounded-full h-1.5">
                   <div className="bg-[#B98776] h-1.5 rounded-full transition-all duration-1000" style={{ width: `${stat.progress}%` }}></div>
                 </div>
-                <span className="text-[10px] text-slate-400 font-semibold mt-1.5 block font-['Roboto']">90% group capacity limit reached</span>
+                <span className="text-[10px] text-slate-500 font-bold mt-1.5 block font-['Roboto']">90% group capacity limit reached</span>
               </div>
             ) : (
               <div className="flex items-center gap-1.5 mt-4">
@@ -55,9 +55,9 @@ export default function LeaderOverview() {
                   <span className="text-xs font-bold text-[#B98776] bg-[#B98776]/10 px-2 py-0.5 rounded-md font-['Plus_Jakarta_Sans']">{stat.change}</span>
                 ) : (
                   <>
-                    <ArrowUpRight className="h-3 w-3 text-green-500" />
-                    <span className="text-xs font-bold text-green-500">{stat.change}</span>
-                    <span className="text-[10px] text-slate-400 font-medium font-['Roboto']">this month</span>
+                    <ArrowUpRight className="h-3 w-3 text-green-600" />
+                    <span className="text-xs font-bold text-green-600">{stat.change}</span>
+                    <span className="text-[10px] text-slate-500 font-semibold font-['Roboto']">this month</span>
                   </>
                 )}
               </div>
@@ -82,7 +82,7 @@ export default function LeaderOverview() {
                     className="w-full rounded-t bg-gradient-to-t from-[#B98776]/20 to-[#B98776] group-hover:from-[#F047AB]/20 group-hover:to-[#F047AB] transition-all duration-500 cursor-pointer" 
                     style={{ height: `${val}%` }}
                   ></div>
-                  <span className="text-[9px] text-slate-400 font-bold font-['Roboto']">{idx * 2}h</span>
+                  <span className="text-[9px] text-slate-600 font-extrabold font-['Roboto']">{idx * 2}h</span>
                 </div>
               ))}
             </div>
@@ -93,8 +93,8 @@ export default function LeaderOverview() {
             <div className="p-3 rounded-full bg-[#B98776]/10 text-[#B98776] border border-[#B98776]/20 w-fit mb-4">
               <HelpCircle className="h-6 w-6" />
             </div>
-            <h4 className="text-sm font-bold text-slate-700 font-['Plus_Jakarta_Sans']">How splits work:</h4>
-            <p className="text-xs text-slate-400 leading-relaxed mt-2 font-['Roboto']">
+            <h4 className="text-sm font-bold text-slate-800 font-['Plus_Jakarta_Sans']">How splits work:</h4>
+            <p className="text-xs text-slate-600 leading-relaxed mt-2 font-semibold font-['Roboto']">
               For every approved referral made by your promoters, you earn a 20% group override commission. These commissions are placed in pending status for 30 days to counter transaction disputes.
             </p>
           </div>

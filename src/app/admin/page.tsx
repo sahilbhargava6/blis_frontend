@@ -23,7 +23,7 @@ export default function AdminOverview() {
       {/* Page Title */}
       <div>
         <h1 className="text-2xl font-bold tracking-tight text-slate-800 font-['Plus_Jakarta_Sans']">System Command Center</h1>
-        <p className="text-slate-400 mt-1 text-sm font-['Roboto']">Real-time telemetry and overview statistics.</p>
+        <p className="text-slate-500 mt-1 text-sm font-semibold font-['Roboto']">Real-time telemetry and overview statistics.</p>
       </div>
 
       {/* Stats Grid */}
@@ -32,7 +32,7 @@ export default function AdminOverview() {
           <div key={stat.name} className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
             <div className="flex items-start justify-between">
               <div>
-                <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider font-['Plus_Jakarta_Sans']">{stat.name}</p>
+                <p className="text-[11px] font-bold text-slate-500 uppercase tracking-wider font-['Plus_Jakarta_Sans']">{stat.name}</p>
                 <h3 className="text-3xl font-extrabold text-slate-800 mt-2 font-['Plus_Jakarta_Sans']">{stat.value}</h3>
               </div>
               <div className={`p-2.5 rounded-xl ${stat.bg} ${stat.color} border ${stat.border}`}>
@@ -40,9 +40,9 @@ export default function AdminOverview() {
               </div>
             </div>
             <div className="flex items-center gap-1.5 mt-4">
-              <ArrowUpRight className="h-3 w-3 text-green-500" />
-              <span className="text-xs font-bold text-green-500">{stat.change}</span>
-              <span className="text-[10px] text-slate-400 font-medium font-['Roboto']">vs previous period</span>
+              <ArrowUpRight className="h-3 w-3 text-green-600" />
+              <span className="text-xs font-bold text-green-600">{stat.change}</span>
+              <span className="text-[10px] text-slate-500 font-semibold font-['Roboto']">vs previous period</span>
             </div>
           </div>
         ))}
@@ -78,7 +78,7 @@ export default function AdminOverview() {
                   className="w-full rounded-t-lg bg-gradient-to-t from-[#0E76C0]/20 to-[#0E76C0] group-hover:from-[#F047AB]/20 group-hover:to-[#F047AB] transition-all duration-500 cursor-pointer" 
                   style={{ height: `${day.val}%` }}
                 ></div>
-                <span className="text-[11px] text-slate-400 font-semibold font-['Roboto']">{day.label}</span>
+                <span className="text-[11px] text-slate-600 font-bold font-['Roboto']">{day.label}</span>
               </div>
             ))}
           </div>
@@ -93,8 +93,8 @@ export default function AdminOverview() {
             {recentActivity.map((feed, idx) => (
               <div key={idx} className="flex items-center justify-between p-3 rounded-xl bg-slate-50/80 border border-slate-100 hover:bg-slate-50 transition-colors">
                 <div>
-                  <p className="text-xs font-bold text-slate-700 font-['Plus_Jakarta_Sans']">{feed.member}</p>
-                  <p className="text-[10px] text-slate-400 mt-0.5 font-['Roboto']">{feed.action}</p>
+                  <p className="text-xs font-bold text-slate-800 font-['Plus_Jakarta_Sans']">{feed.member}</p>
+                  <p className="text-[10px] text-slate-500 mt-0.5 font-semibold font-['Roboto']">{feed.action}</p>
                 </div>
                 <div className="text-right">
                   <p className="text-xs font-extrabold text-[#0E76C0]">{feed.amt}</p>

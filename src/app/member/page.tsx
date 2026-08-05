@@ -12,7 +12,7 @@ export default function MemberOverview() {
       <div className="flex items-center justify-between flex-wrap gap-4">
         <div>
           <h1 className="text-2xl font-bold tracking-tight text-slate-800 font-['Plus_Jakarta_Sans']">Promoter Dashboard</h1>
-          <p className="text-slate-400 mt-1 text-sm font-['Roboto']">Quick dashboard lookup for commissions and payouts.</p>
+          <p className="text-slate-500 mt-1 text-sm font-semibold font-['Roboto']">Quick dashboard lookup for commissions and payouts.</p>
         </div>
         <button
           onClick={() => setShowAdvanced(!showAdvanced)}
@@ -41,11 +41,11 @@ export default function MemberOverview() {
             <Wallet className="h-32 w-32 text-[#0E76C0]" />
           </div>
           <div>
-            <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider font-['Plus_Jakarta_Sans']">Withdrawable Balance</p>
+            <p className="text-[11px] font-bold text-slate-500 uppercase tracking-wider font-['Plus_Jakarta_Sans']">Withdrawable Balance</p>
             <h2 className="text-5xl font-extrabold text-[#0E76C0] mt-3 font-['Plus_Jakarta_Sans']">$420.00</h2>
           </div>
-          <div className="flex items-center gap-2 text-xs text-slate-400 font-semibold mt-5 font-['Roboto']">
-            <BadgeCheck className="h-4 w-4 text-green-500" />
+          <div className="flex items-center gap-2 text-xs text-slate-500 font-semibold mt-5 font-['Roboto']">
+            <BadgeCheck className="h-4 w-4 text-green-600" />
             Held securely in local wallet ledger.
           </div>
           <button className="mt-5 py-2.5 px-6 rounded-xl bg-[#0E76C0] text-white text-xs font-bold hover:bg-[#0c66a8] transition-all shadow-sm shadow-[#0E76C0]/20 cursor-pointer font-['Plus_Jakarta_Sans']">
@@ -56,10 +56,10 @@ export default function MemberOverview() {
         {/* Active Conversions Counter */}
         <div className="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all duration-300">
           <div>
-            <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider font-['Plus_Jakarta_Sans']">Active Conversions (30d)</p>
+            <p className="text-[11px] font-bold text-slate-500 uppercase tracking-wider font-['Plus_Jakarta_Sans']">Active Conversions (30d)</p>
             <h2 className="text-5xl font-extrabold text-slate-800 mt-3 font-['Plus_Jakarta_Sans']">28</h2>
           </div>
-          <div className="flex items-center gap-2 text-xs text-slate-400 font-semibold mt-5 font-['Roboto']">
+          <div className="flex items-center gap-2 text-xs text-slate-500 font-semibold mt-5 font-['Roboto']">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
@@ -76,7 +76,7 @@ export default function MemberOverview() {
               <div key={item.label} className="text-center">
                 <div className={`h-1 rounded-full ${item.color} mb-1.5`}></div>
                 <span className="text-lg font-bold text-slate-700 font-['Plus_Jakarta_Sans']">{item.count}</span>
-                <p className="text-[10px] text-slate-400 font-['Roboto']">{item.label}</p>
+                <p className="text-[10px] text-slate-500 font-bold font-['Roboto']">{item.label}</p>
               </div>
             ))}
           </div>
@@ -90,9 +90,9 @@ export default function MemberOverview() {
           {/* Total Clicks */}
           <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-between hover:shadow-md transition-all duration-300">
             <div>
-              <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider font-['Plus_Jakarta_Sans']">Link Click-Throughs</p>
+              <p className="text-[11px] font-bold text-slate-500 uppercase tracking-wider font-['Plus_Jakarta_Sans']">Link Click-Throughs</p>
               <h3 className="text-3xl font-extrabold text-[#0E76C0] mt-2 font-['Plus_Jakarta_Sans']">1,842</h3>
-              <p className="text-[10px] text-slate-400 mt-1 font-['Roboto']">Total clicks tracked</p>
+              <p className="text-[10px] text-slate-500 font-medium font-['Roboto']">Total clicks tracked</p>
             </div>
             <div className="p-3 rounded-xl bg-[#0E76C0]/10 text-[#0E76C0] border border-[#0E76C0]/20">
               <MousePointerClick className="h-5 w-5" />
@@ -102,9 +102,9 @@ export default function MemberOverview() {
           {/* Escrow Pending */}
           <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-between hover:shadow-md transition-all duration-300">
             <div>
-              <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider font-['Plus_Jakarta_Sans']">Escrow Held Staging</p>
+              <p className="text-[11px] font-bold text-slate-500 uppercase tracking-wider font-['Plus_Jakarta_Sans']">Escrow Held Staging</p>
               <h3 className="text-3xl font-extrabold text-[#B98776] mt-2 font-['Plus_Jakarta_Sans']">$210.00</h3>
-              <p className="text-[10px] text-slate-400 mt-1 font-['Roboto']">30-day hold period</p>
+              <p className="text-[10px] text-slate-500 font-medium font-['Roboto']">30-day hold period</p>
             </div>
             <div className="p-3 rounded-xl bg-[#B98776]/10 text-[#B98776] border border-[#B98776]/20">
               <ShieldCheck className="h-5 w-5" />
@@ -113,11 +113,11 @@ export default function MemberOverview() {
 
           {/* Help Quick Reference */}
           <div className="bg-white p-6 rounded-2xl border border-[#0E76C0]/20 shadow-sm flex flex-col justify-center">
-            <h4 className="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center gap-1.5 font-['Plus_Jakarta_Sans']">
+            <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5 font-['Plus_Jakarta_Sans']">
               <HelpCircle className="h-4 w-4 text-[#0E76C0]" />
               Need Support?
             </h4>
-            <p className="text-[11px] text-slate-400 mt-2 leading-relaxed font-['Roboto']">
+            <p className="text-[11px] text-slate-500 mt-2 leading-relaxed font-semibold font-['Roboto']">
               Your commissions are split 3-ways upon brand postbacks. For help, contact your team Group Leader.
             </p>
           </div>
