@@ -5,10 +5,10 @@ import { Plus, Users, UserX, AlertTriangle, Sparkles, CheckCircle } from 'lucide
 
 export default function LeaderTeam() {
   const [members, setMembers] = useState([
-    { id: 1, name: 'Aravind K.', phone: '+91 99999 11111', clicks: 231, conversions: 24, balance: '$840.00' },
-    { id: 2, name: 'Ananya Sen', phone: '+91 99999 22222', clicks: 198, conversions: 18, balance: '$630.00' },
-    { id: 3, name: 'Divya Nair', phone: '+91 99999 33333', clicks: 421, conversions: 50, balance: '$1,750.00' },
-    { id: 4, name: 'Gaurav Das', phone: '+91 99999 44444', clicks: 87, conversions: 6, balance: '$210.00' },
+    { id: 1, name: 'Aravind K.', phone: '+91 99999 11111', clicks: 231, conversions: 24, balance: '₹840.00' },
+    { id: 2, name: 'Ananya Sen', phone: '+91 99999 22222', clicks: 198, conversions: 18, balance: '₹630.00' },
+    { id: 3, name: 'Divya Nair', phone: '+91 99999 33333', clicks: 421, conversions: 50, balance: '₹1,750.00' },
+    { id: 4, name: 'Gaurav Das', phone: '+91 99999 44444', clicks: 87, conversions: 6, balance: '₹210.00' },
   ]);
 
   const [showModal, setShowModal] = useState(false);

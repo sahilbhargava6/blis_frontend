@@ -32,9 +32,9 @@ function AdminOverviewContent() {
 
   // Live feed state
   const [activities, setActivities] = useState([
-    { member: 'Rahul S.', action: 'O2O store click referral', amt: '$70.00', status: 'Pending Hold', time: 'Just now' },
-    { member: 'Kunal G.', action: 'Campaign deep link click', amt: '$140.00', status: 'Pending Hold', time: '8 min ago' },
-    { member: 'Priya K.', action: 'Affiliate conversion', amt: '$210.00', status: 'Approved', time: '23 min ago' },
+    { member: 'Rahul S.', action: 'O2O store click referral', amt: '₹70.00', status: 'Pending Hold', time: 'Just now' },
+    { member: 'Kunal G.', action: 'Campaign deep link click', amt: '₹140.00', status: 'Pending Hold', time: '8 min ago' },
+    { member: 'Priya K.', action: 'Affiliate conversion', amt: '₹210.00', status: 'Approved', time: '23 min ago' },
   ]);
 
   // Check query parameters to launch onboarding setup wizard
@@ -53,7 +53,7 @@ function AdminOverviewContent() {
     const names = ['Anik A.', 'Sarah M.', 'Vikram R.', 'Rohan D.', 'Nisha S.'];
     const randomName = names[Math.floor(Math.random() * names.length)];
     setActivities(prev => [
-      { member: randomName, action: 'Simulated click tracked', amt: '$0.00', status: 'Tracked', time: 'Just now' },
+      { member: randomName, action: 'Simulated click tracked', amt: '₹0.00', status: 'Tracked', time: 'Just now' },
       ...prev.slice(0, 4)
     ]);
 
@@ -68,7 +68,7 @@ function AdminOverviewContent() {
     const names = ['Sahil B.', 'Kunal G.', 'Neha P.', 'Divya K.', 'Rahul K.'];
     const randomName = names[Math.floor(Math.random() * names.length)];
     setActivities(prev => [
-      { member: randomName, action: 'Conversion Postback Webhook', amt: '$75.00', status: 'Approved', time: 'Just now' },
+      { member: randomName, action: 'Conversion Postback Webhook', amt: '₹75.00', status: 'Approved', time: 'Just now' },
       ...prev.slice(0, 4)
     ]);
 
@@ -79,7 +79,7 @@ function AdminOverviewContent() {
     { name: 'Total Active Clicks', value: clicks.toLocaleString(), change: '+12.3%', icon: MousePointerClick, color: 'text-[#0E76C0]', bg: 'bg-[#0E76C0]/10', border: 'border-[#0E76C0]/20' },
     { name: 'Total Conversions', value: conversions.toLocaleString(), change: '+8.4%', icon: CheckCircle, color: 'text-[#F047AB]', bg: 'bg-[#F047AB]/10', border: 'border-[#F047AB]/20' },
     { name: 'Active Groups', value: '18', change: '+2 new this week', icon: Users2, color: 'text-[#B98776]', bg: 'bg-[#B98776]/10', border: 'border-[#B98776]/20' },
-    { name: 'Gross Revenue Share', value: `$${revenue.toLocaleString()}`, change: '+15.2%', icon: TrendingUp, color: 'text-[#0E76C0]', bg: 'bg-[#0E76C0]/10', border: 'border-[#0E76C0]/20' },
+    { name: 'Gross Revenue Share', value: `₹${revenue.toLocaleString()}`, change: '+15.2%', icon: TrendingUp, color: 'text-[#0E76C0]', bg: 'bg-[#0E76C0]/10', border: 'border-[#0E76C0]/20' },
   ];
 
   return (

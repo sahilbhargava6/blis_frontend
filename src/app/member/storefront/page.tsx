@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { ShoppingBag, UploadCloud, Tag, Trash2, Check, Globe } from 'lucide-react';
 
 export default function MemberStorefront() {
@@ -13,6 +13,9 @@ export default function MemberStorefront() {
 
   const [newProductName, setNewProductName] = useState('');
   const [newProductPrice, setNewProductPrice] = useState('');
+  const [dragActive, setDragActive] = useState(false);
+  const [uploadedFileName, setUploadedFileName] = useState('');
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Auto-generate slug preview based on store name
   const slugPreview = storeName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
@@ -36,10 +39,44 @@ export default function MemberStorefront() {
     ]);
     setNewProductName('');
     setNewProductPrice('');
+    setUploadedFileName('');
   };
 
   const handleRemoveProduct = (id: number) => {
     setProducts(products.filter(p => p.id !== id));
+  };
+
+  // Drag and drop event handlers
+  const handleDrag = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.type === "dragenter" || e.type === "dragover") {
+      setDragActive(true);
+    } else if (e.type === "dragleave") {
+      setDragActive(false);
+    }
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(false);
+    
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      const file = e.dataTransfer.files[0];
+      setUploadedFileName(file.name);
+    }
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      setUploadedFileName(file.name);
+    }
+  };
+
+  const triggerFileInput = () => {
+    fileInputRef.current?.click();
   };
 
   return (
@@ -123,11 +160,33 @@ export default function MemberStorefront() {
                 </div>
               </div>
 
-              {/* Mock dragzone drop uploader box */}
-              <div className="border-2 border-dashed border-slate-200 hover:border-[#0E76C0]/35 rounded-2xl flex flex-col items-center justify-center p-6 text-center transition cursor-pointer bg-slate-50/50 hover:bg-slate-50">
+              {/* Dragzone drop uploader box */}
+              <div 
+                onDragEnter={handleDrag}
+                onDragLeave={handleDrag}
+                onDragOver={handleDrag}
+                onDrop={handleDrop}
+                onClick={triggerFileInput}
+                className={`border-2 border-dashed rounded-2xl flex flex-col items-center justify-center p-6 text-center transition cursor-pointer ${
+                  dragActive 
+                    ? 'border-[#0E76C0] bg-[#0E76C0]/5' 
+                    : 'border-slate-200 hover:border-[#0E76C0]/35 bg-slate-50/50 hover:bg-slate-50'
+                }`}
+              >
+                <input 
+                  type="file" 
+                  ref={fileInputRef} 
+                  className="hidden" 
+                  accept="image/*"
+                  onChange={handleFileChange}
+                />
                 <UploadCloud className="h-8 w-8 text-slate-400 mb-2 animate-pulse" />
-                <p className="text-xs font-bold text-slate-700 font-['Plus_Jakarta_Sans']">Drag & Drop Image</p>
-                <p className="text-[10px] text-slate-500 mt-1 font-semibold font-['Roboto']">PNG, JPG up to 2MB</p>
+                <p className="text-xs font-bold text-slate-700 font-['Plus_Jakarta_Sans']">
+                  {uploadedFileName ? 'Selected:' : 'Drag & Drop Image'}
+                </p>
+                <p className="text-[10px] text-slate-500 mt-1 font-semibold font-['Roboto'] max-w-[180px] truncate">
+                  {uploadedFileName ? uploadedFileName : 'PNG, JPG up to 2MB'}
+                </p>
               </div>
 
               <div className="md:col-span-2 pt-2">

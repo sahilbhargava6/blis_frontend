@@ -28,7 +28,7 @@ export default function AdminCampaigns() {
 
   const campaigns = [
     { id: 1, title: 'Amazon Electronics Promo', type: 'CPS (10%)', link: 'https://amazon.com/aff/electronics', status: 'Active' },
-    { id: 2, title: 'Hostinger Cloud Web Hosting', type: 'CPA ($50.00)', link: 'https://hostinger.com/aff/cloud', status: 'Active' },
+    { id: 2, title: 'Hostinger Cloud Web Hosting', type: 'CPA (₹4,200.00)', link: 'https://hostinger.com/aff/cloud', status: 'Active' },
     { id: 3, title: 'Canva Pro Annual Subscriptions', type: 'Revenue Share (30%)', link: 'https://canva.com/aff/pro', status: 'Paused' },
   ];
 

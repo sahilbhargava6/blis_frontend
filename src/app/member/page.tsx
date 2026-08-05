@@ -42,7 +42,7 @@ export default function MemberOverview() {
           </div>
           <div>
             <p className="text-[11px] font-bold text-slate-500 uppercase tracking-wider font-['Plus_Jakarta_Sans']">Withdrawable Balance</p>
-            <h2 className="text-5xl font-extrabold text-[#0E76C0] mt-3 font-['Plus_Jakarta_Sans']">$420.00</h2>
+            <h2 className="text-5xl font-extrabold text-[#0E76C0] mt-3 font-['Plus_Jakarta_Sans']">₹420.00</h2>
           </div>
           <div className="flex items-center gap-2 text-xs text-slate-500 font-semibold mt-5 font-['Roboto']">
             <BadgeCheck className="h-4 w-4 text-green-600" />
@@ -103,7 +103,7 @@ export default function MemberOverview() {
           <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-between hover:shadow-md transition-all duration-300">
             <div>
               <p className="text-[11px] font-bold text-slate-500 uppercase tracking-wider font-['Plus_Jakarta_Sans']">Escrow Held Staging</p>
-              <h3 className="text-3xl font-extrabold text-[#B98776] mt-2 font-['Plus_Jakarta_Sans']">$210.00</h3>
+              <h3 className="text-3xl font-extrabold text-[#B98776] mt-2 font-['Plus_Jakarta_Sans']">₹210.00</h3>
               <p className="text-[10px] text-slate-500 font-medium font-['Roboto']">30-day hold period</p>
             </div>
             <div className="p-3 rounded-xl bg-[#B98776]/10 text-[#B98776] border border-[#B98776]/20">

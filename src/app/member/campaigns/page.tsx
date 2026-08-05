@@ -5,8 +5,8 @@ import Link from 'next/link';
 
 export default function MemberCampaigns() {
   const campaigns = [
-    { id: 1, title: 'Amazon Electronics Promo', type: 'CPS (10% Sales)', payout: '7% (Member Share)', description: 'Earn commissions promoting select home and laptop electronics. Average order value is $120.00.' },
-    { id: 2, title: 'Hostinger Cloud Web Hosting', type: 'CPA ($50.00 Acquisition)', payout: '$35.00 (Member Share)', description: 'Flat payout for each web hosting package sold with an active annual contract.' },
+    { id: 1, title: 'Amazon Electronics Promo', type: 'CPS (10% Sales)', payout: '7% (Member Share)', description: 'Earn commissions promoting select home and laptop electronics. Average order value is ₹10,000.00.' },
+    { id: 2, title: 'Hostinger Cloud Web Hosting', type: 'CPA (₹4,200.00 Acquisition)', payout: '₹3,000.00 (Member Share)', description: 'Flat payout for each web hosting package sold with an active annual contract.' },
     { id: 3, title: 'Canva Pro Annual Subscriptions', type: 'Revenue Share (30%)', payout: '21% (Member Share)', description: 'Get monthly recurring commissions for each active Canva Pro membership driven.' },
   ];
 

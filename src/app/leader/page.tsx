@@ -10,7 +10,7 @@ export default function LeaderOverview() {
     { name: 'Active Team Members', value: '18 / 20', progress: 90, icon: Users, color: 'text-[#B98776]', bg: 'bg-[#B98776]/10', border: 'border-[#B98776]/20' },
     { name: 'Team Clicks (30d)', value: '14,892', change: '+14%', icon: MousePointerClick, color: 'text-[#0E76C0]', bg: 'bg-[#0E76C0]/10', border: 'border-[#0E76C0]/20' },
     { name: 'Team Conversions', value: '1,204', change: '+9%', icon: CheckCircle, color: 'text-[#F047AB]', bg: 'bg-[#F047AB]/10', border: 'border-[#F047AB]/20' },
-    { name: 'My Commission (20%)', value: '$3,690', change: 'Escrow Pending', icon: TrendingUp, color: 'text-[#0E76C0]', bg: 'bg-[#0E76C0]/10', border: 'border-[#0E76C0]/20' },
+    { name: 'My Commission (20%)', value: '₹3,690', change: 'Escrow Pending', icon: TrendingUp, color: 'text-[#0E76C0]', bg: 'bg-[#0E76C0]/10', border: 'border-[#0E76C0]/20' },
   ];
 
   return (
