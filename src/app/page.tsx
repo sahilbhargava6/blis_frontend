@@ -257,19 +257,19 @@ export default function Home() {
         <div className="border-t-2 border-dashed border-[#0E76C0]"></div>
       </div>
 
-      {/* 3. Core Benefits Section (pb-0 to let cards touch bottom boundary) */}
-      <section className="pt-16 pb-0 px-6 md:px-12 max-w-[1800px] mx-auto space-y-16">
+      {/* 3. Core Benefits Section */}
+      <section className="py-8 px-6 md:px-12 max-w-[1800px] mx-auto space-y-8">
 
-        <div className="text-center space-y-6 max-w-6xl mx-auto">
-          <h2 className="text-[36px] font-bold tracking-tight font-['Plus_Jakarta_Sans'] uppercase">
+        <div className="text-center space-y-3 max-w-6xl mx-auto">
+          <h2 className="text-[36px] font-bold tracking-tight font-['Plus_Jakarta_Sans'] uppercase leading-tight">
             <span className="text-[#F047AB]">Full-service</span> <span className="text-[#000000]">affiliate program management</span>
           </h2>
-          <p className="text-[32px] text-black font-light leading-[38px] font-['Roboto']">
+          <p className="text-xl md:text-[32px] text-black font-light leading-snug md:leading-[38px] font-['Roboto']">
             We recruit, manage, and optimize affiliate programs so every partnership is tracked and every campaign compounds.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {benefits.map((benefit, idx) => {
             const isRaised = hoveredCard === idx;
 
@@ -278,11 +278,11 @@ export default function Home() {
                 key={idx}
                 onMouseEnter={() => setHoveredCard(idx)}
                 onMouseLeave={() => setHoveredCard(null)}
-                className="flex flex-col items-center justify-end h-[500px]"
+                className="flex flex-col items-center justify-end h-auto md:h-[420px] py-4 md:py-0"
               >
-                {/* 200px Circle Icon Container positioned above */}
-                <div className="w-[200px] h-[200px] rounded-full bg-[rgba(204,252,244,0.2)] flex items-center justify-center mb-6 relative flex-shrink-0">
-                  <div className="relative w-[150px] h-[150px]">
+                {/* Circle Icon Container positioned above */}
+                <div className="w-[120px] h-[120px] md:w-[160px] md:h-[160px] rounded-full bg-[rgba(204,252,244,0.2)] flex items-center justify-center mb-4 relative flex-shrink-0">
+                  <div className="relative w-[80px] h-[80px] md:w-[120px] md:h-[120px]">
                     <Image
                       src={benefit.icon}
                       alt={benefit.title}
