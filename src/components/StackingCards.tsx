@@ -18,12 +18,12 @@ export default function StackingCards() {
     if (!containerRef.current || !card1Ref.current || !card2Ref.current || !card3Ref.current) return;
 
     const ctx = gsap.context(() => {
-      // Pin the section wrapper while physically scrubbing card boxes
+      // Pin the section wrapper while physically scrubbing card boxes with scale pop
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
           start: 'top top+=90',
-          end: '+=1800',
+          end: '+=2000',
           pin: true,
           scrub: 0.6,
           anticipatePin: 1,
@@ -35,19 +35,31 @@ export default function StackingCards() {
         }
       });
 
-      // Card 2 Box slides up physically over Card 1 Box
-      gsap.set(card2Ref.current, { yPercent: 100, zIndex: 20 });
+      // Card 2 Box: Slides up, grows slightly bigger (scale 1.04), then settles to scale 1.0
+      gsap.set(card2Ref.current, { yPercent: 100, scale: 0.94, zIndex: 20 });
       tl.to(card2Ref.current, {
         yPercent: 0,
-        duration: 1,
+        scale: 1.04,
+        duration: 0.8,
+        ease: 'power2.out'
+      })
+      .to(card2Ref.current, {
+        scale: 1.0,
+        duration: 0.4,
         ease: 'power1.inOut'
       });
 
-      // Card 3 Box slides up physically over Card 2 Box
-      gsap.set(card3Ref.current, { yPercent: 100, zIndex: 30 });
+      // Card 3 Box: Slides up, grows slightly bigger (scale 1.04), then settles to scale 1.0
+      gsap.set(card3Ref.current, { yPercent: 100, scale: 0.94, zIndex: 30 });
       tl.to(card3Ref.current, {
         yPercent: 0,
-        duration: 1,
+        scale: 1.04,
+        duration: 0.8,
+        ease: 'power2.out'
+      })
+      .to(card3Ref.current, {
+        scale: 1.0,
+        duration: 0.4,
         ease: 'power1.inOut'
       });
 
@@ -101,7 +113,7 @@ export default function StackingCards() {
         {/* Card 1 Box: The gap. The problem. */}
         <div 
           ref={card1Ref}
-          className="absolute inset-0 w-full h-full bg-[#F0F3F9] border-2 border-[#0E76C0] rounded-[15px] p-8 md:p-12 text-center space-y-6 flex flex-col justify-center shadow-xl z-10"
+          className="absolute inset-0 w-full h-full bg-[#F0F3F9] border-2 border-[#0E76C0] rounded-[15px] p-8 md:p-12 text-center space-y-6 flex flex-col justify-center shadow-xl z-10 transition-transform duration-200"
         >
           <h2 className="text-3xl md:text-[36px] font-bold font-['Plus_Jakarta_Sans'] text-black leading-[45px] pt-6">
             The <span className="text-[#F047AB]">gap.</span> The <span className="text-[#F047AB]">problem.</span>
@@ -114,10 +126,10 @@ export default function StackingCards() {
           </p>
         </div>
 
-        {/* Card 2 Box: What is BLIS? (Entire Pink Box Slides UP over Card 1 Box) */}
+        {/* Card 2 Box: What is BLIS? (Scales bigger on enter then settles to original size) */}
         <div
           ref={card2Ref}
-          className="absolute inset-0 w-full h-full bg-[#F0F3F9] border-2 border-[#F047AB] rounded-[15px] p-8 md:p-12 text-center space-y-6 flex flex-col justify-center shadow-2xl z-20"
+          className="absolute inset-0 w-full h-full bg-[#F0F3F9] border-2 border-[#F047AB] rounded-[15px] p-8 md:p-12 text-center space-y-6 flex flex-col justify-center shadow-2xl z-20 transition-transform duration-200"
         >
           <h2 className="text-3xl md:text-[36px] font-bold font-['Plus_Jakarta_Sans'] text-black leading-[45px] pt-6">
             What is <span className="text-[#0E76C0]">BLIS</span>?
@@ -135,10 +147,10 @@ export default function StackingCards() {
           </div>
         </div>
 
-        {/* Card 3 Box: The big idea (Entire Blue Box Slides UP over Card 2 Box) */}
+        {/* Card 3 Box: The big idea (Scales bigger on enter then settles to original size) */}
         <div
           ref={card3Ref}
-          className="absolute inset-0 w-full h-full bg-[#F0F3F9] border-2 border-[#0E76C0] rounded-[15px] p-8 md:p-12 text-center space-y-6 flex flex-col justify-center shadow-2xl z-30"
+          className="absolute inset-0 w-full h-full bg-[#F0F3F9] border-2 border-[#0E76C0] rounded-[15px] p-8 md:p-12 text-center space-y-6 flex flex-col justify-center shadow-2xl z-30 transition-transform duration-200"
         >
           <h2 className="text-3xl md:text-[36px] font-bold font-['Plus_Jakarta_Sans'] text-black leading-[45px] pt-6">
             The <span className="text-[#F047AB]">big idea</span>
