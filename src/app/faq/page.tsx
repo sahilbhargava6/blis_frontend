@@ -2,8 +2,9 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Menu, X, Search } from 'lucide-react';
+import { Search } from 'lucide-react';
 import Footer from '@/components/Footer';
+import Header from '@/components/Header';
 
 export default function FAQPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -118,89 +119,8 @@ export default function FAQPage() {
   return (
     <div className="min-h-screen bg-white text-slate-900 overflow-x-hidden font-['Roboto']">
       
-      {/* 1. Header Navigation */}
-      <header className="sticky top-0 bg-[#F047AB]/20 backdrop-blur-[4px] shadow-[0_4px_4px_rgba(0,0,0,0.25)] z-50 transition-all duration-300">
-        <div className="max-w-[1800px] mx-auto h-[100px] px-6 md:px-16 flex items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="text-3xl md:text-[36px] font-bold font-['Plus_Jakarta_Sans'] text-black cursor-pointer leading-[45px]">
-            BLIS
-          </Link>
-
-          {/* Nav Options */}
-          <nav className="hidden md:flex items-center gap-12 font-['Plus_Jakarta_Sans']">
-            <Link href="/" className="text-xl font-medium text-slate-800 hover:text-[#0E76C0] transition-colors">
-              Home
-            </Link>
-            <Link href="/about" className="text-xl font-medium text-slate-800 hover:text-[#0E76C0] transition-colors">
-              About
-            </Link>
-            <Link href="/faq" className="text-xl md:text-[24px] font-semibold text-black leading-[30px]">
-              FAQs
-            </Link>
-            <Link href="/#contact" className="text-xl font-medium text-slate-800 hover:text-[#0E76C0] transition-colors">
-              Contact
-            </Link>
-          </nav>
-
-          {/* CTA */}
-          <div className="flex items-center gap-4">
-            <Link
-              href="/login"
-              className="text-sm md:text-base font-bold text-[#0E76C0] hover:underline font-['Plus_Jakarta_Sans']"
-            >
-              Affiliate Portal
-            </Link>
-            <Link
-              href="/login"
-              className="hidden sm:inline-flex items-center justify-center w-[180px] h-[50px] rounded-[30px] bg-[#F047AB] hover:bg-[#e0369b] text-white text-lg font-normal font-['Plus_Jakarta_Sans'] shadow-[0_4px_4px_rgba(0,0,0,0.25)] transition-all"
-            >
-              Join BLIS
-            </Link>
-            
-            {/* Mobile Menu Toggle Button */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 text-slate-900 hover:text-[#0E76C0] transition-colors"
-            >
-              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile menu panel overlay */}
-        {mobileMenuOpen && (
-          <div className="md:hidden border-t border-[#F047AB]/30 bg-[#F047AB]/90 backdrop-blur-md py-4 px-6 space-y-4 shadow-lg font-['Plus_Jakarta_Sans']">
-            <Link 
-              href="/" 
-              onClick={() => setMobileMenuOpen(false)}
-              className="block py-2 text-base font-bold text-slate-900 hover:text-white transition-colors"
-            >
-              Home
-            </Link>
-            <Link 
-              href="/about" 
-              onClick={() => setMobileMenuOpen(false)}
-              className="block py-2 text-base font-bold text-slate-900 hover:text-white transition-colors"
-            >
-              About
-            </Link>
-            <Link 
-              href="/faq" 
-              onClick={() => setMobileMenuOpen(false)}
-              className="block py-2 text-base font-bold text-black"
-            >
-              FAQs
-            </Link>
-            <Link 
-              href="/#contact" 
-              onClick={() => setMobileMenuOpen(false)}
-              className="block py-2 text-base font-bold text-slate-800 hover:text-white transition-colors"
-            >
-              Contact
-            </Link>
-          </div>
-        )}
-      </header>
+      {/* 1. Shared Header Navigation */}
+      <Header />
 
       {/* 2. FAQ Hero Section with Rupee Watermark Pattern */}
       <section className="relative py-16 md:py-24 px-6 md:px-16 overflow-hidden bg-slate-100/60 min-h-[700px] flex items-center">
