@@ -18,14 +18,14 @@ export default function StackingCards() {
     if (!containerRef.current || !card1Ref.current || !card2Ref.current || !card3Ref.current) return;
 
     const ctx = gsap.context(() => {
-      // Pin the section wrapper while scrubbing larger overlapping cards
+      // Fast, ultra-smooth scroll-triggered card deck transitions
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
           start: 'top top+=90',
-          end: '+=2000',
+          end: '+=1100',
           pin: true,
-          scrub: 0.6,
+          scrub: 0.15,
           anticipatePin: 1,
           onUpdate: (self) => {
             if (self.progress < 0.35) setActiveCard(0);
@@ -38,22 +38,22 @@ export default function StackingCards() {
       // Base Card 1 scale
       gsap.set(card1Ref.current, { scale: 0.96, zIndex: 10 });
 
-      // Card 2 Box: Slightly bigger than Card 1 (scale 1.02), opacity 0 initially, slides UP & sets over Card 1
-      gsap.set(card2Ref.current, { yPercent: 120, opacity: 0, scale: 1.02, zIndex: 20 });
+      // Card 2 Box: Enters from yPercent 110 at scale 1.02
+      gsap.set(card2Ref.current, { yPercent: 110, opacity: 0, scale: 1.02, zIndex: 20 });
       tl.to(card2Ref.current, {
         yPercent: 0,
         opacity: 1,
         duration: 1,
-        ease: 'power2.out'
+        ease: 'none'
       });
 
-      // Card 3 Box: Slightly bigger than Card 2 (scale 1.08), opacity 0 initially, slides UP & sets over Card 2
-      gsap.set(card3Ref.current, { yPercent: 120, opacity: 0, scale: 1.08, zIndex: 30 });
+      // Card 3 Box: Enters from yPercent 110 at scale 1.08
+      gsap.set(card3Ref.current, { yPercent: 110, opacity: 0, scale: 1.08, zIndex: 30 });
       tl.to(card3Ref.current, {
         yPercent: 0,
         opacity: 1,
         duration: 1,
-        ease: 'power2.out'
+        ease: 'none'
       });
 
     }, containerRef);
@@ -79,7 +79,7 @@ export default function StackingCards() {
   return (
     <div ref={containerRef} className="w-full max-w-[1540px] mx-auto px-4 md:px-12 py-4 my-4">
       
-      {/* Outer Card Viewport Deck (Overflow visible so bigger card overlays outside) */}
+      {/* Outer Card Viewport Deck */}
       <div className="relative h-[520px] md:h-[460px] w-full rounded-[15px]">
         
         {/* Navigation Control Tabs */}
@@ -103,10 +103,10 @@ export default function StackingCards() {
           ))}
         </div>
 
-        {/* Card 1 Box: The gap. The problem. (Base scale 0.96) */}
+        {/* Card 1 Box: The gap. The problem. */}
         <div 
           ref={card1Ref}
-          className="absolute inset-0 w-full h-full bg-[#F0F3F9] border-2 border-[#0E76C0] rounded-[15px] p-8 md:p-12 text-center space-y-4 flex flex-col justify-center shadow-xl transition-all duration-300"
+          className="absolute inset-0 w-full h-full bg-[#F0F3F9] border-2 border-[#0E76C0] rounded-[15px] p-8 md:p-12 text-center space-y-4 flex flex-col justify-center shadow-xl"
         >
           <h2 className="text-3xl md:text-[34px] font-bold font-['Plus_Jakarta_Sans'] text-black leading-tight pt-4">
             The <span className="text-[#F047AB]">gap.</span> The <span className="text-[#F047AB]">problem.</span>
@@ -119,10 +119,10 @@ export default function StackingCards() {
           </p>
         </div>
 
-        {/* Card 2 Box: What is BLIS? (Slightly bigger scale 1.02, overlays on top of Card 1) */}
+        {/* Card 2 Box: What is BLIS? */}
         <div
           ref={card2Ref}
-          className="absolute inset-0 w-full h-full bg-[#F0F3F9] border-2 border-[#F047AB] rounded-[15px] p-8 md:p-12 text-center space-y-4 flex flex-col justify-center shadow-2xl transition-all duration-300"
+          className="absolute inset-0 w-full h-full bg-[#F0F3F9] border-2 border-[#F047AB] rounded-[15px] p-8 md:p-12 text-center space-y-4 flex flex-col justify-center shadow-2xl"
         >
           <h2 className="text-3xl md:text-[34px] font-bold font-['Plus_Jakarta_Sans'] text-black leading-tight pt-4">
             What is <span className="text-[#0E76C0]">BLIS</span>?
@@ -140,10 +140,10 @@ export default function StackingCards() {
           </div>
         </div>
 
-        {/* Card 3 Box: The big idea (Slightly bigger scale 1.08, overlays on top of Card 2) */}
+        {/* Card 3 Box: The big idea */}
         <div
           ref={card3Ref}
-          className="absolute inset-0 w-full h-full bg-[#F0F3F9] border-2 border-[#0E76C0] rounded-[15px] p-8 md:p-12 text-center space-y-4 flex flex-col justify-center shadow-2xl transition-all duration-300"
+          className="absolute inset-0 w-full h-full bg-[#F0F3F9] border-2 border-[#0E76C0] rounded-[15px] p-8 md:p-12 text-center space-y-4 flex flex-col justify-center shadow-2xl"
         >
           <h2 className="text-3xl md:text-[34px] font-bold font-['Plus_Jakarta_Sans'] text-black leading-tight pt-4">
             The <span className="text-[#F047AB]">big idea</span>
