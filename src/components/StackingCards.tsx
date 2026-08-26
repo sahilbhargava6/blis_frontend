@@ -5,7 +5,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
 export default function StackingCards() {
-  const mainRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const card1Ref = useRef<HTMLDivElement>(null);
   const card2Ref = useRef<HTMLDivElement>(null);
   const card3Ref = useRef<HTMLDivElement>(null);
@@ -15,17 +15,17 @@ export default function StackingCards() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    if (!mainRef.current || !card1Ref.current || !card2Ref.current || !card3Ref.current) return;
+    if (!containerRef.current || !card1Ref.current || !card2Ref.current || !card3Ref.current) return;
 
     const ctx = gsap.context(() => {
-      // Pin the main container while scrubbing cards
+      // Pin the section wrapper while physically scrubbing card boxes
       const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: mainRef.current,
+          trigger: containerRef.current,
           start: 'top top+=90',
-          end: '+=2000',
+          end: '+=1800',
           pin: true,
-          scrub: 0.5,
+          scrub: 0.6,
           anticipatePin: 1,
           onUpdate: (self) => {
             if (self.progress < 0.35) setActiveCard(0);
@@ -35,39 +35,31 @@ export default function StackingCards() {
         }
       });
 
-      // Card 2 unclips & slides up over Card 1
-      gsap.set(card2Ref.current, {
-        clipPath: 'ellipse(220% 200% at 50% 300%)',
-        opacity: 1
-      });
-
+      // Card 2 Box slides up physically over Card 1 Box
+      gsap.set(card2Ref.current, { yPercent: 100, zIndex: 20 });
       tl.to(card2Ref.current, {
-        clipPath: 'ellipse(220% 200% at 50% 175%)',
+        yPercent: 0,
         duration: 1,
         ease: 'power1.inOut'
       });
 
-      // Card 3 unclips & slides up over Card 2
-      gsap.set(card3Ref.current, {
-        clipPath: 'ellipse(220% 200% at 50% 300%)',
-        opacity: 1
-      });
-
+      // Card 3 Box slides up physically over Card 2 Box
+      gsap.set(card3Ref.current, { yPercent: 100, zIndex: 30 });
       tl.to(card3Ref.current, {
-        clipPath: 'ellipse(220% 200% at 50% 175%)',
+        yPercent: 0,
         duration: 1,
         ease: 'power1.inOut'
       });
 
-    }, mainRef);
+    }, containerRef);
 
     return () => ctx.revert();
   }, []);
 
   const selectCard = (index: number) => {
     setActiveCard(index);
-    if (!mainRef.current) return;
-    const st = ScrollTrigger.getById('stacking-trigger') || ScrollTrigger.getAll().find(s => s.trigger === mainRef.current);
+    if (!containerRef.current) return;
+    const st = ScrollTrigger.getAll().find(s => s.trigger === containerRef.current);
     if (st) {
       let progress = 0;
       if (index === 1) progress = 0.5;
@@ -80,9 +72,9 @@ export default function StackingCards() {
   };
 
   return (
-    <div ref={mainRef} className="w-full max-w-[1780px] mx-auto px-4 md:px-12 py-6 my-4">
+    <div ref={containerRef} className="w-full max-w-[1780px] mx-auto px-4 md:px-12 py-4 my-4">
       
-      {/* Viewport Box */}
+      {/* Outer Card Deck Viewport */}
       <div className="relative h-[620px] md:h-[540px] w-full rounded-[15px] shadow-2xl overflow-hidden bg-slate-50 border border-slate-200">
         
         {/* Navigation Control Tabs */}
@@ -106,7 +98,7 @@ export default function StackingCards() {
           ))}
         </div>
 
-        {/* Card 1: The gap. The problem. */}
+        {/* Card 1 Box: The gap. The problem. */}
         <div 
           ref={card1Ref}
           className="absolute inset-0 w-full h-full bg-[#F0F3F9] border-2 border-[#0E76C0] rounded-[15px] p-8 md:p-12 text-center space-y-6 flex flex-col justify-center shadow-xl z-10"
@@ -122,7 +114,7 @@ export default function StackingCards() {
           </p>
         </div>
 
-        {/* Card 2: What is BLIS? (Unclips over Card 1) */}
+        {/* Card 2 Box: What is BLIS? (Entire Pink Box Slides UP over Card 1 Box) */}
         <div
           ref={card2Ref}
           className="absolute inset-0 w-full h-full bg-[#F0F3F9] border-2 border-[#F047AB] rounded-[15px] p-8 md:p-12 text-center space-y-6 flex flex-col justify-center shadow-2xl z-20"
@@ -143,7 +135,7 @@ export default function StackingCards() {
           </div>
         </div>
 
-        {/* Card 3: The big idea (Unclips over Card 2) */}
+        {/* Card 3 Box: The big idea (Entire Blue Box Slides UP over Card 2 Box) */}
         <div
           ref={card3Ref}
           className="absolute inset-0 w-full h-full bg-[#F0F3F9] border-2 border-[#0E76C0] rounded-[15px] p-8 md:p-12 text-center space-y-6 flex flex-col justify-center shadow-2xl z-30"
