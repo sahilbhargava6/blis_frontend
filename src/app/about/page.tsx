@@ -28,6 +28,9 @@ export default function AboutUs() {
             <Link href="/about" className="text-xl md:text-[24px] font-semibold text-black leading-[30px]">
               About
             </Link>
+            <Link href="/faq" className="text-xl font-medium text-slate-800 hover:text-[#0E76C0] transition-colors">
+              FAQs
+            </Link>
             <Link href="/#campaigns" className="text-xl font-medium text-slate-800 hover:text-[#0E76C0] transition-colors">
               Campaigns
             </Link>

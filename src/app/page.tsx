@@ -106,6 +106,9 @@ export default function Home() {
             <Link href="/about" className="text-sm font-bold text-slate-600 hover:text-[#0E76C0] transition-colors">
               About Us
             </Link>
+            <Link href="/faq" className="text-sm font-bold text-slate-600 hover:text-[#0E76C0] transition-colors">
+              FAQs
+            </Link>
             <a href="#contact" className="text-sm font-bold text-slate-600 hover:text-[#0E76C0] transition-colors">
               Contact
             </a>
