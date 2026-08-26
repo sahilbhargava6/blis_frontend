@@ -102,9 +102,9 @@ export default function Home() {
             <Link href="/" className="text-sm font-bold text-slate-800 hover:text-[#0E76C0] transition-colors">
               Home
             </Link>
-            <a href="#about" className="text-sm font-bold text-slate-600 hover:text-[#0E76C0] transition-colors">
+            <Link href="/about" className="text-sm font-bold text-slate-600 hover:text-[#0E76C0] transition-colors">
               About Us
-            </a>
+            </Link>
             <a href="#contact" className="text-sm font-bold text-slate-600 hover:text-[#0E76C0] transition-colors">
               Contact
             </a>
@@ -148,13 +148,13 @@ export default function Home() {
             >
               Home
             </Link>
-            <a 
-              href="#about" 
+            <Link 
+              href="/about" 
               onClick={() => setMobileMenuOpen(false)}
               className="block py-2 text-base font-bold text-slate-600 hover:text-[#0E76C0] transition-colors"
             >
               About Us
-            </a>
+            </Link>
             <a 
               href="#contact" 
               onClick={() => setMobileMenuOpen(false)}
