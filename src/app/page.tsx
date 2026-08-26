@@ -90,7 +90,7 @@ export default function Home() {
     <div className="min-h-screen bg-white text-slate-900 overflow-x-hidden">
 
       {/* 1. Elegant Header Navigation */}
-      <header className="sticky top-0 bg-white/80 backdrop-blur-md border-b border-slate-100 z-50 transition-all duration-300">
+      <header className="sticky top-0 bg-[#F047AB]/20 backdrop-blur-[4px] shadow-[0_4px_4px_rgba(0,0,0,0.25)] z-50 transition-all duration-300">
         <div className="max-w-[1800px] mx-auto h-20 px-6 md:px-12 flex items-center justify-between">
           {/* Logo */}
           <div className="text-3xl font-extrabold tracking-wider font-['Plus_Jakarta_Sans'] bg-gradient-to-r from-[#F047AB] to-[#0E76C0] bg-clip-text text-transparent cursor-pointer">
@@ -140,7 +140,7 @@ export default function Home() {
 
         {/* Mobile menu panel overlay */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-slate-100 bg-white py-4 px-6 space-y-4 shadow-lg animate-fadeIn font-['Plus_Jakarta_Sans']">
+          <div className="md:hidden border-t border-[#F047AB]/30 bg-[#F047AB]/90 backdrop-blur-md py-4 px-6 space-y-4 shadow-lg animate-fadeIn font-['Plus_Jakarta_Sans']">
             <Link 
               href="/" 
               onClick={() => setMobileMenuOpen(false)}
