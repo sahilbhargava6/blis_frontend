@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
+import Footer from '@/components/Footer';
 
 export default function AboutUs() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -183,21 +184,79 @@ export default function AboutUs() {
         <div className="border-t-2 border-dashed border-[#0E76C0]"></div>
       </div>
 
-      {/* 3. Section: The gap. The problem. (Rectangle 52 Container) */}
-      <section className="py-8 px-6 md:px-12 max-w-[1780px] mx-auto space-y-8 text-center">
-        <h2 className="text-3xl md:text-[36px] font-bold font-['Plus_Jakarta_Sans'] text-black leading-[45px]">
-          The <span className="text-[#F047AB]">gap.</span> The <span className="text-[#F047AB]">problem.</span>
-        </h2>
+      {/* 3. Section: Stacking Cards (The gap. The problem. / What is BLIS? / The big idea) */}
+      <section className="py-12 px-6 md:px-12 max-w-[1780px] mx-auto space-y-12 text-center relative">
+        
+        {/* Sticky Stacking Cards Container */}
+        <div className="space-y-16">
+          
+          {/* Card 1: The gap. The problem. */}
+          <div className="sticky top-24 z-10 bg-white/95 backdrop-blur-md rounded-[15px] p-[2px] shadow-lg transition-all duration-300">
+            <div className="w-full bg-[#F0F3F9]/30 border border-[#0E76C0] rounded-[15px] p-8 md:p-12 space-y-6 text-center">
+              <h2 className="text-3xl md:text-[36px] font-bold font-['Plus_Jakarta_Sans'] text-black leading-[45px]">
+                The <span className="text-[#F047AB]">gap.</span> The <span className="text-[#F047AB]">problem.</span>
+              </h2>
 
-        {/* Rectangle 52 Inner Box */}
-        <div className="w-full bg-[#F0F3F9]/20 border border-[#0E76C0] rounded-[15px] p-8 md:p-12 space-y-6">
-          <p className="text-2xl md:text-[32px] text-black font-normal leading-[38px] font-['Roboto']">
-            The internet made <span className="text-[#B98776] italic font-medium">selling easier.</span> It didn&apos;t make it more <span className="text-[#B98776] italic font-medium">personal.</span>
-          </p>
+              <p className="text-2xl md:text-[32px] text-black font-normal leading-[38px] font-['Roboto']">
+                The internet made <span className="text-[#B98776] italic font-medium">selling easier.</span> It didn&apos;t make it more <span className="text-[#B98776] italic font-medium">personal.</span>
+              </p>
 
-          <p className="text-xl md:text-[32px] text-black font-light leading-relaxed md:leading-[38px] font-['Roboto'] max-w-[1260px] mx-auto">
-            Affiliate marketing has made it possible for anyone to recommend products and earn from their influence. But somewhere along the way, the human connection got lost — people trust people, not endless links and advertisements. Local communities already have something powerful: trust, relationships, and word-of-mouth. BLIS brings that human element back into digital commerce.
-          </p>
+              <p className="text-xl md:text-[32px] text-black font-light leading-relaxed md:leading-[38px] font-['Roboto'] max-w-[1260px] mx-auto">
+                Affiliate marketing has made it possible for anyone to recommend products and earn from their influence. But somewhere along the way, the human connection got lost — people trust people, not endless links and advertisements. Local communities already have something powerful: trust, relationships, and word-of-mouth. BLIS brings that human element back into digital commerce.
+              </p>
+            </div>
+          </div>
+
+          {/* Card 2: What is BLIS? */}
+          <div className="sticky top-28 z-20 bg-white/95 backdrop-blur-md rounded-[15px] p-[2px] shadow-xl transition-all duration-300">
+            <div className="w-full bg-[#F0F3F9]/30 border border-[#F047AB] rounded-[15px] p-8 md:p-12 space-y-6 text-center">
+              <h2 className="text-3xl md:text-[36px] font-bold font-['Plus_Jakarta_Sans'] text-black leading-[45px]">
+                What is <span className="text-[#0E76C0]">BLIS</span>?
+              </h2>
+
+              <p className="text-2xl md:text-[32px] text-black font-normal leading-[38px] font-['Roboto']">
+                Where digital affiliate marketing <span className="text-[#B98776] italic font-medium">meets local trust.</span>
+              </p>
+
+              <div className="space-y-4 text-xl md:text-[32px] text-black font-light leading-relaxed md:leading-[38px] font-['Roboto'] max-w-[1260px] mx-auto">
+                <p>
+                  BLIS is a community-first affiliate and referral platform designed to bring together digital opportunities and real-world networks. Instead of relying only on algorithms, ads, and anonymous audiences, BLIS helps people grow through structured communities, trusted referrals, and shared opportunities.
+                </p>
+                <p>
+                  Our approach combines the scalability of technology with something technology can&apos;t replace — human connection.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 3: The big idea */}
+          <div className="sticky top-32 z-30 bg-white/95 backdrop-blur-md rounded-[15px] p-[2px] shadow-2xl transition-all duration-300">
+            <div className="w-full bg-[#F0F3F9]/30 border border-[#0E76C0] rounded-[15px] p-8 md:p-12 space-y-6 text-center">
+              <h2 className="text-3xl md:text-[36px] font-bold font-['Plus_Jakarta_Sans'] text-black leading-[45px]">
+                The <span className="text-[#F047AB]">big idea</span>
+              </h2>
+
+              <p className="text-2xl md:text-[32px] text-black font-normal leading-[38px] font-['Roboto']">
+                We&apos;re redefining word-of-mouth <span className="text-[#B98776] italic font-medium">for the modern economy.</span>
+              </p>
+
+              <div className="space-y-6 text-xl md:text-[32px] text-black font-light leading-relaxed md:leading-[38px] font-['Roboto'] max-w-[1260px] mx-auto">
+                <p>
+                  A recommendation from someone you know carries a different kind of value. BLIS takes that timeless idea and gives it a digital infrastructure.
+                </p>
+                
+                {/* Highlighted Row */}
+                <div className="text-2xl md:text-[40px] font-normal text-black font-['Plus_Jakarta_Sans'] py-2">
+                  Discover <span className="text-[#F047AB]">•</span> Share <span className="text-[#F047AB]">•</span> Connect <span className="text-[#F047AB]">•</span> Grow
+                </div>
+
+                <p>
+                  The goal isn&apos;t to replace relationships with technology. It&apos;s to make those relationships more powerful.
+                </p>
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
 
@@ -312,10 +371,10 @@ export default function AboutUs() {
           </p>
         </div>
 
-        {/* 4 Full-Width Banners (190px height each, alternating colors) */}
-        <div className="space-y-6">
+        {/* 4 Full-Width Banners (190px height each, alternating colors, flush with zero gap) */}
+        <div className="flex flex-col">
           {/* Banner 1 (Rectangle 6 - Pink Tint) */}
-          <div className="w-full min-h-[190px] bg-[#F047AB]/20 border-y border-[#F047AB] px-6 md:px-24 flex items-center text-left">
+          <div className="w-full min-h-[190px] bg-[#F047AB]/20 border-t border-b border-[#F047AB] px-6 md:px-24 flex items-center text-left">
             <div className="max-w-[1260px] mx-auto w-full">
               <p className="text-xl md:text-[32px] text-black font-normal font-['Roboto'] leading-[38px]">
                 <strong className="font-bold">Discover and share</strong> &nbsp;Find campaigns worth recommending and share them through your network.
@@ -324,7 +383,7 @@ export default function AboutUs() {
           </div>
 
           {/* Banner 2 (Rectangle 57 - Blue Tint, Right Aligned) */}
-          <div className="w-full min-h-[190px] bg-[#0E76C0]/20 border-y border-[#0E76C0] px-6 md:px-24 flex items-center text-right">
+          <div className="w-full min-h-[190px] bg-[#0E76C0]/20 border-b border-[#0E76C0] px-6 md:px-24 flex items-center text-right">
             <div className="max-w-[1260px] mx-auto w-full">
               <p className="text-xl md:text-[32px] text-black font-normal font-['Roboto'] leading-[38px]">
                 <strong className="font-bold">Build local chapters</strong> &nbsp;Create and participate in structured community groups close to home.
@@ -333,7 +392,7 @@ export default function AboutUs() {
           </div>
 
           {/* Banner 3 (Rectangle 58 - Pink Tint) */}
-          <div className="w-full min-h-[190px] bg-[#F047AB]/20 border-y border-[#F047AB] px-6 md:px-24 flex items-center text-left">
+          <div className="w-full min-h-[190px] bg-[#F047AB]/20 border-b border-[#F047AB] px-6 md:px-24 flex items-center text-left">
             <div className="max-w-[1260px] mx-auto w-full">
               <p className="text-xl md:text-[32px] text-black font-normal font-['Roboto'] leading-[38px]">
                 <strong className="font-bold">Your own storefront</strong> &nbsp;A digital storefront that connects your recommendations with customers.
@@ -342,7 +401,7 @@ export default function AboutUs() {
           </div>
 
           {/* Banner 4 (Rectangle 59 - Blue Tint, Right Aligned) */}
-          <div className="w-full min-h-[190px] bg-[#0E76C0]/20 border-y border-[#0E76C0] px-6 md:px-24 flex items-center text-right">
+          <div className="w-full min-h-[190px] bg-[#0E76C0]/20 border-b border-[#0E76C0] px-6 md:px-24 flex items-center text-right">
             <div className="max-w-[1260px] mx-auto w-full">
               <p className="text-xl md:text-[32px] text-black font-normal font-['Roboto'] leading-[38px]">
                 <strong className="font-bold">Beyond the click</strong> &nbsp;Take commerce beyond links and into genuine customer conversations.
@@ -372,27 +431,16 @@ export default function AboutUs() {
           We believe the future of commerce isn&apos;t purely digital. It&apos;s connected.
         </p>
 
-        <div className="max-w-[1260px] mx-auto text-center font-['Roboto'] text-xl md:text-[32px] font-light leading-[38px] text-black pt-4">
-          Connected to communities. Connected to recommendations. Connected to local businesses. Connected to people.
+        <div className="max-w-[1260px] mx-auto text-center font-['Roboto'] text-xl md:text-[32px] font-light leading-[42px] text-black pt-4 flex flex-col items-center space-y-2">
+          <p>Connected to communities.</p>
+          <p>Connected to recommendations.</p>
+          <p>Connected to local businesses.</p>
+          <p>Connected to people.</p>
         </div>
       </section>
 
-      {/* 8. Footer Strip (Rectangle 51 bottom - 406px height, rgba(240, 71, 171, 0.2)) */}
-      <footer className="mt-16 bg-[#F047AB]/20 shadow-[0_4px_4px_rgba(0,0,0,0.25)] min-h-[300px] md:min-h-[406px] py-16 px-6 md:px-24 flex flex-col justify-between text-center">
-        <div className="max-w-[1780px] mx-auto w-full space-y-6 my-auto">
-          <div className="text-4xl font-bold font-['Plus_Jakarta_Sans'] text-black">
-            BLIS
-          </div>
-          <p className="text-lg text-slate-700 font-['Roboto'] max-w-xl mx-auto">
-            Geomarket multi-tier affiliate distributions & O2O digital storefront builder networks.
-          </p>
-          <div className="pt-4 border-t border-[#F047AB]/30 max-w-md mx-auto">
-            <p className="text-sm text-slate-600 font-['Roboto']">
-              &copy; 2026 BLIS Platform Inc. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
+      {/* 8. Footer */}
+      <Footer />
 
     </div>
   );
