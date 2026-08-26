@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import StackingCards from '@/components/StackingCards';
+import BannerScrollBanners from '@/components/BannerScrollBanners';
 
 export default function AboutUs() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -202,64 +203,8 @@ export default function AboutUs() {
           </p>
         </div>
 
-        {/* 4 Full-Width Banners (190px height each, alternating colors, flush with zero gap) */}
-        <div className="flex flex-col">
-          {/* Banner 1 (Rectangle 6 - Pink Tint, Left Aligned Box) */}
-          <div className="w-full min-h-[190px] bg-[#F047AB]/20 border-t border-b border-[#F047AB] px-6 md:px-24 flex items-center">
-            <div className="max-w-[1260px] mx-auto w-full flex justify-start">
-              <div className="text-left w-full space-y-1">
-                <h3 className="text-2xl md:text-[32px] font-bold text-black font-['Roboto'] leading-[38px]">
-                  Discover and share
-                </h3>
-                <p className="text-xl md:text-[28px] text-black font-light font-['Roboto'] leading-[36px] max-w-4xl">
-                  Find campaigns worth recommending and share them through your network.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Banner 2 (Rectangle 57 - Blue Tint, Right Aligned Box) */}
-          <div className="w-full min-h-[190px] bg-[#0E76C0]/20 border-b border-[#0E76C0] px-6 md:px-24 flex items-center">
-            <div className="max-w-[1260px] mx-auto w-full flex justify-end">
-              <div className="text-right w-full flex flex-col items-end space-y-1">
-                <h3 className="text-2xl md:text-[32px] font-bold text-black font-['Roboto'] leading-[38px]">
-                  Build local chapters
-                </h3>
-                <p className="text-xl md:text-[28px] text-black font-light font-['Roboto'] leading-[36px] max-w-4xl">
-                  Create and participate in structured community groups close to home.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Banner 3 (Rectangle 58 - Pink Tint, Left Aligned Box) */}
-          <div className="w-full min-h-[190px] bg-[#F047AB]/20 border-b border-[#F047AB] px-6 md:px-24 flex items-center">
-            <div className="max-w-[1260px] mx-auto w-full flex justify-start">
-              <div className="text-left w-full space-y-1">
-                <h3 className="text-2xl md:text-[32px] font-bold text-black font-['Roboto'] leading-[38px]">
-                  Your own storefront
-                </h3>
-                <p className="text-xl md:text-[28px] text-black font-light font-['Roboto'] leading-[36px] max-w-4xl">
-                  A digital storefront that connects your recommendations with customers.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Banner 4 (Rectangle 59 - Blue Tint, Right Aligned Box) */}
-          <div className="w-full min-h-[190px] bg-[#0E76C0]/20 border-b border-[#0E76C0] px-6 md:px-24 flex items-center">
-            <div className="max-w-[1260px] mx-auto w-full flex justify-end">
-              <div className="text-right w-full flex flex-col items-end space-y-1">
-                <h3 className="text-2xl md:text-[32px] font-bold text-black font-['Roboto'] leading-[38px]">
-                  Beyond the click
-                </h3>
-                <p className="text-xl md:text-[28px] text-black font-light font-['Roboto'] leading-[36px] max-w-4xl">
-                  Take commerce beyond links and into genuine customer conversations.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+        {/* 4 Full-Width Banners with Horizontal Scroll Animations */}
+        <BannerScrollBanners />
       </section>
 
       {/* Dashed Line Divider 5 (Line 5 - 2px dashed #0E76C0) */}
@@ -282,11 +227,13 @@ export default function AboutUs() {
           We believe the future of commerce isn&apos;t purely digital. It&apos;s connected.
         </p>
 
-        <div className="max-w-[1260px] mx-auto text-center font-['Roboto'] text-xl md:text-[32px] font-light leading-[42px] text-black pt-4 flex flex-col items-center space-y-2">
-          <p>Connected to communities.</p>
-          <p>Connected to recommendations.</p>
-          <p>Connected to local businesses.</p>
-          <p>Connected to people.</p>
+        <div className="max-w-[1260px] mx-auto font-['Roboto'] text-xl md:text-[32px] font-light leading-[42px] text-black pt-4 flex flex-col items-center">
+          <div className="text-left flex flex-col space-y-2">
+            <p>Connected to communities.</p>
+            <p>Connected to recommendations.</p>
+            <p>Connected to local businesses.</p>
+            <p>Connected to people.</p>
+          </div>
         </div>
       </section>
 
