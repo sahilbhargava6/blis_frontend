@@ -301,39 +301,59 @@ export default function AboutUs() {
 
         {/* 4 Full-Width Banners (190px height each, alternating colors, flush with zero gap) */}
         <div className="flex flex-col">
-          {/* Banner 1 (Rectangle 6 - Pink Tint) */}
-          <div className="w-full min-h-[190px] bg-[#F047AB]/20 border-t border-b border-[#F047AB] px-6 md:px-24 flex items-center text-left">
-            <div className="max-w-[1260px] mx-auto w-full">
-              <p className="text-xl md:text-[32px] text-black font-normal font-['Roboto'] leading-[38px]">
-                <strong className="font-bold">Discover and share</strong> &nbsp;Find campaigns worth recommending and share them through your network.
-              </p>
+          {/* Banner 1 (Rectangle 6 - Pink Tint, Left Aligned Box) */}
+          <div className="w-full min-h-[190px] bg-[#F047AB]/20 border-t border-b border-[#F047AB] px-6 md:px-24 flex items-center">
+            <div className="max-w-[1260px] mx-auto w-full flex justify-start">
+              <div className="text-left max-w-xl space-y-1">
+                <h3 className="text-2xl md:text-[32px] font-bold text-black font-['Roboto'] leading-[38px]">
+                  Discover and share
+                </h3>
+                <p className="text-xl md:text-[28px] text-black font-light font-['Roboto'] leading-[36px]">
+                  Find campaigns worth recommending and share them through your network.
+                </p>
+              </div>
             </div>
           </div>
 
-          {/* Banner 2 (Rectangle 57 - Blue Tint, Right Aligned) */}
-          <div className="w-full min-h-[190px] bg-[#0E76C0]/20 border-b border-[#0E76C0] px-6 md:px-24 flex items-center text-right">
-            <div className="max-w-[1260px] mx-auto w-full">
-              <p className="text-xl md:text-[32px] text-black font-normal font-['Roboto'] leading-[38px]">
-                <strong className="font-bold">Build local chapters</strong> &nbsp;Create and participate in structured community groups close to home.
-              </p>
+          {/* Banner 2 (Rectangle 57 - Blue Tint, Right Aligned Box) */}
+          <div className="w-full min-h-[190px] bg-[#0E76C0]/20 border-b border-[#0E76C0] px-6 md:px-24 flex items-center">
+            <div className="max-w-[1260px] mx-auto w-full flex justify-end">
+              <div className="text-right max-w-xl space-y-1">
+                <h3 className="text-2xl md:text-[32px] font-bold text-black font-['Roboto'] leading-[38px]">
+                  Build local chapters
+                </h3>
+                <p className="text-xl md:text-[28px] text-black font-light font-['Roboto'] leading-[36px]">
+                  Create and participate in structured community groups close to home.
+                </p>
+              </div>
             </div>
           </div>
 
-          {/* Banner 3 (Rectangle 58 - Pink Tint) */}
-          <div className="w-full min-h-[190px] bg-[#F047AB]/20 border-b border-[#F047AB] px-6 md:px-24 flex items-center text-left">
-            <div className="max-w-[1260px] mx-auto w-full">
-              <p className="text-xl md:text-[32px] text-black font-normal font-['Roboto'] leading-[38px]">
-                <strong className="font-bold">Your own storefront</strong> &nbsp;A digital storefront that connects your recommendations with customers.
-              </p>
+          {/* Banner 3 (Rectangle 58 - Pink Tint, Left Aligned Box) */}
+          <div className="w-full min-h-[190px] bg-[#F047AB]/20 border-b border-[#F047AB] px-6 md:px-24 flex items-center">
+            <div className="max-w-[1260px] mx-auto w-full flex justify-start">
+              <div className="text-left max-w-xl space-y-1">
+                <h3 className="text-2xl md:text-[32px] font-bold text-black font-['Roboto'] leading-[38px]">
+                  Your own storefront
+                </h3>
+                <p className="text-xl md:text-[28px] text-black font-light font-['Roboto'] leading-[36px]">
+                  A digital storefront that connects your recommendations with customers.
+                </p>
+              </div>
             </div>
           </div>
 
-          {/* Banner 4 (Rectangle 59 - Blue Tint, Right Aligned) */}
-          <div className="w-full min-h-[190px] bg-[#0E76C0]/20 border-b border-[#0E76C0] px-6 md:px-24 flex items-center text-right">
-            <div className="max-w-[1260px] mx-auto w-full">
-              <p className="text-xl md:text-[32px] text-black font-normal font-['Roboto'] leading-[38px]">
-                <strong className="font-bold">Beyond the click</strong> &nbsp;Take commerce beyond links and into genuine customer conversations.
-              </p>
+          {/* Banner 4 (Rectangle 59 - Blue Tint, Right Aligned Box) */}
+          <div className="w-full min-h-[190px] bg-[#0E76C0]/20 border-b border-[#0E76C0] px-6 md:px-24 flex items-center">
+            <div className="max-w-[1260px] mx-auto w-full flex justify-end">
+              <div className="text-right max-w-xl space-y-1">
+                <h3 className="text-2xl md:text-[32px] font-bold text-black font-['Roboto'] leading-[38px]">
+                  Beyond the click
+                </h3>
+                <p className="text-xl md:text-[28px] text-black font-light font-['Roboto'] leading-[36px]">
+                  Take commerce beyond links and into genuine customer conversations.
+                </p>
+              </div>
             </div>
           </div>
         </div>
