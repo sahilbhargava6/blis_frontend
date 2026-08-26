@@ -207,11 +207,11 @@ export default function AboutUs() {
           {/* Banner 1 (Rectangle 6 - Pink Tint, Left Aligned Box) */}
           <div className="w-full min-h-[190px] bg-[#F047AB]/20 border-t border-b border-[#F047AB] px-6 md:px-24 flex items-center">
             <div className="max-w-[1260px] mx-auto w-full flex justify-start">
-              <div className="text-left max-w-xl space-y-1">
+              <div className="text-left w-full space-y-1">
                 <h3 className="text-2xl md:text-[32px] font-bold text-black font-['Roboto'] leading-[38px]">
                   Discover and share
                 </h3>
-                <p className="text-xl md:text-[28px] text-black font-light font-['Roboto'] leading-[36px]">
+                <p className="text-xl md:text-[28px] text-black font-light font-['Roboto'] leading-[36px] max-w-4xl">
                   Find campaigns worth recommending and share them through your network.
                 </p>
               </div>
@@ -221,11 +221,11 @@ export default function AboutUs() {
           {/* Banner 2 (Rectangle 57 - Blue Tint, Right Aligned Box) */}
           <div className="w-full min-h-[190px] bg-[#0E76C0]/20 border-b border-[#0E76C0] px-6 md:px-24 flex items-center">
             <div className="max-w-[1260px] mx-auto w-full flex justify-end">
-              <div className="text-right max-w-xl space-y-1">
+              <div className="text-right w-full flex flex-col items-end space-y-1">
                 <h3 className="text-2xl md:text-[32px] font-bold text-black font-['Roboto'] leading-[38px]">
                   Build local chapters
                 </h3>
-                <p className="text-xl md:text-[28px] text-black font-light font-['Roboto'] leading-[36px]">
+                <p className="text-xl md:text-[28px] text-black font-light font-['Roboto'] leading-[36px] max-w-4xl">
                   Create and participate in structured community groups close to home.
                 </p>
               </div>
@@ -235,11 +235,11 @@ export default function AboutUs() {
           {/* Banner 3 (Rectangle 58 - Pink Tint, Left Aligned Box) */}
           <div className="w-full min-h-[190px] bg-[#F047AB]/20 border-b border-[#F047AB] px-6 md:px-24 flex items-center">
             <div className="max-w-[1260px] mx-auto w-full flex justify-start">
-              <div className="text-left max-w-xl space-y-1">
+              <div className="text-left w-full space-y-1">
                 <h3 className="text-2xl md:text-[32px] font-bold text-black font-['Roboto'] leading-[38px]">
                   Your own storefront
                 </h3>
-                <p className="text-xl md:text-[28px] text-black font-light font-['Roboto'] leading-[36px]">
+                <p className="text-xl md:text-[28px] text-black font-light font-['Roboto'] leading-[36px] max-w-4xl">
                   A digital storefront that connects your recommendations with customers.
                 </p>
               </div>
@@ -249,11 +249,11 @@ export default function AboutUs() {
           {/* Banner 4 (Rectangle 59 - Blue Tint, Right Aligned Box) */}
           <div className="w-full min-h-[190px] bg-[#0E76C0]/20 border-b border-[#0E76C0] px-6 md:px-24 flex items-center">
             <div className="max-w-[1260px] mx-auto w-full flex justify-end">
-              <div className="text-right max-w-xl space-y-1">
+              <div className="text-right w-full flex flex-col items-end space-y-1">
                 <h3 className="text-2xl md:text-[32px] font-bold text-black font-['Roboto'] leading-[38px]">
                   Beyond the click
                 </h3>
-                <p className="text-xl md:text-[28px] text-black font-light font-['Roboto'] leading-[36px]">
+                <p className="text-xl md:text-[28px] text-black font-light font-['Roboto'] leading-[36px] max-w-4xl">
                   Take commerce beyond links and into genuine customer conversations.
                 </p>
               </div>
